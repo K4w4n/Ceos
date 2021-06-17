@@ -1,2 +1,2 @@
 # Ceos
-Tenta editar o *README.MD*
+Aqui estarão algumas instruções de como voce pode baixar esse projeto e testalo em sua própria maquina, aguarde por enquanto...
