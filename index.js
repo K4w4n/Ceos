@@ -29,4 +29,4 @@ app.get('/sobre.html', (req, res) => {
 app.use('/', paginas);
 app.use('/api', api);
 app.use('/files', express.static(pastaPublica));
-app.listen('8080', () => console.log('Servidor rodando.'));
+app.listen(process.env.PORT || 8080, () => console.log('Servidor rodando.'));
