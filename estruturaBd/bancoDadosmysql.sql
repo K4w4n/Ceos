@@ -79,7 +79,7 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 				IF (userId IS NOT NULL) THEN
 
 					/*Gerando credencial*/
-                    SET credencial = HEX(random_bytes(4));
+                    SET credencial = HEX(random_bytes(4));/*Isso vai causar muita dor de cabeça no futuro... boa sorte!*/
 
                     /*Salvando credenciais no banco de dados*/
 					INSERT INTO tb_credenciais(credencial_cod,user_id)
