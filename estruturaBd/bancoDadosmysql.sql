@@ -69,7 +69,7 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 		/*Validar dados*/
 		SET erro = (userEmail is null OR userEmail like '') OR  (CHAR_LENGTH(userSenha) < 8);
 		IF erro THEN
-			select 'Erro com os dados.' AS 'Msg';
+			SIGNAL SQLSTATE '45000' SET message_text = 'Erro com os dados';
 			ROLLBACK;
 		ELSE
 			START TRANSACTION;
@@ -88,7 +88,7 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
                     /*Enviando credencial ao usuario*/
 					SELECT credencial AS 'credencial', user_email AS 'email', user_nome AS 'nome', user_sobrenome AS 'sobrenome' FROM tb_usuarios WHERE user_id = userId;
 				ELSE
-				SELECT 'A conta não existe.' AS 'Msg';
+                SIGNAL SQLSTATE '45000' SET message_text = 'A conta não existe';
 			END IF;
 		COMMIT;
 	END IF;
