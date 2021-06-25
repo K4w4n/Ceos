@@ -32,26 +32,24 @@ CREATE TABLE tb_credenciais(
 );
 
 /*----------------------------Registro------------------------------------------*/
-USE db_ceos;
 DELIMITER $$
-CREATE PROCEDURE pro_registro(userEmail VARCHAR(320), userNome VARCHAR(35), userSobrenome VARCHAR(35), userSenha VARCHAR(255))
+CREATE PROCEDURE pro_registro(userEmail VARCHAR(320), userSenha VARCHAR(255), userNome VARCHAR(35), userSobrenome VARCHAR(35))
     BEGIN
         /*Validar dados*/
         DECLARE erro BOOLEAN default false;
         DECLARE numero_contas_com_email  INT;
         SET erro = (userEmail is null OR userEmail like '') OR (userNome is null OR userNome like '') OR (userSobrenome is null OR userSobrenome like '') OR (CHAR_LENGTH(userSenha) < 8);
         IF erro THEN
-            select 'Erro com os dados.' AS 'Msg';
+			SIGNAL SQLSTATE '45000' SET message_text = 'Erro com os dados';
             ROLLBACK;
         ELSE
             START TRANSACTION;
             SET numero_contas_com_email = (SELECT  COUNT(*) FROM tb_usuarios WHERE  user_email= userEmail);
             IF numero_contas_com_email>0 THEN
-                SELECT 'Email ja existe.' AS 'Msg';
+				SIGNAL SQLSTATE '45000' SET message_text = 'Email ja existe';
             ELSE
                 INSERT INTO tb_usuarios(user_email, user_nome, user_sobrenome, user_senha)
                 VALUES (userEmail, userNome, userSobrenome, userSenha);
-                SELECT 'Conta criada com sucesso.' AS 'Msg';
             END IF;
         COMMIT;
     END IF;
