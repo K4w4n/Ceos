@@ -63,8 +63,11 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 	BEGIN
 		/*Declarando variaveis*/
         DECLARE erro BOOLEAN default false;
-        DECLARE credencial CHAR(8);
+        DECLARE credencial CHAR(8) default '';
         DECLARE userId INT;
+        DECLARE counter int default 0;
+        DECLARE caracteresPermitidos varchar(62) default 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        DECLARE tamanhoCredencial INT DEFAULT 8;
         
 		/*Validar dados*/
 		SET erro = (userEmail is null OR userEmail like '') OR  (CHAR_LENGTH(userSenha) < 8);
@@ -79,8 +82,11 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 				IF (userId IS NOT NULL) THEN
 
 					/*Gerando credencial*/
-                    SET credencial = HEX(random_bytes(4));/*Isso vai causar muita dor de cabeça no futuro... boa sorte!*/
-
+					WHILE counter < tamanhoCredencial do
+                        SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*char_length(caracteresPermitidos), 1));
+						SET counter = counter + 1;
+					END WHILE;
+                    SELECT credencial AS 'credencial';
                     /*Salvando credenciais no banco de dados*/
 					INSERT INTO tb_credenciais(credencial_cod,user_id)
 					VALUES (credencial, userId);
