@@ -138,13 +138,11 @@ CREATE PROCEDURE pro_confirme_credencial(credencial CHAR(8))
 	BEGIN
     DECLARE quantidadeCredenciais INT;
 		START TRANSACTION;
-			SET quantidadeCredenciais = (SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial);
-            IF quantidadeCredenciais > 0
-				THEN
-					SELECT TRUE AS 'credencialRegistrada';
-                ELSE
-					SELECT FALSE AS 'credencialRegistrada';
-                END IF;
+			SELECT user_email AS 'email', user_nome AS 'nome', user_sobrenome AS 'sobrenome' 
+            FROM tb_usuarios 
+            INNER JOIN tb_credenciais
+            ON tb_usuarios.user_Id = tb_credenciais.user_Id
+            WHERE tb_credenciais.credencial_cod = credencial;
 		COMMIT;
 	END$$
 DELIMITER ;
