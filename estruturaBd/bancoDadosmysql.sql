@@ -68,6 +68,7 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
         DECLARE counter int default 0;
         DECLARE caracteresPermitidos varchar(62) default 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         DECLARE tamanhoCredencial INT DEFAULT 8;
+        DECLARE credencialExiste boolean DEFAULT TRUE;
         
 		/*Validar dados*/
 		SET erro = (userEmail is null OR userEmail like '') OR  (CHAR_LENGTH(userSenha) < 8);
@@ -80,12 +81,20 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 				/*Conferir o email e senha*/
 				SET userId = (SELECT user_id FROM tb_usuarios WHERE user_email = userEmail AND user_senha = userSenha);
 				IF (userId IS NOT NULL) THEN
-
+	
 					/*Gerando credencial*/
-					WHILE counter < tamanhoCredencial do
-                        SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*char_length(caracteresPermitidos), 1));
-						SET counter = counter + 1;
-					END WHILE;
+                    WHILE credencialExiste do
+						WHILE counter < tamanhoCredencial do
+							SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*char_length(caracteresPermitidos), 1));
+							SET counter = counter + 1;
+						END WHILE;
+                        IF ((SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial) = 0) THEN
+							SET credencialExiste = FALSE;
+                            ELSE
+								SET credencial = '';
+                        END IF;
+                    END WHILE;
+                    
                     /*Salvando credenciais no banco de dados*/
 					INSERT INTO tb_credenciais(credencial_cod,user_id)
 					VALUES (credencial, userId);
