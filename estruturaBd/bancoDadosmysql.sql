@@ -86,7 +86,6 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
                         SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*char_length(caracteresPermitidos), 1));
 						SET counter = counter + 1;
 					END WHILE;
-                    SELECT credencial AS 'credencial';
                     /*Salvando credenciais no banco de dados*/
 					INSERT INTO tb_credenciais(credencial_cod,user_id)
 					VALUES (credencial, userId);
