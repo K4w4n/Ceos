@@ -120,13 +120,11 @@ CREATE PROCEDURE pro_cancelar_credencial(credencial CHAR(8))
 	SET quantidadeCredencial = (SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial);
 	IF(quantidadeCredencial = 1) THEN
 		START TRANSACTION;
-			SET msg = 'Deletado.';
 			DELETE FROM tb_credenciais WHERE credencial_cod = credencial;
 		COMMIT;
 	ELSE
-		SET msg = 'Credencial invalida.';
+		SIGNAL SQLSTATE '45000' SET message_text = 'A credencial não existe';
 	END IF;
-		SELECT msg AS Msg;
 	END$$
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE db_ceos.pro_cancelar_credencial TO 'app'@'localhost';
