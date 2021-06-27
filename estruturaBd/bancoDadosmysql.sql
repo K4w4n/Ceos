@@ -116,7 +116,6 @@ DELIMITER $$
 CREATE PROCEDURE pro_cancelar_credencial(credencial CHAR(8))
 	BEGIN
 	DECLARE quantidadeCredencial INT;
-	DECLARE msg VARCHAR(100);
 	SET quantidadeCredencial = (SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial);
 	IF(quantidadeCredencial = 1) THEN
 		START TRANSACTION;
