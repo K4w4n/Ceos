@@ -198,9 +198,7 @@ CREATE PROCEDURE pro_crie_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250))
         DECLARE artId INT;
 		START TRANSACTION;
 			SET userId = (SELECT user_id FROM tb_credenciais  WHERE credencial_cod = credencial);
-            INSERT INTO tb_artigos(art_url) VALUES(urlArtigo);
-            SET artId = (SELECT art_id FROM tb_artigos  WHERE art_url = urlArtigo);
-            INSERT INTO tb_escritores(art_id, user_id) VALUES(artId, userId);
+            INSERT INTO tb_artigos(art_url, user_id) VALUES(urlArtigo, userId);
 		COMMIT;
 	END$$
 DELIMITER ;
