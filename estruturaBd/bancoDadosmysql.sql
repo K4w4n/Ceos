@@ -248,7 +248,7 @@ CREATE PROCEDURE pro_edite_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250), n
 					ROLLBACK;
 				ELSE
 					SET userId = (SELECT user_id FROM tb_credenciais WHERE credencial_cod = credencial);
-					SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);/*calma*/
+					SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);
 					SET escritor = (SELECT COUNT(*) FROM tb_artigos WHERE user_id = userId AND art_url = urlArtigo);
 					IF escritor = 1 
 						THEN
@@ -266,7 +266,7 @@ CREATE PROCEDURE pro_edite_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250), n
 									WHERE art_url = urlArtigo;
 								END IF;
 								
-							IF (novaUrlArtigo IS NOT NULL AND novaUrlArtigo NOT LIKE '')/* vc parou aqui */
+							IF (novaUrlArtigo IS NOT NULL AND novaUrlArtigo NOT LIKE '')
 								THEN
 									UPDATE tb_artigos
 									SET art_url = novaUrlArtigo
