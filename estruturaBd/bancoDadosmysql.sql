@@ -239,39 +239,39 @@ CREATE PROCEDURE pro_edite_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250), n
         DECLARE artId INT;
         DECLARE escritor BOOLEAN;
 		START TRANSACTION;
-			SET erro = (credencial IS NULL OR credencial like '') OR  (urlArtigo IS NULL OR urlArtigo like '')  OR  (novaUrlArtigo like '');
+			SET erro = (credencial IS NULL OR credencial like '') OR  (urlArtigo IS NULL OR urlArtigo like '');
             IF erro THEN
-				SELECT 'Erro nos dados.' AS 'Msg';
+				SIGNAL SQLSTATE '45000' SET message_text = 'Erro nos dados.';
 				ROLLBACK;
 			ELSE
 				SET userId = (SELECT user_id FROM tb_credenciais WHERE credencial_cod = credencial);
-				SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);
-				SET escritor = (SELECT COUNT(*) FROM tb_escritores WHERE user_id = userId AND art_id = artId);
+				SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);/*calma*/
+				SET escritor = (SELECT COUNT(*) FROM tb_artigos WHERE user_id = userId AND art_url = urlArtigo);
 				IF escritor = 1 
 					THEN
-						IF (novaUrlArtigo IS NOT NULL OR novaUrlArtigo NOT LIKE '')
-							THEN
-								UPDATE tb_artigos
-								SET art_url = novaUrlArtigo
-								WHERE art_id = artId;
-							END IF;
-                            
 						IF (novoArtTitulo IS NOT NULL OR novoArtTitulo NOT LIKE '')
 							THEN
 								UPDATE tb_artigos
 								SET art_titulo = novoArtTitulo
-								WHERE art_id = artId;
+								WHERE art_url = urlArtigo;
 							END IF;
                             
 						IF (novoArtConteudo IS NOT NULL OR novoArtConteudo NOT LIKE '')
 							THEN
 								UPDATE tb_artigos
 								SET art_conteudo = novoArtConteudo
-								WHERE art_id = artId;
+								WHERE art_url = urlArtigo;
+							END IF;
+							
+						IF (novaUrlArtigo IS NOT NULL OR novaUrlArtigo NOT LIKE '')/* vc parou aqui */
+							THEN
+								UPDATE tb_artigos
+								SET art_url = novaUrlArtigo
+								WHERE art_url = urlArtigo;
 							END IF;
 						SELECT art_url AS 'url', art_titulo AS 'titulo', art_conteudo as 'conteudo', art_data_publicacao AS 'dataPublicacao' FROM tb_artigos WHERE artId = art_id;
 				ELSE
-					SELECT 'Voce não pode editar algo que não é seu.' AS 'Msg';
+					SIGNAL SQLSTATE '45000' SET message_text = 'O artigo não pertence ao usuario em questão';
 				END IF;
             END IF;
 		COMMIT;
