@@ -212,18 +212,15 @@ DELIMITER $$
 CREATE PROCEDURE pro_delete_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250))
 	BEGIN
 		DECLARE userId INT;
-        DECLARE artId INT;
         DECLARE escritor BOOLEAN;
 		START TRANSACTION;
 			SET userId = (SELECT user_id FROM tb_credenciais WHERE credencial_cod = credencial);
-			SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);
-			SET escritor = (SELECT COUNT(*) FROM tb_escritores WHERE user_id = userId AND art_id = artId);
+			SET escritor = (SELECT COUNT(*) FROM tb_artigos WHERE user_id = userId AND art_url = urlArtigo);
             IF escritor = 1 
             THEN
-				DELETE FROM tb_escritores WHERE art_id = artId AND user_id = userId;
                 DELETE FROM tb_artigos WHERE art_url = urlArtigo;
 			ELSE
-				SELECT 'Voce não pode deletar algo que não é seu.' AS 'Msg';
+				SIGNAL SQLSTATE '45000' SET message_text = 'O usuario não tem permição para deletar esse artigo';
             END IF;
 		COMMIT;
 	END$$
