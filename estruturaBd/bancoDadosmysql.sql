@@ -239,41 +239,45 @@ CREATE PROCEDURE pro_edite_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250), n
         DECLARE artId INT;
         DECLARE escritor BOOLEAN;
 		START TRANSACTION;
-			SET erro = (credencial IS NULL OR credencial like '') OR  (urlArtigo IS NULL OR urlArtigo like '');
-            IF erro THEN
-				SIGNAL SQLSTATE '45000' SET message_text = 'Erro nos dados.';
-				ROLLBACK;
+			IF((SELECT COUNT(*) FROM tb_artigos WHERE art_url = urlArtigo) = 0) THEN
+				SIGNAL SQLSTATE '45000' SET message_text = 'A Url não existe';
 			ELSE
-				SET userId = (SELECT user_id FROM tb_credenciais WHERE credencial_cod = credencial);
-				SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);/*calma*/
-				SET escritor = (SELECT COUNT(*) FROM tb_artigos WHERE user_id = userId AND art_url = urlArtigo);
-				IF escritor = 1 
-					THEN
-						IF (novoArtTitulo IS NOT NULL OR novoArtTitulo NOT LIKE '')
-							THEN
-								UPDATE tb_artigos
-								SET art_titulo = novoArtTitulo
-								WHERE art_url = urlArtigo;
-							END IF;
-                            
-						IF (novoArtConteudo IS NOT NULL OR novoArtConteudo NOT LIKE '')
-							THEN
-								UPDATE tb_artigos
-								SET art_conteudo = novoArtConteudo
-								WHERE art_url = urlArtigo;
-							END IF;
-							
-						IF (novaUrlArtigo IS NOT NULL OR novaUrlArtigo NOT LIKE '')/* vc parou aqui */
-							THEN
-								UPDATE tb_artigos
-								SET art_url = novaUrlArtigo
-								WHERE art_url = urlArtigo;
-							END IF;
-						SELECT art_url AS 'url', art_titulo AS 'titulo', art_conteudo as 'conteudo', art_data_publicacao AS 'dataPublicacao' FROM tb_artigos WHERE artId = art_id;
+				SET erro = (credencial IS NULL OR credencial like '') OR  (urlArtigo IS NULL OR urlArtigo like '');
+				IF erro THEN
+					SIGNAL SQLSTATE '45000' SET message_text = 'Erro nos dados.';
+					ROLLBACK;
 				ELSE
-					SIGNAL SQLSTATE '45000' SET message_text = 'O artigo não pertence ao usuario em questão';
+					SET userId = (SELECT user_id FROM tb_credenciais WHERE credencial_cod = credencial);
+					SET artId = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);/*calma*/
+					SET escritor = (SELECT COUNT(*) FROM tb_artigos WHERE user_id = userId AND art_url = urlArtigo);
+					IF escritor = 1 
+						THEN
+							IF (novoArtTitulo IS NOT NULL OR novoArtTitulo NOT LIKE '')
+								THEN
+									UPDATE tb_artigos
+									SET art_titulo = novoArtTitulo
+									WHERE art_url = urlArtigo;
+								END IF;
+								
+							IF (novoArtConteudo IS NOT NULL OR novoArtConteudo NOT LIKE '')
+								THEN
+									UPDATE tb_artigos
+									SET art_conteudo = novoArtConteudo
+									WHERE art_url = urlArtigo;
+								END IF;
+								
+							IF (novaUrlArtigo IS NOT NULL OR novaUrlArtigo NOT LIKE '')/* vc parou aqui */
+								THEN
+									UPDATE tb_artigos
+									SET art_url = novaUrlArtigo
+									WHERE art_url = urlArtigo;
+								END IF;
+							SELECT art_url AS 'url', art_titulo AS 'titulo', art_conteudo as 'conteudo', art_data_publicacao AS 'dataPublicacao' FROM tb_artigos WHERE artId = art_id;
+					ELSE
+						SIGNAL SQLSTATE '45000' SET message_text = 'O artigo não pertence ao usuario em questão';
+					END IF;
 				END IF;
-            END IF;
+			END IF;
 		COMMIT;
 	END$$
 DELIMITER ;
