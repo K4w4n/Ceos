@@ -252,21 +252,21 @@ CREATE PROCEDURE pro_edite_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250), n
 					SET escritor = (SELECT COUNT(*) FROM tb_artigos WHERE user_id = userId AND art_url = urlArtigo);
 					IF escritor = 1 
 						THEN
-							IF (novoArtTitulo IS NOT NULL OR novoArtTitulo NOT LIKE '')
+							IF (novoArtTitulo IS NOT NULL AND novoArtTitulo NOT LIKE '')
 								THEN
 									UPDATE tb_artigos
 									SET art_titulo = novoArtTitulo
 									WHERE art_url = urlArtigo;
 								END IF;
 								
-							IF (novoArtConteudo IS NOT NULL OR novoArtConteudo NOT LIKE '')
+							IF (novoArtConteudo IS NOT NULL AND novoArtConteudo NOT LIKE '')
 								THEN
 									UPDATE tb_artigos
 									SET art_conteudo = novoArtConteudo
 									WHERE art_url = urlArtigo;
 								END IF;
 								
-							IF (novaUrlArtigo IS NOT NULL OR novaUrlArtigo NOT LIKE '')/* vc parou aqui */
+							IF (novaUrlArtigo IS NOT NULL AND novaUrlArtigo NOT LIKE '')/* vc parou aqui */
 								THEN
 									UPDATE tb_artigos
 									SET art_url = novaUrlArtigo
