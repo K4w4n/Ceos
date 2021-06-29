@@ -159,13 +159,15 @@ CREATE PROCEDURE pro_pegue_artigo(urlArtigo VARCHAR(250))
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE db_ceos.pro_pegue_artigo TO 'app'@'localhost';
 /*----------------------------resumaArtigo------------------------------------------*/
-USE db_ceos;
+ USE db_ceos;
 DELIMITER $$
 CREATE PROCEDURE pro_resuma_artigo(urlArtigo VARCHAR(250))
 	BEGIN
 		SELECT A.art_url AS url, concat(LEFT(A.art_conteudo, 250),'...') AS conteudo, A.art_titulo AS titulo, A.art_data_publicacao  AS dataPublicacao, U.user_nome  AS nomeEscritor, U.user_sobrenome  AS sobrenomeEscritor
-		FROM tb_artigos AS A, tb_usuarios AS U, tb_escritores AS E
-		WHERE A.art_id = E.art_id AND U.user_id = E.user_id AND A.art_url = urlArtigo;
+		FROM tb_artigos AS A
+        INNER JOIN tb_usuarios AS U
+        ON A.user_Id = U.user_Id
+		WHERE A.art_url = urlArtigo;
 	END$$
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE db_ceos.pro_resuma_artigo TO 'app'@'localhost';
