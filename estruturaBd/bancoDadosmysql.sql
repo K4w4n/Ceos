@@ -174,10 +174,10 @@ GRANT EXECUTE ON PROCEDURE db_ceos.pro_resuma_artigo TO 'app'@'localhost';
 
 /*----------------------------resumaVariosArtigos------------------------------------------*/
 USE db_ceos;
-/*Aqui provavelmente existe um possivel erro na ordem dos artigos*/
 DELIMITER $$
 CREATE PROCEDURE pro_resuma_varios_artigos(quantidadeArtigo INT, urlArtigo VARCHAR(250))
 	BEGIN
+    /*Provavelmente existe algum erro na ordem dos resumos*/
 		DECLARE id_primeiro_artigo INT;
 		IF urlArtigo IS NULL OR urlArtigo = ''
 		THEN
@@ -186,9 +186,10 @@ CREATE PROCEDURE pro_resuma_varios_artigos(quantidadeArtigo INT, urlArtigo VARCH
 			SET id_primeiro_artigo = (SELECT art_id FROM tb_artigos WHERE art_url = urlArtigo);
 		END IF;
 		SELECT A.art_url AS url, concat(LEFT(A.art_conteudo, 250),'...') AS conteudo, A.art_titulo AS titulo, A.art_data_publicacao  AS dataPublicacao, U.user_nome  AS nomeEscritor, U.user_sobrenome  AS sobrenomeEscritor
-		FROM tb_artigos AS A, tb_usuarios AS U, tb_escritores AS E
-		WHERE A.art_id = E.art_id AND U.user_id = E.user_id AND A.art_id > id_primeiro_artigo
-        ORDER BY A.art_data_publicacao DESC
+		FROM tb_artigos AS A
+        INNER JOIN tb_usuarios AS U
+        ON A.user_Id = U.user_Id
+		WHERE A.art_id < id_primeiro_artigo
         LIMIT quantidadeArtigo;
 	END$$
 DELIMITER ;
