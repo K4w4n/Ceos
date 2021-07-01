@@ -45,4 +45,4 @@ class Validador {
         Object.assign(this.#config, config);
     }
 }
-exports = Validador;
+export default Validator;
