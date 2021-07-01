@@ -10,9 +10,11 @@
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.8"
   },
+  "type": "module",
   "devDependencies": {},
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
