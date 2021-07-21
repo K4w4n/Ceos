@@ -1,7 +1,7 @@
-import { Validador } from './validador.js';
-const connection = require('./conectionMysql.js').connection;
+import Validador from './validador.js';
+import connection from './conectionMysql.js';
 
-class controleConta {
+class ControleConta {
     #connection;
     #validador;
     constructor(connection, validador) {
@@ -77,6 +77,4 @@ class controleConta {
             });
     }
 }
-exports = controleConta;
-a = new controleConta(connection, new Validador());
-console.log(a.registre());
+export default ControleConta;

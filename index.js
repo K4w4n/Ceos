@@ -1,8 +1,10 @@
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import paginas from './src/views/paginas.js';
+import api from './src/controllers/api.js';
+
+const __dirname = path.resolve();
 const app = express();
-const path = require('path');
-const paginas = require('./src/views/paginas.js');
-const api = require('./src/controllers/api.js');
 const pastaPublica = path.join(__dirname, '/src/views/files/');
 
 app.use(express.json());

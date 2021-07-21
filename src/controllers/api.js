@@ -1,5 +1,5 @@
-const express = require('express');
-const controleConta = require('../models/controleConta');
+import express from 'express'
+import ControleConta from '../models/controleConta.js';
 const api = express.Router();
 
 api.post('/user/login/', function (req, res) {
@@ -43,4 +43,4 @@ api.get('/editora/salvarArtigo/', function (req, res) {
     }
     res.send(data);
 });
-module.exports = api;
+export default api;
