@@ -43,6 +43,12 @@ const apiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
+            aviseQuandoPuder.then(() => {
+                this.credencial = undefined;
+                this.email = undefined;
+                this.nome = undefined;
+                this.sobrenome = undefined;
+            });
             return aviseQuandoPuder;
         },
         confirmeCredencial() {
