@@ -2,10 +2,13 @@ import express from 'express'
 import ControleConta from '../models/controleConta.js';
 import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
+import cookieParser from 'cookie-parser';
 
 const api = express.Router();
 const validador = new Validador();
 const controleConta = new ControleConta(connection, validador);
+
+api.use(cookieParser());
 
 api.post('/user/login/', function (req, res) {
     controleConta.facaLogin(req.body.email, req.body.senha, (data) => {
@@ -18,9 +21,14 @@ api.post('/user/login/', function (req, res) {
         }
     });
 });
-api.get('/user/logoff/', function (req, res) {
-    const credencial = req.query.credencial;
-    controleConta.canceleChaveCredencial(credencial, (data) => res.send(data));
+api.delete('/user/logoff/', function (req, res) {
+    controleConta.canceleChaveCredencial(req.cookies.credencial, (data) => {
+        if(data.ok){
+            res.clearCookie("credencial")
+            res.status(200).send({});
+        }
+        
+    });
 });
 api.post('/user/registro/', function (req, res) {
     controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha, (data) => {

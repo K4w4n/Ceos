@@ -54,20 +54,17 @@ class ControleConta {
             });
     }
     canceleChaveCredencial(credencial, callBack) {
-        if (!ferramentas.validaCredencial(credencial)) {
-            callBack(new Resposta('Credencial invalida!', false));
+        if (!this.#validador.credencial(credencial)) {
+            callBack({});
             return;
         }
         this.#connection.query('CALL pro_cancelar_credencial(?);', [credencial],
             (err, results) => {
                 if (err) {
-                    callBack(new Resposta('Erro inesperado!', false));
+                    callBack({});
                     return;
-                }
-                if (results[0][0].Msg == 'Credencial invalida.') {
-                    callBack(new Resposta('Credencial invalida.', false));
-                } else if (results[0][0].Msg == 'Deletado.') {
-                    callBack(new Resposta('Concluido!', true));
+                } else {
+                    callBack({ ok: true });
                 }
             });
     }

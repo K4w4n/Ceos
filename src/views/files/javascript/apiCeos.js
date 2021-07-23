@@ -39,17 +39,14 @@ const apiCeos = (() => {
             });
             return aviseQuandoPuder;
         },
-        logoff(callBack = console.log) {
-            const data = { credencial: this.credencial }
-            ajax('./api/user/logoff/', data, (data) => {
-                if (data.status.sucesso) {
-                    delete this.nome;
-                    delete this.sobrenome;
-                    delete this.email;
-                    delete this.credencial;
-                }
-                callBack(data);
+        logoff() {
+            const aviseQuandoPuder = fetch("/api/user/logoff/", {
+                method: "DELETE",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
             });
+            return aviseQuandoPuder;
         }
     }
     const bibliotecaLocal = {
