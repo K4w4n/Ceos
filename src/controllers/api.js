@@ -23,9 +23,11 @@ api.post('/user/login/', function (req, res) {
 });
 api.delete('/user/logoff/', function (req, res) {
     controleConta.canceleChaveCredencial(req.cookies.credencial, (data) => {
-        if (data.ok) {
+        if (data) {
             res.clearCookie("credencial")
             res.status(200).end();
+        } else {
+            res.status(500).end();
         }
     });
 });
@@ -34,7 +36,7 @@ api.get('/user/confirmecredencial/', function (req, res) {
         if (data.ok) {
             data.ok = undefined;
             res.send(data);
-        }else{
+        } else {
             res.status(500).end();
         }
 
