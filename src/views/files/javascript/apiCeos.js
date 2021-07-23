@@ -64,7 +64,7 @@ const apiCeos = (() => {
             return aviseQuandoPuder;
         }
     }
-    const bibliotecaLocal = {
+    const biblioteca = {
         resumos: [],
         pushResumos(quantidadeArtigos, callBack) {
             const data = {
@@ -107,7 +107,7 @@ const apiCeos = (() => {
 
     return ({
         user: user,
-        bibliotecaLocal: bibliotecaLocal,
+        biblioteca: biblioteca,
         editora: editora
     });
 })();
