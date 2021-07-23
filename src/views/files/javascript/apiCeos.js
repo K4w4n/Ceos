@@ -7,17 +7,14 @@ class Artigo {
 }
 const apiCeos = (() => {
     const user = {
-        login(email, senha, callBack = console.log) {
-            const dataLogin = { email: email, senha: senha }
-            ajax('./api/user/login/', dataLogin, (data) => {
-                if (data.status.sucesso) {
-                    this.nome = data.dados.nome;
-                    this.sobrenome = data.dados.sobrenome;
-                    this.email = data.dados.email;
-                    this.credencial = data.dados.credencial;
-                }
-                callBack(data);
-            });
+        login(email, senha) {
+            return fetch("api/user/login/", {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                }),
+                body: JSON.stringify({ email: email, senha: senha }),
+            }).then(response=>response.json());
         },
         registre(nome, sobrenome, email, senha, callBack = console.log) {
             const dataUser = {

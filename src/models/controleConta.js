@@ -1,6 +1,3 @@
-import Validador from './validador.js';
-import connection from './conectionMysql.js';
-
 class ControleConta {
     #connection;
     #validador;
@@ -9,17 +6,18 @@ class ControleConta {
         this.#validador = validador;
     }
     facaLogin(email, senha, callBack) {
-        if (!ferramentas.validaEmail(email) && !ferramentas.validaSenha(senha)) {
-            callBack(new Resposta('Email ou senha invalido', false));
+        if (!this.#validador.email(email) && !this.#validador.senha(senha)) {
+            callBack();
             return;
         }
         this.#connection.query('CALL pro_login(?, ?)', [email, senha],
             (err, results) => {
                 if (err) {
-                    callBack(new Resposta('Erro inesperado!', false));
+                    callBack({});
                     return;
                 }
-                callBack(new Resposta('Credencial pronta!', true, results[0][0]));
+                results[0][0].ok = true;
+                callBack(results[0][0]);
             });
     }
     registre(nome, sobreNome, email, senha, callBack) {
