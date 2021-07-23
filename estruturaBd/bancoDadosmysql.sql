@@ -177,7 +177,6 @@ USE db_ceos;
 DELIMITER $$
 CREATE PROCEDURE pro_resuma_varios_artigos(quantidadeArtigo INT, urlArtigo VARCHAR(250))
 	BEGIN
-    /*Provavelmente existe algum erro na ordem dos resumos*/
 		DECLARE id_primeiro_artigo INT;
 		IF urlArtigo IS NULL OR urlArtigo = ''
 		THEN
@@ -189,7 +188,7 @@ CREATE PROCEDURE pro_resuma_varios_artigos(quantidadeArtigo INT, urlArtigo VARCH
 		FROM tb_artigos AS A
         INNER JOIN tb_usuarios AS U
         ON A.user_Id = U.user_Id
-		WHERE A.art_id < id_primeiro_artigo
+		WHERE A.art_id > id_primeiro_artigo
         LIMIT quantidadeArtigo;
 	END$$
 DELIMITER ;
