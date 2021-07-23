@@ -111,20 +111,3 @@ const apiCeos = (() => {
         editora: editora
     });
 })();
-
-function ajax(endereco, argumentos, callBack) {
-    const linkFormatado = Object.entries(argumentos).reduce(function (a, b) { return a + b[0] + '=' + b[1] + '&' }, endereco + '?');
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', linkFormatado);
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            try {
-                callBack(JSON.parse(xhr.responseText));
-            } catch (e) {
-                alert('Nos desculpe pelo inconveniente, ocorreu algum erro.');
-                console.log(e);
-            }
-        }
-    }
-    xhr.send();
-}
