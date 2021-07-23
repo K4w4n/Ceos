@@ -15,11 +15,8 @@ const apiCeos = (() => {
                 }),
                 body: JSON.stringify({ email: email, senha: senha }),
             }).then(response => response.json());
-            aviseQuandoPuder.then((dados) => {
-                this.nome = dados.nome;
-                this.sobrenome = dados.sobrenome;
-                this.email = dados.email;
-                this.credencial = dados.credencial;
+            aviseQuandoPuder.then((data) => {
+                Object.assign(this, data);
             })
             return aviseQuandoPuder;
         },
