@@ -22,24 +22,21 @@ class ControleConta {
     }
     registre(nome, sobreNome, email, senha, callBack) {
         if (this.#validador.nome(nome)
-            && this.#validador.sobreNome(sobreNome)
+            && this.#validador.sobrenome(sobreNome)
             && this.#validador.email(email)
             && this.#validador.senha(senha)
         ) {
-            this.#connection.query('CALL pro_registro(?, ?, ?, ?)', [email, nome, sobreNome, senha],
+            this.#connection.query('CALL pro_registro(?, ?, ?, ?)', [email, senha, nome, sobreNome],
                 (err, results) => {
                     if (err) {
-                        callBack(new Resposta('Erro inesperado!', false));
+                        callBack({});
                         return;
-                    }
-                    if (results[0][0].Msg == 'Conta criada com sucesso.') {
-                        callBack(new Resposta('Usuario registrado', true));
-                    } else if (results[0][0].Msg = 'Email ja existe.') {
-                        callBack(new Resposta('O email já existe', false));
+                    } else {
+                        callBack({ ok: true });
                     }
                 });
         } else {
-            callBack(false);
+            callBack({});
         }
     }
     confirmeChaveCredencial(credencial, callBack) {

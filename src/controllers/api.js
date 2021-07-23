@@ -22,8 +22,15 @@ api.get('/user/logoff/', function (req, res) {
     const credencial = req.query.credencial;
     controleConta.canceleChaveCredencial(credencial, (data) => res.send(data));
 });
-api.get('/user/registro/', function (req, res) {
-    controleConta.registre(req.query.nome, req.query.sobrenome, req.query.email, req.query.senha, (data) => res.send(data));
+api.post('/user/registro/', function (req, res) {
+    controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha, (data) => {
+        if (data.ok) {
+            data.ok = undefined;
+            res.send();
+        } else {
+            res.status(500).send('Erro nos dados');
+        }
+    });
 });
 api.get('/biblioteca/pushResumos/', function (req, res) {
     const data = {

@@ -8,31 +8,36 @@ class Artigo {
 const apiCeos = (() => {
     const user = {
         login(email, senha) {
-            return fetch("api/user/login/", {
+            const aviseQuandoPuder = fetch("api/user/login/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
                 body: JSON.stringify({ email: email, senha: senha }),
-            }).then(response=>response.json());
+            }).then(response => response.json());
+            aviseQuandoPuder.then((dados) => {
+                this.nome = dados.nome;
+                this.sobrenome = dados.sobrenome;
+                this.email = dados.email;
+                this.credencial = dados.credencial;
+            })
+            return aviseQuandoPuder;
         },
-        registre(nome, sobrenome, email, senha, callBack = console.log) {
+        registro(nome, sobrenome, email, senha) {
             const dataUser = {
                 nome: nome,
                 sobrenome: sobrenome,
                 email: email,
                 senha: senha
             }
-            ajax('./api/user/registro/', dataUser, (data) => {
-                //add futuramente uma forma dos dados do usuario virem junto com o registro
-                /* if (data.status.sucesso) {
-                    this.nome = data.dados.nome;
-                    this.sobrenome = data.dados.sobrenome;
-                    this.email = data.dados.email;
-                    this.credencial = data.dados.credencial;
-                } */
-                callBack(data);
+            const aviseQuandoPuder = fetch("api/user/registro/", {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                }),
+                body: JSON.stringify(dataUser),
             });
+            return aviseQuandoPuder;
         },
         logoff(callBack = console.log) {
             const data = { credencial: this.credencial }
