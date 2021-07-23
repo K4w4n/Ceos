@@ -23,11 +23,21 @@ api.post('/user/login/', function (req, res) {
 });
 api.delete('/user/logoff/', function (req, res) {
     controleConta.canceleChaveCredencial(req.cookies.credencial, (data) => {
-        if(data.ok){
+        if (data.ok) {
             res.clearCookie("credencial")
             res.status(200).end();
         }
-        
+    });
+});
+api.get('/user/confirmecredencial/', function (req, res) {
+    controleConta.confirmeChaveCredencial(req.cookies.credencial, (data) => {
+        if (data.ok) {
+            data.ok = undefined;
+            res.send(data);
+        }else{
+            res.status(500).end();
+        }
+
     });
 });
 api.post('/user/registro/', function (req, res) {

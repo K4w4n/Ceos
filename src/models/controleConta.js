@@ -40,17 +40,18 @@ class ControleConta {
         }
     }
     confirmeChaveCredencial(credencial, callBack) {
-        if (!ferramentas.validaCredencial(credencial)) {
-            callBack(new Resposta('Credencial invalida!', false));
+        if (!this.#validador.credencial(credencial)) {
+            callBack({});
             return;
         }
         this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
             (err, results) => {
                 if (err) {
-                    callBack(new Resposta('Erro inesperado!', false));
+                    callBack({});
                     return;
                 }
-                callBack(new Resposta('Concluido!', true, { credencialRegistrada: !!results[0][0].credencialRegistrada }));
+                results[0][0].ok = true;
+                callBack(results[0][0]);
             });
     }
     canceleChaveCredencial(credencial, callBack) {

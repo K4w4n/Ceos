@@ -47,6 +47,18 @@ const apiCeos = (() => {
                 })
             });
             return aviseQuandoPuder;
+        },
+        confirmeCredencial() {
+            const aviseQuandoPuder = fetch("/api/user/confirmecredencial/", {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            }).then(response => response.json());
+            aviseQuandoPuder.then((data) => {
+                Object.assign(this, data);
+            })
+            return aviseQuandoPuder;
         }
     }
     const bibliotecaLocal = {
