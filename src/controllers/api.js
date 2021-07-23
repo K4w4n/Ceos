@@ -17,7 +17,7 @@ api.post('/user/login/', function (req, res) {
             res.cookie('credencial', data.credencial);
             res.send(data);
         } else {
-            res.status(500).send('Erro nos dados');
+            res.status(500).end();
         }
     });
 });
@@ -25,7 +25,7 @@ api.delete('/user/logoff/', function (req, res) {
     controleConta.canceleChaveCredencial(req.cookies.credencial, (data) => {
         if(data.ok){
             res.clearCookie("credencial")
-            res.status(200).send({});
+            res.status(200).end();
         }
         
     });
@@ -34,9 +34,9 @@ api.post('/user/registro/', function (req, res) {
     controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha, (data) => {
         if (data.ok) {
             data.ok = undefined;
-            res.send();
+            res.end();
         } else {
-            res.status(500).send('Erro nos dados');
+            res.status(500).end();
         }
     });
 });
