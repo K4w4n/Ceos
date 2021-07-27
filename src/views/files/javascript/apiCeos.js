@@ -66,12 +66,21 @@ const apiCeos = (() => {
     }
     const biblioteca = {
         resumos: [],
-        pushResumos(quantidadeArtigos, callBack) {
+        pushResumos(quantidadeArtigos) {
             const data = {
-                codArtigo: this.resumos[this.resumos.length - 1],
+                url: this.resumos[0] ? this.resumos[this.resumos.length - 1].url : undefined,
                 quantidadeArtigos: quantidadeArtigos
             }
-            ajax('./api/biblioteca/pushResumos/', data, callBack);
+            const aviseQuandoPuder = fetch(`/api/biblioteca/pushResumos?${data.url ? `artigo=${data.url}&` : ''}quantidadeArtigos=${data.quantidadeArtigos}`, {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            }).then(response => response.json());
+            aviseQuandoPuder.then((novosResumos) => {
+                this.resumos = [...this.resumos, ...novosResumos];
+            });
+            return aviseQuandoPuder;
         },
         restart() {
             this.resumos = [];

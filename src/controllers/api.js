@@ -1,12 +1,15 @@
-import express from 'express'
+import express from 'express';
 import ControleConta from '../models/controleConta.js';
+import Biblioteca from '../models/biblioteca.js';
 import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
 
 const api = express.Router();
 const validador = new Validador();
+
 const controleConta = new ControleConta(connection, validador);
+const biblioteca = new Biblioteca(connection, validador);
 
 api.use(cookieParser());
 
@@ -53,11 +56,15 @@ api.post('/user/registro/', function (req, res) {
     });
 });
 api.get('/biblioteca/pushResumos/', function (req, res) {
-    const data = {
-        codArtigo: req.query.codArtigo,
-        quantidadeArtigos: req.query.quantidadeArtigos
-    }
-    res.send(data);
+    const data = req.query;
+    console.log(data);
+    biblioteca.resumaVariosArtigos(data.quantidadeArtigos, data.artigo)
+        .then(dados => {
+            res.send(dados);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 api.get('/editora/abrirArtigo/', function (req, res) {
     const data = {

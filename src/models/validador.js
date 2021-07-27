@@ -41,6 +41,9 @@ class Validador {
         const reg = /^[a-zA-Z-0-9]+$/;
         return (reg.test(urlArtigo) && urlArtigo);
     }
+    stringENumero(string) {
+        return (!isNaN(parseFloat(string)) && isFinite(string));
+    }
     alterarConfiguracoes(config) {
         Object.assign(this.#config, config);
     }
