@@ -22,9 +22,6 @@ class Biblioteca {
             if (!((!urlArtigo || this.#validador.urlArtigo(urlArtigo)) && this.#validador.stringENumero(quantidadeArtigos))) {
                 reject({ msg: "Dados invalidos" });
             } else {
-                console.log('Url artigo', urlArtigo);
-                console.log('Quantidade', quantidadeArtigos);
-
                 this.#connection.query("CALL pro_resuma_varios_artigos(?, ?)", [quantidadeArtigos, urlArtigo || ''],
                     (err, results) => {
                         if (err) {

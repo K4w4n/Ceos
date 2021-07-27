@@ -57,7 +57,6 @@ api.post('/user/registro/', function (req, res) {
 });
 api.get('/biblioteca/pushResumos/', function (req, res) {
     const data = req.query;
-    console.log(data);
     biblioteca.resumaVariosArtigos(data.quantidadeArtigos, data.artigo)
         .then(dados => {
             res.send(dados);
