@@ -1,55 +1,13 @@
-exports.editora = {
-    crieArtigo(urlArtigo, credencialCodigo, callBack) {
-        if (!callBack) {
-            return;
-        }
-        controleConta.confirmeChaveCredencial(credencialId, (msgData) => {
-            if (!msgData.status.sucesso) {
-                callBack(msgData);
-                return;
-            }
-            connection.query('SELECT COUNT(artId) FROM tbArtigos WHERE artId = ?', [idArtigo], (err, results, fields) => {
-                if (!err) {
-                    if (!results[0]['COUNT(artId)']) {
-                        connection.query('INSERT INTO tbArtigos(artId, artTitulo, artConteudo, artDataPublicação) VALUES (?,?,?,?)',
-                            [idArtigo, 'Simple title', 'Simple text', dataFormatadaMysql(new Date())],
-                            (err, results) => {
-                                if (!err) {
-
-                                    connection.query('SELECT COUNT(userId) from tbEscritores WHERE ? = credencialId',
-                                        [credencialId], (err, results) => {
-                                            if (!err) {
-                                                connection.query('INSERT INTO tbEscritores(userID, artId) VALUES (?,?)',
-                                                    [idArtigo], (err) => {
-                                                        callBack(new Mensagem(new Status('Erro inesperado', false)));
-                                                        return
-                                                    })
-
-                                                callBack(new Mensagem(new Status('Artigo criado com sucesso.', true),
-                                                    new Artigo(idArtigo, 'Simple title', 'Simple text', dataFormatadaMysql(new Date()))));
-                                            } else {
-                                                callBack(new Mensagem(new Status('Erro ao localizar usuario', false)));
-                                                return
-                                            }
-                                        });
-
-                                } else {
-                                    callBack(new Mensagem(new Status('Erro inesperado', false)));
-                                }
-                            });
-                    } else {
-                        callBack(new Mensagem(new Status('Código para a Url já esta em uso.', false)));
-                    }
-                } else {
-                    callBack(new Mensagem(new Status('Erro inesperado', false)));
-                }
-
-            });
-        });
-
-    },
-    deleteArtigo(idArtigo, callBack) { },
-    editeArtigo(idArtigo, alteracoes, callBack) { }
+class Editora {
+    #connection;
+    #validador;
+    constructor(connection, validador) {
+        this.#connection = connection;
+        this.#validador = validador;
+    }
+    crieArtigo(urlArtigo, credencial) { }
+    deleteArtigo(urlArtigo, credencial) { }
+    editeArtigo(artigo, credencial) { }
 }
 
 function dataFormatadaMysql(data) {
@@ -63,3 +21,4 @@ function dataFormatadaMysql(data) {
     const segundos = data.getSeconds();
     return anoF + "-" + mesF + "-" + diaF + " " + hora + ":" + minuto + ":" + segundos;
 }
+export default Editora;

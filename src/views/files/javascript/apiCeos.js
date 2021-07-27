@@ -88,12 +88,16 @@ const apiCeos = (() => {
     }
     const editora = {
         artigoEmEdicao: undefined,
-        abrirArtigo(idArtigo, credencial, callBack) {
-            const data = {
-                idArtigo: idArtigo,
-                credencial: credencial
-            }
-            ajax('./api/editora/abrirArtigo/', data, callBack);
+        abrirArtigo(url) {
+            const data = { url: url }
+            const aviseQuandoPuder = fetch(`/api/editora/abrirArtigo?url=${url}`, {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            }).then(response => response.json());
+            aviseQuandoPuder.then(data => this.artigoEmEdicao = { ...data, ...this.artigoEmEdicao });
+            return aviseQuandoPuder;
         },
         criarArtigo(idArtigo, credencial, callBack) {
             const data = {

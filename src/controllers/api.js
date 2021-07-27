@@ -4,6 +4,7 @@ import Biblioteca from '../models/biblioteca.js';
 import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
+import Editora from '../models/editora.js';
 
 const api = express.Router();
 const validador = new Validador();
@@ -67,8 +68,8 @@ api.get('/biblioteca/pushResumos/', function (req, res) {
 });
 api.get('/editora/abrirArtigo/', function (req, res) {
     const data = {
-        idArtigo: req.query.idArtigo,
-        credencial: req.query.credencial
+        url: req.query.url,
+        credencial: req.cookies.credencial
     }
     res.send(data);
 });
