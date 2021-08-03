@@ -66,6 +66,15 @@ api.get('/biblioteca/pushResumos/', function (req, res) {
             res.status(500).send(err);
         });
 });
+api.get('/biblioteca/meusArtigos/', function (req, res) {
+    biblioteca.meusArtigos(req.cookies.credencial)
+        .then(dados => {
+            res.send(dados);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
+});
 api.get('/editora/abrirArtigo/', function (req, res) {
     const data = {
         url: req.query.url,

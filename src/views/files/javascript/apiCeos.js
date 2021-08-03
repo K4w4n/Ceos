@@ -82,6 +82,18 @@ const apiCeos = (() => {
             });
             return aviseQuandoPuder;
         },
+        pushMeusArtigos() {
+            const aviseQuandoPuder = fetch('/api/biblioteca/meusArtigos', {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            }).then(response => response.json());
+            aviseQuandoPuder.then((meusArtigos) => {
+                this.meusArtigos = meusArtigos;
+            });
+            return aviseQuandoPuder;
+        },
         restart() {
             this.resumos = [];
         }
