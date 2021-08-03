@@ -4,7 +4,7 @@ CREATE DATABASE db_ceos;
 USE db_ceos;
 
 CREATE TABLE tb_usuarios(
-    user_Id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL AUTO_INCREMENT,
     user_email VARCHAR(320) NOT NULL UNIQUE,
     user_nome VARCHAR(35) NOT NULL,
     user_sobrenome VARCHAR(35) NOT NULL,
@@ -148,9 +148,19 @@ GRANT EXECUTE ON PROCEDURE db_ceos.pro_confirme_credencial TO 'app'@'localhost';
 /*----------------------------pegueArtigo------------------------------------------*/
 USE db_ceos;
 DELIMITER $$
-CREATE PROCEDURE pro_pegue_artigo(urlArtigo VARCHAR(250))
+CREATE PROCEDURE pro_pegue_artigo(urlArtigo VARCHAR(250), credencial CHAR(8))
 	BEGIN
-		SELECT A.art_url AS url, A.art_conteudo AS conteudo, A.art_titulo AS titulo, A.art_data_publicacao AS dataPublicacao, U.user_nome AS nomeAutor, U.user_sobrenome AS sobrenomeAutor
+		DECLARE voceEscritor boolean DEFAULT FALSE;
+        SET voceEscritor = 
+        (SELECT count(A.art_id)
+        FROM tb_artigos AS A
+        INNER JOIN tb_usuarios AS U
+        ON A.user_id = U.user_id
+        INNER JOIN tb_credenciais AS C
+        ON C.user_id = U.user_id
+		WHERE A.art_url = urlArtigo AND C.credencial_cod = credencial);
+        
+		SELECT A.art_url AS url, A.art_conteudo AS conteudo, A.art_titulo AS titulo, A.art_data_publicacao AS dataPublicacao, U.user_nome AS nomeAutor, U.user_sobrenome AS sobrenomeAutor, voceEscritor
         FROM tb_artigos AS A
         INNER JOIN tb_usuarios AS U
         ON A.user_id = U.user_id
