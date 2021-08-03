@@ -292,4 +292,25 @@ CREATE PROCEDURE pro_edite_artigo(credencial CHAR(8),  urlArtigo VARCHAR(250), n
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE db_ceos.pro_edite_artigo TO 'app'@'localhost';
 
+/*----------------------------pegueMeusArtigos------------------------------------------*/
+USE db_ceos;
+DELIMITER $$
+CREATE PROCEDURE pro_pegue_meus_artigos(credencial CHAR(8))
+	BEGIN
+		SELECT tb_artigos.art_url AS url, 
+		   tb_artigos.art_conteudo AS conteudo,
+		   tb_artigos.art_titulo AS titulo,
+		   tb_artigos.art_data_publicacao AS dataPublicacao, 
+		   tb_usuarios.user_nome AS nomeEscritor, 
+		   tb_usuarios.user_sobrenome AS sobrenomeEscritor
+		FROM tb_artigos
+		INNER JOIN tb_usuarios
+		ON tb_artigos.user_id = tb_usuarios.user_id
+		INNER JOIN tb_credenciais
+		ON tb_credenciais.user_id = tb_usuarios.user_id
+		WHERE tb_credenciais.credencial_cod = credencial;
+	END$$
+DELIMITER ;
+GRANT EXECUTE ON PROCEDURE db_ceos.pro_pegue_meus_artigos TO 'app'@'localhost';
+
 FLUSH PRIVILEGES;
