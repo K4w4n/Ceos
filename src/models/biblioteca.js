@@ -5,11 +5,25 @@ class Biblioteca {
         this.#connection = connection;
         this.#validador = validador;
     }
-    pegueArtigo(callBack, idArtigo) {
-        query('', [email, senha],
-            (err, results, fields) => {
-
-            });
+    pegueArtigo(urlArtigo, credencial) {
+        return new Promise((resolve, reject) => {
+            if (!(this.#validador.credencial(credencial) || !credencial) && !this.#validador.urlArtigo(urlArtigo)) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query("CALL pro_pegue_artigo(?,?);", [urlArtigo, credencial],
+                    (err, results) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            if (results[0][0]) {
+                                resolve(results[0][0]);
+                            } else {
+                                reject({ msg: 'arquivo nao encontrado' });
+                            }
+                        }
+                    });
+            }
+        });
     }
     resumaArtigo(callBack, idArtigo) {
         query('', [email, senha],
