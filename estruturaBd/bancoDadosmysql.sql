@@ -85,7 +85,7 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 					/*Gerando credencial*/
                     WHILE credencialExiste do
 						WHILE counter < tamanhoCredencial do
-							SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*char_length(caracteresPermitidos), 1));
+							SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*(char_length(caracteresPermitidos) - 1) + 1, 1));
 							SET counter = counter + 1;
 						END WHILE;
                         IF ((SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial) = 0) THEN
