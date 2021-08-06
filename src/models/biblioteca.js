@@ -25,12 +25,6 @@ class Biblioteca {
             }
         });
     }
-    resumaArtigo(callBack, idArtigo) {
-        query('', [email, senha],
-            (err, results, fields) => {
-
-            });
-    }
     meusArtigos(credencial) {
         return new Promise((resolve, reject) => {
             if (!this.#validador.credencial(credencial)) {

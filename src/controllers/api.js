@@ -75,13 +75,6 @@ api.get('/biblioteca/meusArtigos/', function (req, res) {
             res.status(500).send(err);
         });
 });
-api.get('/editora/abrirArtigo/', function (req, res) {
-    const data = {
-        url: req.query.url,
-        credencial: req.cookies.credencial
-    }
-    res.send(data);
-});
 api.get('/editora/criarArtigo/', function (req, res) {
     const idArtigo = req.query.idArtigo;
     const credencialId = req.query.credencial;
