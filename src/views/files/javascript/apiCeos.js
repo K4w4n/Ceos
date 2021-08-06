@@ -111,15 +111,24 @@ const apiCeos = (() => {
             aviseQuandoPuder.then(data => this.artigoEmEdicao = { ...data, ...this.artigoEmEdicao });
             return aviseQuandoPuder;
         },
-        criarArtigo(idArtigo, credencial, callBack) {
+        criarArtigo(url) {
             const data = {
-                idArtigo: idArtigo,
-                credencial: credencial
+                url: url,
             }
-            ajax('./api/editora/criarArtigo/', data, callBack);
-        },
-        fecharArtigo(callBack) {
-            this.artigoEmEdicao = undefined;
+            const aviseQuandoPuder = fetch("/api/editora/criarArtigo/", {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                }),
+                body: JSON.stringify(data)
+            }).then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                } else {
+                    return response;
+                }
+            })
+            return aviseQuandoPuder;
         },
         salvarArtigo(credencial, callBack) {
             const data = {

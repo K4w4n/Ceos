@@ -5,7 +5,22 @@ class Editora {
         this.#connection = connection;
         this.#validador = validador;
     }
-    crieArtigo(urlArtigo, credencial) { }
+    crieArtigo(urlArtigo, credencial) {
+        return new Promise((resolve, reject) => {
+            if (!this.#validador.credencial(credencial) && !this.#validador.urlArtigo(urlArtigo)) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query("CALL pro_crie_artigo(?,?);", [credencial, urlArtigo],
+                    (err, results) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            resolve();
+                        }
+                    });
+            }
+        });
+    }
     deleteArtigo(urlArtigo, credencial) { }
     editeArtigo(artigo, credencial) { }
 }

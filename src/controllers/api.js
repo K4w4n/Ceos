@@ -1,16 +1,17 @@
 import express from 'express';
 import ControleConta from '../models/controleConta.js';
 import Biblioteca from '../models/biblioteca.js';
+import Editora from '../models/editora.js';
 import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
-import Editora from '../models/editora.js';
 
 const api = express.Router();
 const validador = new Validador();
 
 const controleConta = new ControleConta(connection, validador);
 const biblioteca = new Biblioteca(connection, validador);
+const editora = new Editora(connection, validador);
 
 api.use(cookieParser());
 
@@ -75,10 +76,15 @@ api.get('/biblioteca/meusArtigos/', function (req, res) {
             res.status(500).send(err);
         });
 });
-api.get('/editora/criarArtigo/', function (req, res) {
-    const idArtigo = req.query.idArtigo;
-    const credencialId = req.query.credencial;
-    editora.crieArtigo(idArtigo, credencialId, (data) => res.send(data));;
+api.post('/editora/criarArtigo/', function (req, res) {
+    const url = req.body.url;
+    const credencial = req.cookies.credencial;
+    editora.crieArtigo(url, credencial).then(() => {
+        res.sendStatus(200);
+    })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 api.get('/editora/salvarArtigo/', function (req, res) {
     const data = {
