@@ -32,7 +32,7 @@ paginas.get('/artigos/', function (req, res) {
 paginas.get('/artigos/:id', function (req, res) {
     biblioteca.pegueArtigo(req.params.id, req.cookies.credencial)
         .then(dados => {
-            res.send(dados);
+            res.render('artigo', dados);
         })
         .catch(err => {
             res.status(500).send("Artigo não encontrado, sentimos muito, mas ninguem teve paciencia pra desenvolver uma tela de erro descente.");
