@@ -22,7 +22,22 @@ class Editora {
         });
     }
     deleteArtigo(urlArtigo, credencial) { }
-    editeArtigo(artigo, credencial) { }
+    editeArtigo(url, artigo, credencial) {
+        return new Promise((resolve, reject) => {
+            if (!this.#validador.credencial(credencial) && !this.#validador.urlArtigo(url)) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query("CALL pro_edite_artigo(?, ?, ?, ?, ?);", [credencial, url, artigo.url, artigo.titulo, artigo.conteudo],
+                    (err, results) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            resolve();
+                        }
+                    });
+            }
+        });
+    }
 }
 
 function dataFormatadaMysql(data) {

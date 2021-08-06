@@ -86,11 +86,11 @@ api.post('/editora/criarArtigo/', function (req, res) {
             res.status(500).send(err);
         });
 });
-api.get('/editora/salvarArtigo/', function (req, res) {
-    const data = {
-        artigo: req.query.artigo,
-        credencial: req.query.credencial
-    }
-    res.send(data);
+api.post('/editora/salvarArtigo/', function (req, res) {
+    editora.editeArtigo(req.body.url, req.body.artigo, req.cookies.credencial).then(() => {//url, artigo, credencial
+        res.sendStatus(200);
+    }).catch(err => {
+        res.status(500).send(err);
+    });
 });
 export default api;

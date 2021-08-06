@@ -130,12 +130,22 @@ const apiCeos = (() => {
             })
             return aviseQuandoPuder;
         },
-        salvarArtigo(credencial, callBack) {
-            const data = {
-                artigo: this.artigoEmEdicao,
-                credencial: credencial
-            }
-            ajax('./api/editora/salvarArtigo/', data, callBack);
+        salvarArtigo(url, artigo) {
+            const data = {url, artigo}
+            const aviseQuandoPuder = fetch("/api/editora/salvarArtigo/", {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/json",
+                }),
+                body: JSON.stringify(data)
+            }).then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                } else {
+                    return response;
+                }
+            })
+            return aviseQuandoPuder;
         }
     }
 
