@@ -1,35 +1,96 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./files/css/main.css"/>
-    <link rel="icon" type="image/png" href="./files/img/favicon.png"/>
-    <title>Ceos Community</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./files/css/main.css" />
+  <link rel="icon" type="image/png" href="./files/img/favicon.png" />
+  <script src="files/javascript/apiCeos.js"></script>
+  <title>Ceos Community</title>
 </head>
+
 <body>
-    <header>
-      <nav>
-        <a href="index.html"><img src="./files/img/logo.png" class="logo"></a>  
-        <div class="mobile-menu">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
-        </div>
-        <ul class="nav-list">
-            <li><a class="links" href="index.html">INÍCIO</a></li>
-            <li><a class="links ativo" href="artigos.html">ARTIGOS</a></li>
-            <li><a class="links" href="sobre.html">SOBRE NÓS</a></li>
-            <li><a class="links" href="painel.html">PAINEL</a></li>
-            <li><a class="links" href="login.html">ENTRAR</a></li>
-        </ul>
-      </nav>
-    </header>
+  <header>
+    <nav>
+      <a href="index.html"><img src="./files/img/logo.png" class="logo"></a>
+      <div class="mobile-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+      <ul class="nav-list">
+        <li><a class="links" href="index.html">INÍCIO</a></li>
+        <li><a class="links ativo" href="artigos.html">ARTIGOS</a></li>
+        <li><a class="links" href="sobre.html">SOBRE NÓS</a></li>
+        <li><a class="links" href="painel.html">PAINEL</a></li>
+        <li><a class="links" href="login.html">ENTRAR</a></li>
+      </ul>
+    </nav>
+  </header>
+  <style>
+    .card {
+      border-width: 2px;
+      border-style: solid;
+      border-color: darkgray;
+      padding: 10px;
+    }
 
-<script src="./files/javascript/app.js"></script>
+    #puxar {
+      margin-left: 47%;
+    }
+  </style>
+  <script src="./files/javascript/app.js"></script>
+  <main>
+    <div class="box-artigos"></div>
+    <input type="button" value="Mais artigos" id="puxar">
+  </main>
+  <script defer>
+    function gerarCard({ url, conteudo, titulo, dataPublicacao, nomeEscritor, sobrenomeEscritor }) {
+      const card = document.createElement('div');
+      const tituloHTML = document.createElement('h1');
+      const paragrafo = document.createElement('p');
+      const br1 = document.createElement('br');
+      const br2 = document.createElement('br');
+      const labelNomeAutor = document.createElement('label');
+      const labelData = document.createElement('label');
+      const botao = document.createElement('input');
 
+      card.classList.add('card');
+      botao.setAttribute('type', 'button');
+      botao.setAttribute('value', 'Ir para artigo');
+      botao.setAttribute('onclick', `window.location.href = "http://localhost:8080/artigos/${url}"`);
+
+
+      tituloHTML.appendChild(document.createTextNode(titulo || 'Sem titulo'));
+      paragrafo.appendChild(document.createTextNode(conteudo || 'Sem conteudo'));
+      labelNomeAutor.appendChild(document.createTextNode(`${nomeEscritor} ${sobrenomeEscritor}`));
+      labelData.appendChild(document.createTextNode(dataPublicacao));
+
+      card.appendChild(tituloHTML);
+      card.appendChild(paragrafo);
+      card.appendChild(labelData);
+      card.appendChild(br1);
+      card.appendChild(labelNomeAutor);
+      card.appendChild(br2);
+      card.appendChild(botao);
+      return (card);
+    }
+    const botaoPuxar = document.querySelector('#puxar');
+    botaoPuxar.addEventListener('click', (e) => {
+      apiCeos.biblioteca.pushResumos(5).then((resumos) => {
+        console.log(resumos);
+        resumos.forEach(resumo => {
+          document.querySelector('.box-artigos').appendChild(gerarCard(resumo));
+        });
+      }).catch(() => {
+        console.error('Erro inesperado');
+      });
+    });
+    botaoPuxar.click();
+  </script>
 </body>
-</html>
 
+</html>

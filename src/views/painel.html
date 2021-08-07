@@ -1,47 +1,71 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./files/css/main.css"/>
-    <link rel="stylesheet" href="./files/css/painel.css"/>
-    <link rel="icon" type="image/png" href="./files/img/favicon.png"/>
-    <title>Ceos Community</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a href="index.html"><img src="./files/img/logo.png" class="logo"></a>  
-        <div class="mobile-menu">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
-        </div>
-        <ul class="nav-list">
-            <li><a class="links" href="index.html">INÍCIO</a></li>
-            <li><a class="links" href="artigos.html">ARTIGOS</a></li>
-            <li><a class="links" href="sobre.html">SOBRE NÓS</a></li>
-            <li><a class="links ativo" href="painel.html">PAINEL</a></li>
-            <li><a class="links" href="login.html">ENTRAR</a></li>
-        </ul>
-      </nav>
-    </header>
 
-    <div class="container-painel">
-      <input type="text" class="title-painel" placeholder="Título do Artigo">
-      <textarea maxlength="2000" type="text"  rows="25" cols="50" class="content-artigo" placeholder="Conteúdo"></textarea>
-      <div class="link-botao">
-        <label class="hiperlink">Link do seu Artigo: www.ceoscommunity.com/</label><input type="text" class="link" placeholder="Digite sua enxtensão">
-        <button class="btn-publicar">Publicar</button>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <script src="files/javascript/apiCeos.js"></script>
+  <link rel="stylesheet" href="./files/css/main.css" />
+  <link rel="stylesheet" href="./files/css/painel.css" />
+  <link rel="icon" type="image/png" href="./files/img/favicon.png" />
+  <title>Ceos Community</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html"><img src="./files/img/logo.png" class="logo"></a>
+      <div class="mobile-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
       </div>
+      <ul class="nav-list">
+        <li><a class="links" href="index.html">INÍCIO</a></li>
+        <li><a class="links" href="artigos.html">ARTIGOS</a></li>
+        <li><a class="links" href="sobre.html">SOBRE NÓS</a></li>
+        <li><a class="links ativo" href="painel.html">PAINEL</a></li>
+        <li><a class="links" href="login.html">ENTRAR</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container-painel">
+    <input type="text" class="title-painel" placeholder="Título do Artigo">
+    <textarea maxlength="2000" type="text" rows="25" cols="50" class="content-artigo" placeholder="Conteúdo"></textarea>
+    <div class="link-botao">
+      <label class="hiperlink">Link do seu Artigo: www.ceoscommunity.com/artigos/</label><input type="text" class="link"
+        placeholder="Digite sua enxtensão">
+      <button class="btn-publicar">Publicar</button>
     </div>
+  </div>
 
 
 
-<script src="./files/javascript//app.js"></script>
-
+  <script src="./files/javascript//app.js"></script>
+  <script>
+    const btnPublicar = document.querySelector('.btn-publicar');
+    btnPublicar.addEventListener('click', (e) => {
+      const url = document.querySelector('.link').value;
+      const titulo = document.querySelector('.title-painel').value;
+      const conteudo = document.querySelector('.content-artigo').value;
+      apiCeos.editora.criarArtigo(url)
+        .then(() => {
+          apiCeos.editora.salvarArtigo(url,
+            { titulo, conteudo, url })
+            .then(() => {
+              window.location.href = `http://localhost:8080/artigos/${url}`;
+            })
+            .catch(() => {
+              console.error('deu ruim');
+            });
+        }).catch(() => {
+          console.error('deu ruim');
+        });
+    });
+  </script>
 </body>
-</html>
 
+</html>
