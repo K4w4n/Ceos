@@ -199,7 +199,6 @@ CREATE PROCEDURE pro_resuma_varios_artigos(quantidadeArtigo INT, urlArtigo VARCH
         INNER JOIN tb_usuarios AS U
         ON A.user_Id = U.user_Id
 		WHERE A.art_id > id_primeiro_artigo
-        ORDER BY A.art_id desc
         LIMIT quantidadeArtigo;
 	END$$
 DELIMITER ;
