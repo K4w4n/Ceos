@@ -61,7 +61,7 @@
       card.classList.add('card');
       botao.setAttribute('type', 'button');
       botao.setAttribute('value', 'Ir para artigo');
-      botao.setAttribute('onclick', `window.location.href = "http://localhost:8080/artigos/${url}"`);
+      botao.setAttribute('onclick', `window.location.href = "${window.location.href}/${url}"`);
 
 
       tituloHTML.appendChild(document.createTextNode(titulo || 'Sem titulo'));
