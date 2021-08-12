@@ -10,7 +10,8 @@ class Editora {
             if (!this.#validador.credencial(credencial) && !this.#validador.urlArtigo(urlArtigo)) {
                 reject({ msg: "Dados invalidos" });
             } else {
-                this.#connection.query("CALL pro_crie_artigo(?,?);", [credencial, urlArtigo],
+                const connection = this.#connection();
+                connection.query("CALL pro_crie_artigo(?,?);", [credencial, urlArtigo],
                     (err, results) => {
                         if (err) {
                             reject({ msg: err });
@@ -27,7 +28,8 @@ class Editora {
             if (!this.#validador.credencial(credencial) && !this.#validador.urlArtigo(url)) {
                 reject({ msg: "Dados invalidos" });
             } else {
-                this.#connection.query("CALL pro_edite_artigo(?, ?, ?, ?, ?);", [credencial, url, artigo.url, artigo.titulo, artigo.conteudo],
+                const connection = this.#connection();
+                connection.query("CALL pro_edite_artigo(?, ?, ?, ?, ?);", [credencial, url, artigo.url, artigo.titulo, artigo.conteudo],
                     (err, results) => {
                         if (err) {
                             reject({ msg: err });

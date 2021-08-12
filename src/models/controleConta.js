@@ -10,7 +10,8 @@ class ControleConta {
             callBack();
             return;
         }
-        this.#connection.query('CALL pro_login(?, ?)', [email, senha],
+        const connection = this.#connection();
+        connection.query('CALL pro_login(?, ?)', [email, senha],
             (err, results) => {
                 if (err) {
                     callBack({});
@@ -26,7 +27,8 @@ class ControleConta {
             && this.#validador.email(email)
             && this.#validador.senha(senha)
         ) {
-            this.#connection.query('CALL pro_registro(?, ?, ?, ?)', [email, senha, nome, sobreNome],
+            const connection = this.#connection();
+            connection.query('CALL pro_registro(?, ?, ?, ?)', [email, senha, nome, sobreNome],
                 (err, results) => {
                     if (err) {
                         callBack({});
@@ -44,7 +46,8 @@ class ControleConta {
             callBack({});
             return;
         }
-        this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
+        const connection = this.#connection();
+        connection.query('CALL pro_confirme_credencial(?)', [credencial],
             (err, results) => {
                 if (err) {
                     callBack({});
@@ -59,7 +62,8 @@ class ControleConta {
             callBack({});
             return;
         }
-        this.#connection.query('CALL pro_cancelar_credencial(?);', [credencial],
+        const connection = this.#connection();
+        connection.query('CALL pro_cancelar_credencial(?);', [credencial],
             (err, results) => {
                 if (err) {
                     callBack({});
