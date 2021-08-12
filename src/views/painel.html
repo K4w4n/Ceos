@@ -56,7 +56,7 @@
           apiCeos.editora.salvarArtigo(url,
             { titulo, conteudo, url })
             .then(() => {
-              window.location.href = `http://${window.location.host}/artigos/${url}`;
+              window.location.href = `//${window.location.host}/artigos/${url}`;
             })
             .catch(() => {
               console.error('deu ruim');
