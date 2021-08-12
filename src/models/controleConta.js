@@ -5,69 +5,72 @@ class ControleConta {
         this.#connection = connection;
         this.#validador = validador;
     }
-    facaLogin(email, senha, callBack) {
-        if (!this.#validador.email(email) && !this.#validador.senha(senha)) {
-            callBack();
-            return;
-        }
-        this.#connection.query('CALL pro_login(?, ?)', [email, senha],
-            (err, results) => {
-                if (err) {
-                    callBack({});
-                    return;
-                }
-                results[0][0].ok = true;
-                callBack(results[0][0]);
-            });
+    facaLogin(email, senha) {
+        return new Promise((resolve, reject) => {
+            if (!this.#validador.email(email) && !this.#validador.senha(senha)) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query('CALL pro_login(?, ?)', [email, senha],
+                    (err, results) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            resolve(results[0][0]);
+                        }
+                    });
+            }
+        });
     }
-    registre(nome, sobreNome, email, senha, callBack) {
-        if (this.#validador.nome(nome)
-            && this.#validador.sobrenome(sobreNome)
-            && this.#validador.email(email)
-            && this.#validador.senha(senha)
-        ) {
-            this.#connection.query('CALL pro_registro(?, ?, ?, ?)', [email, senha, nome, sobreNome],
-                (err, results) => {
-                    if (err) {
-                        callBack({});
-                        return;
-                    } else {
-                        callBack({ ok: true });
-                    }
-                });
-        } else {
-            callBack({});
-        }
+    registre(nome, sobreNome, email, senha) {
+        return new Promise((resolve, reject) => {
+            if (!(this.#validador.nome(nome)
+                && this.#validador.sobrenome(sobreNome)
+                && this.#validador.email(email)
+                && this.#validador.senha(senha))) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query('CALL pro_registro(?, ?, ?, ?)', [email, senha, nome, sobreNome],
+                    (err) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            resolve();
+                        }
+                    });
+            }
+        });
     }
-    confirmeChaveCredencial(credencial, callBack) {
-        if (!this.#validador.credencial(credencial)) {
-            callBack({});
-            return;
-        }
-        this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
-            (err, results) => {
-                if (err) {
-                    callBack({});
-                    return;
-                }
-                results[0][0].ok = true;
-                callBack(results[0][0]);
-            });
+    confirmeChaveCredencial(credencial) {
+        return new Promise((resolve, reject) => {
+            if (!this.#validador.credencial(credencial)) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
+                    (err, results) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            resolve(results[0][0]);
+                        }
+                    });
+            }
+        });
     }
-    canceleChaveCredencial(credencial, callBack) {
-        if (!this.#validador.credencial(credencial)) {
-            callBack({});
-            return;
-        }
-        this.#connection.query('CALL pro_cancelar_credencial(?);', [credencial],
-            (err, results) => {
-                if (err) {
-                    callBack({});
-                    return;
-                } else {
-                    callBack({ ok: true });
-                }
-            });
+    canceleChaveCredencial(credencial) {
+        return new Promise((resolve, reject) => {
+            if (!this.#validador.credencial(credencial)) {
+                reject({ msg: "Dados invalidos" });
+            } else {
+                this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
+                    (err) => {
+                        if (err) {
+                            reject({ msg: err });
+                        } else {
+                            resolve();
+                        }
+                    });
+            }
+        });
     }
 }
 export default ControleConta;

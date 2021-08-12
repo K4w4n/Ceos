@@ -16,46 +16,41 @@ const editora = new Editora(connection, validador);
 api.use(cookieParser());
 
 api.post('/user/login/', function (req, res) {
-    controleConta.facaLogin(req.body.email, req.body.senha, (data) => {
-        if (data.ok) {
-            data.ok = undefined;
-            res.cookie('credencial', data.credencial);
-            res.send(data);
-        } else {
-            res.status(500).end();
-        }
-    });
+    controleConta.facaLogin(req.body.email, req.body.senha)
+        .then(dados => {
+            res.cookie('credencial', dados.credencial);
+            res.send(dados);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 api.delete('/user/logoff/', function (req, res) {
-    controleConta.canceleChaveCredencial(req.cookies.credencial, (data) => {
-        if (data) {
+    controleConta.canceleChaveCredencial(req.cookies.credencial)
+        .then(() => {
             res.clearCookie("credencial")
             res.status(200).end();
-        } else {
-            res.status(500).end();
-        }
-    });
+        }).catch(err => {
+            res.status(500).send(err);
+        });
 });
 api.get('/user/confirmecredencial/', function (req, res) {
-    controleConta.confirmeChaveCredencial(req.cookies.credencial, (data) => {
-        if (data.ok) {
-            data.ok = undefined;
-            res.send(data);
-        } else {
-            res.status(500).end();
-        }
-
-    });
+    controleConta.confirmeChaveCredencial(req.cookies.credencial)
+        .then(dados => {
+            res.send(dados);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 api.post('/user/registro/', function (req, res) {
-    controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha, (data) => {
-        if (data.ok) {
-            data.ok = undefined;
-            res.end();
-        } else {
-            res.status(500).end();
-        }
-    });
+    controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha)
+        .then(dados => {
+            res.status(200).end();
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 api.get('/biblioteca/pushResumos/', function (req, res) {
     const data = req.query;
