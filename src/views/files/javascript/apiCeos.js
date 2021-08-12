@@ -1,8 +1,8 @@
 class ApiCeos {
     constructor(Usuario, Biblioteca, Editora) {
-        this.usuario = Usuario();
-        this.biblioteca = Biblioteca();
-        this.editora = Editora();
+        this.usuario = new Usuario();
+        this.biblioteca = new Biblioteca();
+        this.editora = new Editora();
     }
 }
 class Usuario {
