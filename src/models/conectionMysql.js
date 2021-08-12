@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 const config = dotenv.config();
 import mysql2 from 'mysql2';
 export default function Connectio() {
-    return mysql2.createConnection({
+    return mysql2.createPool({
         host: process.env.host || 'localhost',
         user: process.env.user || 'app',
         database: process.env.database || 'db_ceos',
