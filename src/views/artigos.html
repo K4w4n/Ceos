@@ -8,7 +8,6 @@
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./files/css/main.css" />
   <link rel="icon" type="image/png" href="./files/img/favicon.png" />
-  <script src="files/javascript/apiCeos.js"></script>
   <title>Ceos Community</title>
 </head>
 
@@ -42,12 +41,14 @@
       margin-left: 47%;
     }
   </style>
-  <script src="./files/javascript/app.js"></script>
   <main>
     <div class="box-artigos"></div>
     <input type="button" value="Mais artigos" id="puxar">
   </main>
-  <script defer>
+  <script src="files/javascript/apiCeos.js"></script>
+  <script src="./files/javascript/app.js"></script>
+  <script>
+    const apiCeos = new ApiCeos();
     function gerarCard({ url, conteudo, titulo, dataPublicacao, nomeEscritor, sobrenomeEscritor }) {
       const card = document.createElement('div');
       const tituloHTML = document.createElement('h1');
