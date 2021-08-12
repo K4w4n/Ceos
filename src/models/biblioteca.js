@@ -10,8 +10,7 @@ class Biblioteca {
             if (!(this.#validador.credencial(credencial) || !credencial) && !this.#validador.urlArtigo(urlArtigo)) {
                 reject({ msg: "Dados invalidos" });
             } else {
-                const connection = this.#connection();
-                connection.query("CALL pro_pegue_artigo(?,?);", [urlArtigo, credencial],
+                this.#connection.query("CALL pro_pegue_artigo(?,?);", [urlArtigo, credencial],
                     (err, results) => {
                         if (err) {
                             reject({ msg: err });
@@ -31,8 +30,7 @@ class Biblioteca {
             if (!this.#validador.credencial(credencial)) {
                 reject({ msg: "Dados invalidos" });
             } else {
-                const connection = this.#connection();
-                connection.query("CALL pro_pegue_meus_artigos(?);", [credencial],
+                this.#connection.query("CALL pro_pegue_meus_artigos(?);", [credencial],
                     (err, results) => {
                         if (err) {
                             reject({ msg: err });
@@ -48,8 +46,7 @@ class Biblioteca {
             if (!((!urlArtigo || this.#validador.urlArtigo(urlArtigo)) && this.#validador.stringENumero(quantidadeArtigos))) {
                 reject({ msg: "Dados invalidos" });
             } else {
-                const connection = this.#connection();
-                connection.query("CALL pro_resuma_varios_artigos(?, ?)", [quantidadeArtigos, urlArtigo || ''],
+                this.#connection.query("CALL pro_resuma_varios_artigos(?, ?)", [quantidadeArtigos, urlArtigo || ''],
                     (err, results) => {
                         if (err) {
                             reject({ msg: err });
