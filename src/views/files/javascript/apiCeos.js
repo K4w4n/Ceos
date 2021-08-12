@@ -1,10 +1,11 @@
 const ApiCeos = (() => {
+    const dominio = 'https://ceoscommunity.herokuapp.com'
     class Usuario {
         constructor() {
             this.confirmeCredencial();
         }
         login(email, senha) {
-            const aviseQuandoPuder = fetch("api/user/login/", {
+            const aviseQuandoPuder = fetch(dominio + "api/user/login/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -23,7 +24,7 @@ const ApiCeos = (() => {
                 email: email,
                 senha: senha
             }
-            const aviseQuandoPuder = fetch("api/user/registro/", {
+            const aviseQuandoPuder = fetch(dominio + "/api/user/registro/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -33,7 +34,7 @@ const ApiCeos = (() => {
             return aviseQuandoPuder;
         }
         logoff() {
-            const aviseQuandoPuder = fetch("/api/user/logoff/", {
+            const aviseQuandoPuder = fetch(dominio + "/api/user/logoff/", {
                 method: "DELETE",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -48,7 +49,7 @@ const ApiCeos = (() => {
             return aviseQuandoPuder;
         }
         confirmeCredencial() {
-            const aviseQuandoPuder = fetch("/api/user/confirmecredencial/", {
+            const aviseQuandoPuder = fetch(dominio + "/api/user/confirmecredencial/", {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -69,7 +70,7 @@ const ApiCeos = (() => {
                 url: this.resumos[0] ? this.resumos[this.resumos.length - 1].url : undefined,
                 quantidadeArtigos: quantidadeArtigos
             }
-            const aviseQuandoPuder = fetch(`/api/biblioteca/pushResumos?${data.url ? `artigo=${data.url}&` : ''}quantidadeArtigos=${data.quantidadeArtigos}`, {
+            const aviseQuandoPuder = fetch(dominio + `/api/biblioteca/pushResumos?${data.url ? `artigo=${data.url}&` : ''}quantidadeArtigos=${data.quantidadeArtigos}`, {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -81,7 +82,7 @@ const ApiCeos = (() => {
             return aviseQuandoPuder;
         }
         pushMeusArtigos() {
-            const aviseQuandoPuder = fetch('/api/biblioteca/meusArtigos', {
+            const aviseQuandoPuder = fetch(dominio + '/api/biblioteca/meusArtigos', {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -100,7 +101,7 @@ const ApiCeos = (() => {
         constructor() { }
         abrirArtigo(url) {
             const data = { url: url }
-            const aviseQuandoPuder = fetch(`/api/editora/abrirArtigo?url=${url}`, {
+            const aviseQuandoPuder = fetch(dominio + `/api/editora/abrirArtigo?url=${url}`, {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -113,7 +114,7 @@ const ApiCeos = (() => {
             const data = {
                 url: url,
             }
-            const aviseQuandoPuder = fetch("/api/editora/criarArtigo/", {
+            const aviseQuandoPuder = fetch(dominio + "/api/editora/criarArtigo/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -130,7 +131,7 @@ const ApiCeos = (() => {
         }
         salvarArtigo(url, artigo) {
             const data = { url, artigo }
-            const aviseQuandoPuder = fetch("/api/editora/salvarArtigo/", {
+            const aviseQuandoPuder = fetch(dominio + "/api/editora/salvarArtigo/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json",
