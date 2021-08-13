@@ -58,9 +58,33 @@ Se as credenciais estiverem corretas a função dentro do then será executada, 
 
 *Para testar isso use o script de login, recarregue a pagina e confira se os dados ainda estão em* `apiCeos.usuario`.
 
-confirmeCredencial
+Caso seja necessario é possivel verificar a credencial que esta logada no momento, assim puxando os dados do usuario do servidor. Para fazer isso basta:
 
-logoff 
+~~~javascript
+    apiCeos.usuario.confirmeCredencial()
+        .then ((dadosUsuario)=>{
+            console.log('Seus dados chegaram');
+            console.log(dadosUsuario);
+        })
+        .catch((err)=>{
+            console.log('Houve um erro ao tentar confirmar a credencial');
+            console.log(err);
+        });
+~~~
+É importante ressaltar que os dados do usuario já são puxados do servidor ao utilizar `new ApiCeos()` no inicio do script, portanto só use `apiCeos.usuario.confirmeCredencial()` caso seja necessario verificar se a credencial foi alterada ou se os dados do usuario precisam ser verificados. 
+
+Caso seja necessario fazer logoff, encerrando a seção do usuario e excluindo os dados armazenados temporariamente em `apiCeos.usuario` basta utilizar:
+
+~~~javascript
+    apiCeos.user.logoff()
+        .then (()=>{
+            console.log('Logoff realizado com sucesso');
+        })
+        .catch((err)=>{
+            console.log('Houve um erro ao tentar fazer logoff');
+            console.log(err);
+        });
+~~~
 
 ### Acessando a biblioteca
 Imagine a biblioteca como o lugar onde voce irá vizualizar os resumos e encontrar os artigos do usuario que esta logado.
@@ -100,3 +124,38 @@ apiCeos.biblioteca.pushMeusArtigos()
 })
 ~~~
 ### Acessando a editora
+
+Imagine a editora como o lugar onde é possivel criar e editar os seus artigos. Para acessar a editora basta utilizar:
+
+~~~javascript 
+    apiCeos.editora;
+~~~ 
+
+Para criar um artigo utilize o metodo `criarArtigo` e informe a nova url do artigo:
+
+~~~javascript 
+    apiCeos.editora.criarArtigo('minha-nova-url')
+    .then(()=>{
+        console.log('Artigo criado com sucesso');
+        console.log(listaArtigos);
+    }).catch((err)=>{
+        console.log('O artigo não pode ser criado');
+        console.log(err);
+    })
+~~~ 
+
+Com o artigo criado agora é possivel editar as informações contidas nele da seguinte forma:
+
+~~~javascript 
+    apiCeos.editora.editarArtigo('minha-nova-url', {
+        titulo : 'Novo titulo', 
+        conteudo: 'olá pessoas amaveis, sejam todos muito bem vindos!', 
+        url: 'minha-nova-url'
+    })
+    .then(()=>{
+        console.log('Artigo editado com sucesso');
+    }).catch((err)=>{
+        console.log('ocorreu um erro ao tentar editar o artigo.');
+        console.log(err);
+    })
+~~~ 
