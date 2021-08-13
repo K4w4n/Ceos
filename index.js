@@ -19,6 +19,7 @@ app.engine('jsx', createEngine.createEngine());
 app.use((req, res, next) => {
     api.use(cors);
     res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
