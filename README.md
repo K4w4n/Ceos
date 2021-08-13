@@ -46,10 +46,10 @@ apiCeos.usuario.login('www.seliganessa.com@gmail.com', '12345678')
     .then((dados)=>{
         console.log('Seus dados chegaram');
         console.log(dados);
-})
+    })
     .catch(()=>{
     console.log('Seus dados não vão chegar se vc não tiver um email ou senha validos');
-});
+    });
 ~~~
 
 Se as credenciais estiverem corretas a função dentro do then será executada, e voce podera ter acesso aos dados através do parametro `dados`. Esses dados tambem serão registrados no próprio objeto.
@@ -91,14 +91,15 @@ Imagine a biblioteca como o lugar onde voce irá vizualizar os resumos e encontr
 
 Para pegar os resumos do servidor basta usar o seguinte:
 ~~~javascript
-apiCeos.biblioteca.pushResumos(5)
-.then(dados=>{
-    console.log('Seus resumos vão chegar aqui');
-    console.log(dados);
-}).catch(err=>{
-    console.log('Aqui sera executado caso de erro');
-    console.log(err);
-})
+    apiCeos.biblioteca.pushResumos(5)
+        .then(dados=>{
+            console.log('Seus resumos vão chegar aqui');
+            console.log(dados);
+        })
+        .catch(err=>{
+            console.log('Aqui sera executado caso de erro');
+            console.log(err);
+        });
 ~~~ 
 O script acima pega 5 resumos no servidor.
 
@@ -114,14 +115,15 @@ apiCeos.biblioteca.restart();
 ~~~
 Alem disso, tambem é possivel buscar os artigos do usuario logado, para isso basta já ter feito login e usar o seguinte metodo:
 ~~~javascript
-apiCeos.biblioteca.pushMeusArtigos()
-.then((listaArtigos)=>{
-    console.log('Esses são seus artigos:');
-    console.log(listaArtigos);
-}).catch((err)=>{
-    console.log('ocorreu um erro:');
-    console.log(err);
-})
+    apiCeos.biblioteca.pushMeusArtigos()
+        .then((listaArtigos)=>{
+            console.log('Esses são seus artigos:');
+            console.log(listaArtigos);
+        })
+        .catch((err)=>{
+            console.log('ocorreu um erro:');
+            console.log(err);
+        });
 ~~~
 ### Acessando a editora
 
@@ -135,13 +137,14 @@ Para criar um artigo utilize o metodo `criarArtigo` e informe a nova url do arti
 
 ~~~javascript 
     apiCeos.editora.criarArtigo('minha-nova-url')
-    .then(()=>{
-        console.log('Artigo criado com sucesso');
-        console.log(listaArtigos);
-    }).catch((err)=>{
-        console.log('O artigo não pode ser criado');
-        console.log(err);
-    })
+        .then(()=>{
+            console.log('Artigo criado com sucesso');
+            console.log(listaArtigos);
+        })
+        .catch((err)=>{
+            console.log('O artigo não pode ser criado');
+            console.log(err);
+        });
 ~~~ 
 
 Com o artigo criado agora é possivel editar as informações contidas nele da seguinte forma:
@@ -152,10 +155,11 @@ Com o artigo criado agora é possivel editar as informações contidas nele da s
         conteudo: 'olá pessoas amaveis, sejam todos muito bem vindos!', 
         url: 'minha-nova-url'
     })
-    .then(()=>{
-        console.log('Artigo editado com sucesso');
-    }).catch((err)=>{
-        console.log('ocorreu um erro ao tentar editar o artigo.');
-        console.log(err);
-    })
+        .then(()=>{
+            console.log('Artigo editado com sucesso');
+        })
+        .catch((err)=>{
+            console.log('ocorreu um erro ao tentar editar o artigo.');
+            console.log(err);
+        })
 ~~~ 
