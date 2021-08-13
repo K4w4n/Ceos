@@ -3,6 +3,7 @@ import path from 'path';
 import paginas from './src/views/paginas.js';
 import api from './src/controllers/api.js';
 import createEngine from 'express-react-views';
+import cors from 'cors';
 
 const __dirname = path.resolve();
 const app = express();
@@ -14,6 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', createEngine.createEngine());
+
+app.use((req, res, next) => {
+    api.use(cors);
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
 
 //Implementação temporaria para facilitar a implementação das paginas
 app.get('/index.html', (req, res) => {

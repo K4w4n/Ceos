@@ -5,14 +5,9 @@ import Editora from '../models/editora.js';
 import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
+
 const api = express.Router();
 const validador = new Validador();
-api.use((req, res, next) => {
-    api.use(cors);
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
 
 const controleConta = new ControleConta(connection, validador);
 const biblioteca = new Biblioteca(connection, validador);
