@@ -7,7 +7,7 @@ class Biblioteca {
     }
     pegueArtigo(urlArtigo, credencial) {
         return new Promise((resolve, reject) => {
-            if (!(this.#validador.credencial(credencial) || !credencial) && !this.#validador.urlArtigo(urlArtigo)) {
+            if (!this.#validador.urlArtigo(urlArtigo)) {
                 reject({ msg: "Dados invalidos" });
             } else {
                 this.#connection.query("CALL pro_pegue_artigo(?,?);", [urlArtigo, credencial],
