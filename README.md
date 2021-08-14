@@ -139,7 +139,6 @@ Para criar um artigo utilize o metodo `criarArtigo` e informe a nova url do arti
     apiCeos.editora.criarArtigo('minha-nova-url')
         .then(()=>{
             console.log('Artigo criado com sucesso');
-            console.log(listaArtigos);
         })
         .catch((err)=>{
             console.log('O artigo não pode ser criado');
@@ -152,8 +151,7 @@ Com o artigo criado agora é possivel editar as informações contidas nele da s
 ~~~javascript 
     apiCeos.editora.editarArtigo('minha-nova-url', {
         titulo : 'Novo titulo', 
-        conteudo: 'olá pessoas amaveis, sejam todos muito bem vindos!', 
-        url: 'minha-nova-url'
+        conteudo: 'olá pessoas amaveis, sejam todos muito bem vindos!',
     })
         .then(()=>{
             console.log('Artigo editado com sucesso');
