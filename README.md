@@ -76,7 +76,7 @@ Caso seja necessario é possivel verificar a credencial que esta logada no momen
 Caso seja necessario fazer logoff, encerrando a seção do usuario e excluindo os dados armazenados temporariamente em `apiCeos.usuario` basta utilizar:
 
 ~~~javascript
-    apiCeos.user.logoff()
+    apiCeos.usuario.logoff()
         .then (()=>{
             console.log('Logoff realizado com sucesso');
         })
