@@ -1,21 +1,31 @@
 const ApiCeos = (() => {
-    const dominio = 'https://ceoscommunity.herokuapp.com'
+    /* const dominio = 'http://localhost:8080'; */
+    const dominio = 'https://ceoscommunity.herokuapp.com';
     class Usuario {
         constructor() {
             this.confirmeCredencial();
         }
         login(email, senha) {
-            const aviseQuandoPuder = fetch(dominio + "api/user/login/", {
+            return fetch(dominio + "/api/user/login/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
                 body: JSON.stringify({ email: email, senha: senha }),
-            }).then(response => response.json());
-            aviseQuandoPuder.then((data) => {
-                Object.assign(this, data);
             })
-            return aviseQuandoPuder;
+                .then(response => {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response
+                })
+                .then(response => {
+                    return response.json()
+                })
+                .then((data) => {
+                    Object.assign(this, data);
+                    return data;
+                });
         }
         registro(nome, sobrenome, email, senha) {
             const dataUser = {
@@ -49,16 +59,16 @@ const ApiCeos = (() => {
             return aviseQuandoPuder;
         }
         confirmeCredencial() {
-            const aviseQuandoPuder = fetch(dominio + "/api/user/confirmecredencial/", {
+            return fetch(`${dominio}/api/user/confirmecredencial/`, {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 })
-            }).then(response => response.json());
-            aviseQuandoPuder.then((data) => {
-                Object.assign(this, data);
-            })
-            return aviseQuandoPuder;
+            }).then(response => response.json()
+            ).then((dadosUsuario) => {
+                Object.assign(this, dadosUsuario);
+                return dadosUsuario;
+            });
         }
     }
     class Biblioteca {
@@ -99,7 +109,7 @@ const ApiCeos = (() => {
     }
     class Editora {
         constructor() { }
-        abrirArtigo(url) {
+        /* abrirArtigo(url) {
             const data = { url: url }
             const aviseQuandoPuder = fetch(dominio + `/api/editora/abrirArtigo?url=${url}`, {
                 method: "GET",
@@ -109,7 +119,7 @@ const ApiCeos = (() => {
             }).then(response => response.json());
             aviseQuandoPuder.then(data => this.artigoEmEdicao = { ...data, ...this.artigoEmEdicao });
             return aviseQuandoPuder;
-        }
+        } */
         criarArtigo(url) {
             const data = {
                 url: url,
@@ -129,7 +139,7 @@ const ApiCeos = (() => {
             })
             return aviseQuandoPuder;
         }
-        salvarArtigo(url, artigo) {
+        salvarArtigo(url, artigo) {/* Editar artigo? */
             const data = { url, artigo }
             const aviseQuandoPuder = fetch(dominio + "/api/editora/salvarArtigo/", {
                 method: "POST",
