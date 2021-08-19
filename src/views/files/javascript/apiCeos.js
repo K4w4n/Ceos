@@ -1,6 +1,5 @@
 const ApiCeos = (() => {
-    const dominio = 'http://localhost:8080';
-    /* const dominio = 'https://ceoscommunity.herokuapp.com'; */
+    const dominio = 'https://ceoscommunity.herokuapp.com';
     class Usuario {
         constructor() {
             this.confirmeCredencial();
