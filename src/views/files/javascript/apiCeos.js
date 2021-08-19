@@ -10,7 +10,7 @@ const ApiCeos = (() => {
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
-                body: JSON.stringify({ email: email, senha: senha }),
+                body: JSON.stringify({ email: email, senha: senha })
             })
                 .then(response => {
                     if (!response.ok) {
