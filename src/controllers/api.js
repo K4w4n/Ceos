@@ -5,15 +5,26 @@ import Editora from '../models/editora.js';
 import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const api = express.Router();
+
+api.use(cookieParser());
+
+api.use(cors());
+
+api.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    next();
+});
+
 const validador = new Validador();
 
 const controleConta = new ControleConta(connection, validador);
 const biblioteca = new Biblioteca(connection, validador);
 const editora = new Editora(connection, validador);
-
-api.use(cookieParser());
 
 api.post('/user/login/', function (req, res) {
     controleConta.facaLogin(req.body.email, req.body.senha)

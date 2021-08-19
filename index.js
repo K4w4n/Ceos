@@ -1,9 +1,8 @@
+import paginas from './src/views/paginas.js';
+import createEngine from 'express-react-views';
+import api from './src/controllers/api.js';
 import express from 'express';
 import path from 'path';
-import paginas from './src/views/paginas.js';
-import api from './src/controllers/api.js';
-import createEngine from 'express-react-views';
-import cors from 'cors';
 
 const __dirname = path.resolve();
 const app = express();
@@ -15,15 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', createEngine.createEngine());
-
-api.use(cors());
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', '*');
-    res.header('Access-Control-Allow-Headers', '86400');
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    next();
-});
 
 //Implementação temporaria para facilitar a implementação das paginas
 app.get('/index.html', (req, res) => {
