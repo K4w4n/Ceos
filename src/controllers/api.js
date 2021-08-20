@@ -15,8 +15,9 @@ api.use(cors());
 
 api.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Methods', '*');
-    res.header('Access-Control-Allow-Headers', '*');
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
     next();
 });
 
@@ -29,7 +30,7 @@ const editora = new Editora(connection, validador);
 api.post('/user/login/', function (req, res) {
     controleConta.facaLogin(req.body.email, req.body.senha)
         .then(dados => {
-            res.cookie('credencial', dados.credencial);
+            res.cookie('credencial', dados.credencial, { sameSite: 'none', secure: true });
             res.send(dados);
         })
         .catch(err => {
