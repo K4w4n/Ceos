@@ -1,5 +1,8 @@
 # Api Ceos
 A api Ceos é uma api que te ajuda a se conectar ao back-end do nosso projeto, com essa api voce consegue controlar a conta do usuario e acessar os artigos e resumos da plataforma, para entender como isso funciona na pratica leia o proximo topico.
+
+>**⚠️WARNING**: Graças ao cross  não consegui configurar a api para criar os cookies em dominios de terceiros, por isso boa parte das funções da api não irão funcionar fora do dominio [Ceos Community](https://ceoscommunity.herokuapp.com), considere colaborar para fazer com que o projeto funcione melhor!
+
 ## Como usar?
 No HTML dentro da tag head adicione o seguinte:
 ~~~HTML
