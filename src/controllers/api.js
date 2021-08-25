@@ -6,12 +6,20 @@ import Validador from '../models/validador.js';
 import connection from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
+
+const secret = process.env.secret;
 
 const api = express.Router();
 
 api.use(cookieParser());
 
 api.use(cors());
+
+api.use((req, res, next)=>{
+    console.log(req.cookies);
+    next();
+});
 
 api.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true);
@@ -29,12 +37,16 @@ const editora = new Editora(connection, validador);
 
 api.post('/user/login/', function (req, res) {
     controleConta.facaLogin(req.body.email, req.body.senha)
-        .then(dados => {
-            res.cookie('credencial', dados.credencial, { sameSite: 'none', secure: true });
-            res.send(dados);
+        .then(usuario => {
+            const token = jwt.sign({ id: usuario.id }, secret, { expiresIn: 5184000 }); //60 dias
+            res.cookie('credencial', token, { httpOnly: true, maxAge: 5184000000, secure: true });
+            usuario.id = undefined;
+            res.status(200).send(usuario);
+            console.log('token', token);
+            console.log('secret', secret);
         })
         .catch(err => {
-            res.status(500).send(err);
+            res.status(404).send(err);
         });
 });
 api.delete('/user/logoff/', function (req, res) {

@@ -61,51 +61,12 @@ USE db_ceos;
 DELIMITER $$
 CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 	BEGIN
-		/*Declarando variaveis*/
-        DECLARE erro BOOLEAN default false;
-        DECLARE credencial CHAR(8) default '';
-        DECLARE userId INT;
-        DECLARE counter int default 0;
-        DECLARE caracteresPermitidos varchar(62) default 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        DECLARE tamanhoCredencial INT DEFAULT 8;
-        DECLARE credencialExiste boolean DEFAULT TRUE;
-        
-		/*Validar dados*/
-		SET erro = (userEmail is null OR userEmail like '') OR  (CHAR_LENGTH(userSenha) < 8);
-		IF erro THEN
-			SIGNAL SQLSTATE '45000' SET message_text = 'Erro com os dados';
-			ROLLBACK;
-		ELSE
-			START TRANSACTION;
-
-				/*Conferir o email e senha*/
-				SET userId = (SELECT user_id FROM tb_usuarios WHERE user_email = userEmail AND user_senha = userSenha);
-				IF (userId IS NOT NULL) THEN
-	
-					/*Gerando credencial*/
-                    WHILE credencialExiste do
-						WHILE counter < tamanhoCredencial do
-							SET credencial = concat(credencial, substring(caracteresPermitidos, rand()*(char_length(caracteresPermitidos) - 1) + 1, 1));
-							SET counter = counter + 1;
-						END WHILE;
-                        IF ((SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial) = 0) THEN
-							SET credencialExiste = FALSE;
-                            ELSE
-								SET credencial = '';
-                        END IF;
-                    END WHILE;
-                    
-                    /*Salvando credenciais no banco de dados*/
-					INSERT INTO tb_credenciais(credencial_cod,user_id)
-					VALUES (credencial, userId);
-
-                    /*Enviando credencial ao usuario*/
-					SELECT credencial AS 'credencial', user_email AS 'email', user_nome AS 'nome', user_sobrenome AS 'sobrenome' FROM tb_usuarios WHERE user_id = userId;
-				ELSE
-                SIGNAL SQLSTATE '45000' SET message_text = 'A conta não existe';
-			END IF;
-		COMMIT;
-	END IF;
+			SELECT user_id AS id,
+				user_email AS email,
+                user_nome AS nome,
+                user_sobrenome AS sobrenome 
+                FROM tb_usuarios 
+                WHERE user_email = userEmail AND user_senha = userSenha;
 END$$
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE db_ceos.pro_login TO 'app'@'localhost';

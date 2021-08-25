@@ -1,5 +1,6 @@
 const ApiCeos = (() => {
-    const dominio = 'https://ceoscommunity.herokuapp.com';
+    const dominio = 'http://localhost:8080';
+    /* const dominio = 'https://ceoscommunity.herokuapp.com'; */
     class Usuario {
         constructor() {
             this.confirmeCredencial();
@@ -10,7 +11,8 @@ const ApiCeos = (() => {
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
-                body: JSON.stringify({ email: email, senha: senha })
+                body: JSON.stringify({ email: email, senha: senha }),
+                credentials: 'same-origin'
             })
                 .then(response => {
                     if (!response.ok) {

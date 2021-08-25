@@ -15,7 +15,15 @@ class ControleConta {
                         if (err) {
                             reject({ msg: err });
                         } else {
-                            resolve(results[0][0]);
+                            if (results[0]) {
+                                if (results[0][0]) {
+                                    resolve(results[0][0]);
+                                } else {
+                                    reject({ msg: 'Conta não encontrada' });
+                                }
+                            } else {
+                                reject({ msg: 'Conta não encontrada' });
+                            }
                         }
                     });
             }
