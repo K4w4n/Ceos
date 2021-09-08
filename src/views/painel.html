@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-  <script src="files/javascript/apiCeos.js"></script>
   <link rel="stylesheet" href="./files/css/main.css" />
   <link rel="stylesheet" href="./files/css/painel.css" />
   <link rel="icon" type="image/png" href="./files/img/favicon.png" />
@@ -14,59 +13,107 @@
 </head>
 
 <body>
-  <header>
+  <div class="wrapper">
     <nav>
-      <a href="index.html"><img src="./files/img/logo.png" class="logo"></a>
-      <div class="mobile-menu">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <div class="logo"><a href="index.html"><img src="files/img/logo.png" class="logotipo"></a></div>
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="artigos.html">Artigos</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="painel.html">Painel</a></li>
+          <li>
+            <a href="#" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><a href="login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a></li>
+              <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
+              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <ul class="nav-list">
-        <li><a class="links" href="index.html">INÍCIO</a></li>
-        <li><a class="links" href="artigos.html">ARTIGOS</a></li>
-        <li><a class="links" href="sobre.html">SOBRE NÓS</a></li>
-        <li><a class="links ativo" href="painel.html">PAINEL</a></li>
-        <li><a class="links" href="login.html">ENTRAR</a></li>
-      </ul>
+      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+      <form action="#" class="search-box">
+        <input type="text" placeholder="Pesquisar..." required>
+        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+      </form>
     </nav>
-  </header>
+  </div>
 
-  <div class="container-painel">
-    <input type="text" class="title-painel" placeholder="Título do Artigo">
-    <textarea maxlength="2000" type="text" rows="25" cols="50" class="content-artigo" placeholder="Conteúdo"></textarea>
-    <div class="link-botao">
-      <label class="hiperlink">Link do seu Artigo: www.ceoscommunity.com/artigos/</label><input type="text" class="link"
-        placeholder="Digite sua enxtensão">
-      <button class="btn-publicar">Publicar</button>
+  <div class="container-artigo">
+    <div class="text-box">
+      <div class="top-area">
+        <input class="title" type="text" placeholder="Título do Artigo">
+      </div>
+
+      <div class="contador">
+        <span id="cont">5000</span> Caracteres Restantes
+      </div>
+      <textarea onkeyup="limite_textarea(this.value)" id="texto"></textarea>
+
+      <div class="link-btn">
+        <label class="link"><label class="title-link">Link do seu Artigo:</label><label class="cod"> www.ceoscommunity.com/artigo?id=</label><input
+            type="text" class="extension" placeholder="Digite sua extensão"></label>
+        <button class="btn-enviar"><span>Publicar</span></button>
+
+      </div>
     </div>
   </div>
 
+  <footer>
+    <div class="footer-content">
+      <img src="files/img/logo.png">
+      <h3>CEOS COMMUNITY</h3>
+      <p>"Conhecimento nunca é demais"</p>
+      <ul class="socials">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2021 Ceos Community</p>
+    </div>
+  </footer>
 
+  <script>function limite_textarea(valor) {
+      quant = 5000;
+      total = valor.length;
+      if (total <= quant) {
+        resto = quant - total;
+        document.getElementById('cont').innerHTML = resto;
+      } else {
+        document.getElementById('texto').value = valor.substr(0, quant);
+      }
+      if (total = quant) {
+        document.getElementById()
+      }
+    }
+    
+    let navbar = document.querySelector('nav');
+  var scrollPrev = window.pageYOffset;
+  window.onscroll = function () {
+      var scrollCur = window.pageYOffset;
+      if (scrollPrev > scrollCur) {
+          navbar.style.top = "0";
+      } else {
+          navbar.style.top = "-80px";
+
+      }
+      scrollPrev = scrollCur;
+  }
+    </script>
+
+    
 
   <script src="./files/javascript//app.js"></script>
-  <script>
-    const apiCeos = new ApiCeos();
-    const btnPublicar = document.querySelector('.btn-publicar');
-    btnPublicar.addEventListener('click', (e) => {
-      const url = document.querySelector('.link').value;
-      const titulo = document.querySelector('.title-painel').value;
-      const conteudo = document.querySelector('.content-artigo').value;
-      apiCeos.editora.criarArtigo(url)
-        .then(() => {
-          apiCeos.editora.salvarArtigo(url,
-            { titulo, conteudo, url })
-            .then(() => {
-              window.location.href = `//${window.location.host}/artigos/${url}`;
-            })
-            .catch(() => {
-              console.error('deu ruim');
-            });
-        }).catch(() => {
-          console.error('deu ruim');
-        });
-    });
-  </script>
+
 </body>
 
 </html>
