@@ -15,10 +15,18 @@
     "react-dom": "^17.0.2"
   },
   "type": "module",
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.6",
+    "jest": "^27.1.1"
+  },
   "scripts": {
-    "test": "nodemon index.js",
+    "test": "jest",
     "start": "node index.js"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   },
   "repository": {
     "type": "git",
