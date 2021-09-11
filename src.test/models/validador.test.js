@@ -1,6 +1,11 @@
 import Validador from '../../src/models/validador';
 const validador = new Validador();
-const emailsEResults = [
+
+const emails = [
+    {
+        email: '',
+        resultado: false
+    },
     {
         email: 'www.seliganessa.com@gmail.com',
         resultado: true
@@ -47,9 +52,63 @@ const emailsEResults = [
     },
 ];
 describe('Testando Email', () => {
-    emailsEResults.forEach((({ email, resultado }) => {
+    emails.forEach((({ email, resultado }) => {
         it(email + '', () => {
             expect(validador.email(email)).toBe(resultado);
         });
     }));
+});
+
+const senhas = [
+    {
+        senha: '',
+        resultado: false,
+    },
+    {
+        senha: '0',
+        resultado: false,
+    },
+    {
+        senha: 'oi',
+        resultado: false,
+    },
+    {
+        senha: 'kawan12',
+        resultado: false,
+    },
+    {
+        senha: 'kawan123',
+        resultado: true,
+    },
+    {
+        senha: 'umasenhaum pouco mais longa e com espacos',
+        resultado: true,
+    },
+    {
+        senha: null,
+        resultado: false,
+    },
+    {
+        senha: undefined,
+        resultado: false,
+    },
+    {
+        senha: 0,
+        resultado: false,
+    },
+    {
+        senha: false,
+        resultado: false,
+    },
+    {
+        senha: true,
+        resultado: false,
+    },
+];
+describe('Testando Senha', () => {
+    senhas.forEach(({ senha, resultado }) => {
+        it('' + senha, () => {
+            expect(validador.senha(senha)).toBe(resultado);
+        });
+    });
 });

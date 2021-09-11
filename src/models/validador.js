@@ -21,8 +21,8 @@ class Validador {
         this.alterarConfiguracoes(config);
     }
     senha(senha) {
-        return (senha.length >= this.#config.senha.tamanhoMin
-            && senha.length <= this.#config.senha.tamanhoMax);
+        return (typeof senha == 'string' && (senha.length >= this.#config.senha.tamanhoMin
+            && senha.length <= this.#config.senha.tamanhoMax));
     }
     email(email) {
         const reg = /^[\w.\+]+@\w+.\w{2,}(?:.\w{2})?$/;
