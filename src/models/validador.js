@@ -28,7 +28,9 @@ class Validador {
     }
     email(email) {
         const reg = /^[\w.\+]+@\w+.\w{2,}(?:.\w{2})?$/;
-        return (typeof email == 'string' && reg.test(email) && email.length <= this.#config.email.tamanhoMax);
+        return (typeof email == 'string'
+            && reg.test(email)
+            && email.length <= this.#config.email.tamanhoMax);
     }
     nome(nome) {
         const regexTemNumero = /[0-9]/;
@@ -41,10 +43,10 @@ class Validador {
     sobrenome(sobrenome) {
         const regexTemNumero = /[0-9]/;
         return (typeof sobrenome == 'string'
-         && !regexTemNumero.test(sobrenome) 
-         && !!sobrenome 
-         && sobrenome.length <= this.#config.sobrenome.tamanhoMax
-         && sobrenome.length >= this.#config.sobrenome.tamanhoMin);
+            && !regexTemNumero.test(sobrenome)
+            && !!sobrenome
+            && sobrenome.length <= this.#config.sobrenome.tamanhoMax
+            && sobrenome.length >= this.#config.sobrenome.tamanhoMin);
     }
     credencial(credencial) {
         return (credencial.length == this.#config.credencial.tamanho);
