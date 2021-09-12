@@ -228,9 +228,9 @@ const sobreNomes = [
         resultado: false
     },
 ]
-describe('Testando Nome', () => {
+describe('Testando sobreNome', () => {
     sobreNomes.forEach(({ sobreNome, resultado }) => {
-        it(`O nome "${sobreNome}" espera o resultado ${resultado}`, () => {
+        it(`O sobreNome "${sobreNome}" espera o resultado ${resultado}`, () => {
             expect(validador.sobrenome(sobreNome)).toBe(resultado);
         });
     });
