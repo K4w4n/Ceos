@@ -29,7 +29,8 @@ class Validador {
         return (reg.test(email) && email.length <= this.#config.email.tamanhoMax);
     }
     nome(nome) {
-        return (!!nome && nome.length <= this.#config.nome.tamanhoMax)
+        const regexTemNumero = /[0-9]/;
+        return (!regexTemNumero.test(nome) && !!nome && nome.length <= this.#config.nome.tamanhoMax)
     }
     sobrenome(sobrenome) {
         return (!!sobrenome && sobrenome.length <= this.#config.sobrenome.tamanhoMax);

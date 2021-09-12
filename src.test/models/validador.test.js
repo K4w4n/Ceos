@@ -53,7 +53,7 @@ const emails = [
 ];
 describe('Testando Email', () => {
     emails.forEach((({ email, resultado }) => {
-        it(email + '', () => {
+        it(`O email "${email}" espera o resultado ${resultado}`, () => {
             expect(validador.email(email)).toBe(resultado);
         });
     }));
@@ -107,8 +107,65 @@ const senhas = [
 ];
 describe('Testando Senha', () => {
     senhas.forEach(({ senha, resultado }) => {
-        it('' + senha, () => {
+        it(`A senha "${senha}" espera o resultado ${resultado}`, () => {
             expect(validador.senha(senha)).toBe(resultado);
+        });
+    });
+});
+const nomes = [
+    {
+        nome: '',
+        resultado: false
+    },
+    {
+        nome: null,
+        resultado: false
+    },
+    {
+        nome: undefined,
+        resultado: false
+    },
+    {
+        nome: 0,
+        resultado: false
+    },
+    {
+        nome: true,
+        resultado: false
+    },
+    {
+        nome: false,
+        resultado: false
+    },
+    {
+        nome: 'kawan',
+        resultado: true
+    },
+    {
+        nome: 'João vitor',
+        resultado: true
+    },
+    {
+        nome: 'João vitor5',
+        resultado: false
+    },
+    {
+        nome: '5kawan',
+        resultado: false
+    },
+    {
+        nome: '123456',
+        resultado: false
+    },
+    {
+        nome: 123456,
+        resultado: false
+    },
+]
+describe('Testando Nome', () => {
+    nomes.forEach(({ nome, resultado }) => {
+        it(`O nome "${nome}" espera o resultado ${resultado}`, () => {
+            expect(validador.nome(nome)).toBe(resultado);
         });
     });
 });
