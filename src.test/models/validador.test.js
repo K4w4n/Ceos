@@ -118,6 +118,10 @@ const nomes = [
         resultado: false
     },
     {
+        nome: 'a',
+        resultado: false
+    },
+    {
         nome: null,
         resultado: false
     },
@@ -166,6 +170,68 @@ describe('Testando Nome', () => {
     nomes.forEach(({ nome, resultado }) => {
         it(`O nome "${nome}" espera o resultado ${resultado}`, () => {
             expect(validador.nome(nome)).toBe(resultado);
+        });
+    });
+});
+
+const sobreNomes = [
+    {
+        sobreNome: '',
+        resultado: false
+    },
+    {
+        sobreNome: 'a',
+        resultado: false
+    },
+    {
+        sobreNome: undefined,
+        resultado: false
+    },
+    {
+        sobreNome: null,
+        resultado: false
+    },
+    {
+        sobreNome: 55,
+        resultado: false
+    },
+    {
+        sobreNome: 'Gonsalves',
+        resultado: true
+    },
+    {
+        sobreNome: 'silva cardoso',
+        resultado: true
+    },
+    {
+        sobreNome: '232',
+        resultado: false
+    },
+    {
+        sobreNome: 'arauj0',
+        resultado: false
+    },
+    {
+        sobreNome: 'araújo',
+        resultado: true
+    },
+    {
+        sobreNome: 'Guimarães',
+        resultado: true
+    },
+    {
+        sobreNome: true,
+        resultado: false
+    },
+    {
+        sobreNome: false,
+        resultado: false
+    },
+]
+describe('Testando Nome', () => {
+    sobreNomes.forEach(({ sobreNome, resultado }) => {
+        it(`O nome "${sobreNome}" espera o resultado ${resultado}`, () => {
+            expect(validador.sobrenome(sobreNome)).toBe(resultado);
         });
     });
 });
