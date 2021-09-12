@@ -235,3 +235,82 @@ describe('Testando sobreNome', () => {
         });
     });
 });
+
+const urls = [
+    {
+        url: '',
+        resultado: false
+    },
+    {
+        url: '&kawabb%',
+        resultado: false
+    },
+    {
+        url: '&kawabb',
+        resultado: false
+    },
+    {
+        url: 'kawabb%',
+        resultado: false
+    },
+    {
+        url: 'kawabb',
+        resultado: true
+    },
+    {
+        url: 'uma-url-correta',
+        resultado: true
+    },
+    {
+        url: 'uma-url incorreta',
+        resultado: false
+    },
+    {
+        url: 'uma url incorreta',
+        resultado: false
+    },
+    {
+        url: ' uma-url-incorreta',
+        resultado: false
+    },
+    {
+        url: 'uma-url-correta-com-numero5',
+        resultado: true
+    },
+    {
+        url: '          uma-url-incorreta      ',
+        resultado: false
+    },
+    {
+        url: undefined,
+        resultado: false
+    },
+    {
+        url: null,
+        resultado: false
+    },
+    {
+        url: true,
+        resultado: false
+    },
+    {
+        url: false,
+        resultado: false
+    },
+    {
+        url: 555,
+        resultado: false
+    },
+    {
+        url: '555',
+        resultado: true
+    },
+];
+
+describe('Testando url', () => {
+    urls.forEach(({ url, resultado }) => {
+        it(`A url "${url}" espera o resultado ${resultado}`, () => {
+            expect(validador.urlArtigo(url)).toBe(resultado);
+        });
+    });
+});
