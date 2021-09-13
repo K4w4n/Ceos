@@ -52,8 +52,17 @@ class Validador {
         return (credencial.length == this.#config.credencial.tamanho);
     }
     urlArtigo(urlArtigo) {
-        const reg = /^[a-zA-Z-0-9]+$/;
-        return (reg.test(urlArtigo) && urlArtigo);
+        let urlValida = typeof urlArtigo == 'string' && urlArtigo.length > 0;
+        if (urlValida) {
+            const caracteresValidos = 'abcdefghijklmnopqrstuvwxyz0123456789-';
+            for (const letraUrlIndex in urlArtigo) {
+                const letraUrl = urlArtigo[letraUrlIndex];
+                if (caracteresValidos.indexOf(letraUrl) == -1) {
+                    urlValida = false;
+                }
+            }
+        }
+        return urlValida;
     }
     stringENumero(string) {
         return (!isNaN(parseFloat(string)) && isFinite(string));

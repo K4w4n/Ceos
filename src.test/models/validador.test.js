@@ -305,6 +305,14 @@ const urls = [
         url: '555',
         resultado: true
     },
+    {
+        url: 'uma-url-MAIUSCULA',
+        resultado: false
+    },
+    {
+        url: 'uma-url-minuscula',
+        resultado: true
+    },
 ];
 
 describe('Testando url', () => {
