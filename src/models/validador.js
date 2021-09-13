@@ -48,9 +48,6 @@ class Validador {
             && sobrenome.length <= this.#config.sobrenome.tamanhoMax
             && sobrenome.length >= this.#config.sobrenome.tamanhoMin);
     }
-    credencial(credencial) {
-        return (credencial.length == this.#config.credencial.tamanho);
-    }
     urlArtigo(urlArtigo) {
         let urlValida = typeof urlArtigo == 'string' && urlArtigo.length > 0;
         if (urlValida) {
