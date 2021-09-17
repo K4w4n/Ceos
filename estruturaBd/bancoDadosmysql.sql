@@ -3,6 +3,13 @@ CREATE USER 'app'@'localhost' IDENTIFIED BY '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL
 CREATE DATABASE db_ceos;
 USE db_ceos;
 
+CREATE TABLE tb_testes(
+	item_id INT NOT NULL AUTO_INCREMENT,
+    item_name VARCHAR(25) UNIQUE,
+    item_quantidade TINYINT,
+    PRIMARY KEY(item_id)
+);
+
 CREATE TABLE tb_usuarios(
     user_id INT NOT NULL AUTO_INCREMENT,
     user_email VARCHAR(320) NOT NULL UNIQUE,
@@ -70,41 +77,6 @@ CREATE PROCEDURE pro_login(userEmail VARCHAR(320), userSenha VARCHAR(255))
 END$$
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE db_ceos.pro_login TO 'app'@'localhost';
-
-/*----------------------------CanceleCredencial------------------------------------------*/
-USE db_ceos;
-DELIMITER $$
-CREATE PROCEDURE pro_cancelar_credencial(credencial CHAR(8))
-	BEGIN
-	DECLARE quantidadeCredencial INT;
-	SET quantidadeCredencial = (SELECT COUNT(*) FROM tb_credenciais WHERE credencial_cod = credencial);
-	IF(quantidadeCredencial = 1) THEN
-		START TRANSACTION;
-			DELETE FROM tb_credenciais WHERE credencial_cod = credencial;
-		COMMIT;
-	ELSE
-		SIGNAL SQLSTATE '45000' SET message_text = 'A credencial não existe';
-	END IF;
-	END$$
-DELIMITER ;
-GRANT EXECUTE ON PROCEDURE db_ceos.pro_cancelar_credencial TO 'app'@'localhost';
-
-/*----------------------------ConfirmeCredencial------------------------------------------*/
-USE db_ceos;
-DELIMITER $$
-CREATE PROCEDURE pro_confirme_credencial(credencial CHAR(8))
-	BEGIN
-    DECLARE quantidadeCredenciais INT;
-		START TRANSACTION;
-			SELECT user_email AS 'email', user_nome AS 'nome', user_sobrenome AS 'sobrenome' 
-            FROM tb_usuarios 
-            INNER JOIN tb_credenciais
-            ON tb_usuarios.user_Id = tb_credenciais.user_Id
-            WHERE tb_credenciais.credencial_cod = credencial;
-		COMMIT;
-	END$$
-DELIMITER ;
-GRANT EXECUTE ON PROCEDURE db_ceos.pro_confirme_credencial TO 'app'@'localhost';
 
 /*----------------------------pegueArtigo------------------------------------------*/
 USE db_ceos;
