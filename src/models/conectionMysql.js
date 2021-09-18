@@ -50,12 +50,27 @@ export class Mysql {
         }
 
         const query = select + from + where + orderBy + limit + ';';
-        
+
         return connection.query(query, dataInjection).then(dados => {
             return dados[0];
         });
     }
-    set() { }
+    set({ tabela, colunas, valores }) {
+        const dataInjection = [];
+
+        const insertInto = 'INSERT INTO ' + tabela + (colunas.length ? '(' + colunas.join(', ') + ')' : '');
+
+        const values = ' VALUES ' + valores.map(insert => {
+            const strInsert = insert.map(dado => {
+                dataInjection.push(dado);
+                return '?';
+            }).join(', ');
+            return '(' + strInsert + ')';
+        }).join(', ');
+
+        const query = insertInto + values + ';';
+        return connection.query(query, dataInjection);//voce parou aqui
+    }
     update() { }
     delete() { }
     #stringList(lista, separador = ', ') {
