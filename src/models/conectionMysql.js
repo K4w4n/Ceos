@@ -8,7 +8,6 @@ export const connection = mysql2.createPool({
     database: process.env.database || 'db_ceos',
     password: process.env.password || '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL&4ASeSOpt%4UoHe'
 });
-//SELECT ['userid'] FROM 'tb_usuario' WHERE [{'user_email': 'www.seliganessa.com@gmail.com', 'user_senha':12345678}]
 export class Mysql {
     constructor() { }
     get({ tabela, buscar, configBusca, colunas, quantidade, ordem }) {
@@ -69,23 +68,34 @@ export class Mysql {
         }).join(', ');
 
         const query = insertInto + values + ';';
-        return connection.query(query, dataInjection);//voce parou aqui
+        return connection.query(query, dataInjection);
     }
-    update() { }
-    delete() { }
-    #stringList(lista, separador = ', ') {
-        let listaString = lista.reduce((listaString, iten) => {
-            return listaString + iten + separador
-        }, ' ');
-        listaString = listaString.substring(0, listaString.length - separador.length) + ' ';
-        return listaString;
-    }
-    #whereString(whereList) {
-        let whereString = '';
-        const whereListTatado = [];
-        for (const coluna in whereList) {
-            whereListTatado.push(`${coluna} = ?`);
+    update({ tabela, valor, condicao }) {
+        const dataInjection = [];
+        const update = 'UPDATE ' + tabela;
+        let set = ' SET ';
+        const setList = [];
+        for (const index in valor) {
+            setList.push(index + ' = ?');
+            dataInjection.push(valor[index]);
         }
-        return this.#stringList(whereListTatado, ' AND ');
+        set += setList.join(', ');
+        let where = ' WHERE ' + condicao.map(configuracao => {
+            dataInjection.push(configuracao['valor']);
+            return configuracao.coluna + ' ' + configuracao.operador + ' ' + '?';
+        }).join(' AND ')
+        const query = update + set + where + ';';
+        return connection.query(query, dataInjection);
+    }
+    delete({ tabela, condicao }) {
+        const dataInjection = [];
+        const deleteFrom = 'DELETE FROM ' + tabela;
+        let where = ' WHERE ' + condicao.map(configuracao => {
+            dataInjection.push(configuracao['valor']);
+            return configuracao.coluna + ' ' + configuracao.operador + ' ' + '?';
+        }).join(' AND ')
+        const query = deleteFrom + where + ';';
+        console.log(query, dataInjection);
+        return connection.query(query, dataInjection);
     }
 }
