@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+/* import dotenv from 'dotenv';
 const config = dotenv.config();
 import mysql2 from 'mysql2/promise';
 
@@ -7,8 +7,8 @@ export const connection = mysql2.createPool({
     user: process.env.user || 'app',
     database: process.env.database || 'db_ceos',
     password: process.env.password || '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL&4ASeSOpt%4UoHe'
-});
-export class Mysql {
+}); */
+/* export class Mysql {
     constructor() { }
     get({ tabela, buscar, configBusca, colunas, quantidade, ordem }) {
         const dataInjection = [];
@@ -98,4 +98,87 @@ export class Mysql {
         console.log(query, dataInjection);
         return connection.query(query, dataInjection);
     }
+} */
+
+export class Mysql {
+    #values = [];
+    #replacementKey = 'replacement_Key_06.01.2019';
+    select(listaColunas = '*') {
+        if(listaColunas == '*'){
+            
+        }
+        return this;
+    }
+    where(listaColunas) {
+        return this;
+    }
+    where(condition) {
+        return this;
+    }
+    sendQuery() {
+        return { query: 'aqui deveria ter uma query', values: [] };
+    }
 }
+
+export class Operation {
+    #values = [];
+    #conditions = '';
+    #replacementKey = 'replacement_Key_06.01.2019';
+    column(columnName) {
+        this.#conditions += ' ' + columnName;
+        return this;
+    }
+    value(value) {
+        this.#conditions += ' ' + this.#replacementKey;
+        this.#values.push(value);
+        return this;
+    }
+    get equal() {
+        this.#conditions += ' =';
+        return this;
+    }
+    get and() {
+        this.#conditions += ' AND';
+        return this;
+    }
+    get or() {
+        this.#conditions += ' OR';
+        return this;
+    }
+    get lesser() {
+        this.#conditions += ' <';
+        return this;
+    }
+    get lesserEqual() {
+        this.#conditions += ' <=';
+        return this;
+    }
+    get greater() {
+        this.#conditions += ' >';
+        return this;
+    }
+    get greaterEqual() {
+        this.#conditions += ' >=';
+        return this;
+    }
+    get different() {
+        this.#conditions += ' !=';
+        return this;
+    }
+    toString(value = '?') {
+        const stringCondition = this.#values.reduce((accumulator, currentValue) => {
+            return accumulator.replace(this.#replacementKey, value || currentValue);
+        }, this.#conditions);
+        return stringCondition;
+    }
+    allValues() {
+        return this.#values;
+    }
+}
+const query = new Mysql();
+const op = new Operation();
+
+query.select(['user_id']).where(op.column('user_email').equal.value('kawanAraujo@gmail.com').and.column('user_senha').equal.value('123456'));
+console.log(op.toString());
+console.log(op.allValues());
+console.log(query.sendQuery());
