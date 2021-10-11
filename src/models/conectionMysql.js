@@ -8,6 +8,37 @@ export const connection = mysql2.createPool({
     database: process.env.database || 'db_ceos',
     password: process.env.password || '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL&4ASeSOpt%4UoHe'
 }); */
+export class InsertInto {
+    #query = '';
+    #values = [];
+    constructor(tableName) {
+        this.#query += `INSERT INTO ${tableName}`;
+    }
+    columns(columnList) {
+        this.#query += `(${columnList.join(', ')})`;
+        return this;
+    }
+    value(valueList) {
+        this.#values = [...this.#values, ...valueList];
+        this.#query += `(${'?, '.repeat(valueList.length).slice(0, -2)})`;
+        return this;
+    }
+    values(valueLists = []) {
+        valueLists.forEach(valueList => {
+            this.#values = [...this.#values, ...valueList]
+            this.#query += `(${'?, '.repeat(valueList.length).slice(0, -2)}),`;
+        });
+        this.#query = this.#query.slice(0, -1);
+        return this;
+    }
+    sendQuery() {
+        return { query: this.#query + ';', values: this.#values };
+    }
+}
+
+export class Delete { }
+
+export class Update { }
 
 export class Select {
     #values = [];
