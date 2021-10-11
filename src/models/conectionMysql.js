@@ -53,7 +53,31 @@ export class Delete {
     }
 }
 
-export class Update { }
+export class Update {
+    #values = [];
+    #query = 'UPDATE';
+    table(table) {
+        this.#query += ' ' + table;
+        return this;
+    }
+    set(columnValues) {
+        this.#query += ' SET '
+        for (const key in columnValues) {
+            this.#query += `${key} = ?, `;
+            this.#values.push(columnValues[key]);
+        }
+        this.#query = this.#query.slice(0, -2);
+        return this;
+    }
+    where(condition) {
+        this.#query += ' WHERE' + condition.toString('?');
+        this.#values = [...this.#values, ...condition.allValues()];
+        return this;
+    }
+    sendQuery() {
+        return { query: this.#query + ';', values: this.#values };
+    }
+}
 
 export class Select {
     #values = [];
@@ -154,3 +178,4 @@ export class Operation {
         return this.#values;
     }
 }
+console.log(new Update().table('tb_usuarios').set({ user_nome: 'kawan', user_senha: '12345678' }).where(new Operation().column('user_nome').equal.value('kawana')).sendQuery());
