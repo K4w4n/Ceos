@@ -178,4 +178,3 @@ export class Operation {
         return this.#values;
     }
 }
-console.log(new Update().table('tb_usuarios').set({ user_nome: 'kawan', user_senha: '12345678' }).where(new Operation().column('user_nome').equal.value('kawana')).sendQuery());
