@@ -36,7 +36,22 @@ export class InsertInto {
     }
 }
 
-export class Delete { }
+export class Delete {
+    #values = [];
+    #query = 'DELETE';
+    from(table) {
+        this.#query += ' ' + table;
+        return this;
+    }
+    where(condition) {
+        this.#query += ' WHERE' + condition.toString('?');
+        this.#values = [...this.#values, ...condition.allValues()];
+        return this;
+    }
+    sendQuery() {
+        return { query: this.#query + ';', values: this.#values };
+    }
+}
 
 export class Update { }
 
