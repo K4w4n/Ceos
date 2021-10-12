@@ -43,7 +43,7 @@ export class Delete {
     #values = [];
     #query = 'DELETE';
     from(table) {
-        this.#query += ' ' + table;
+        this.#query += ' FROM ' + table;
         return this;
     }
     where(condition) {
@@ -52,7 +52,7 @@ export class Delete {
         return this;
     }
     sendQuery() {
-        return { query: this.#query + ';', values: this.#values };
+        return connection.query(this.#query + ';', this.#values);
     }
 }
 
@@ -168,7 +168,7 @@ export class Operation {
         return this;
     }
     get different() {
-        this.#conditions += ' !=';
+        this.#conditions += ' <>';
         return this;
     }
     toString(value = '?') {
