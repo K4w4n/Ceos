@@ -78,7 +78,7 @@ export class Update {
         return this;
     }
     sendQuery() {
-        return { query: this.#query + ';', values: this.#values };
+        return connection.query(this.#query + ';', this.#values);
     }
 }
 
