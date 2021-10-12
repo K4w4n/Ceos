@@ -181,10 +181,3 @@ export class Operation {
         return this.#values;
     }
 }
-const insert = new Insert();
-insert.into('tb_testes')
-    .columns(['item_name', 'item_quantidade'])
-    .values([["Batata doce", 10],["Salada", 1]])
-    .sendQuery()
-    .then(console.log)
-    .catch(console.error)
