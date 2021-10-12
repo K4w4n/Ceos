@@ -181,9 +181,3 @@ export class Operation {
         return this.#values;
     }
 }
-new Select(['item_id', 'item_name', 'item_quantidade'])
-    .from(['tb_testes'])
-    .where(new Operation().column('item_quantidade').greaterEqual.value(5))
-    .sendQuery()
-    .then(console.log)
-    .catch(console.log);
