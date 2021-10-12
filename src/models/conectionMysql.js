@@ -1,18 +1,20 @@
-/* import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 const config = dotenv.config();
 import mysql2 from 'mysql2/promise';
 
-export const connection = mysql2.createPool({
+const connection = mysql2.createPool({
     host: process.env.host || 'localhost',
     user: process.env.user || 'app',
     database: process.env.database || 'db_ceos',
     password: process.env.password || '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL&4ASeSOpt%4UoHe'
-}); */
-export class InsertInto {
+});
+
+export class Insert {
     #query = '';
     #values = [];
-    constructor(tableName) {
+    into(tableName) {
         this.#query += `INSERT INTO ${tableName}`;
+        return this;
     }
     columns(columnList) {
         this.#query += `(${columnList.join(', ')})`;
@@ -20,10 +22,11 @@ export class InsertInto {
     }
     value(valueList) {
         this.#values = [...this.#values, ...valueList];
-        this.#query += `(${'?, '.repeat(valueList.length).slice(0, -2)})`;
+        this.#query += `VALUES (${'?, '.repeat(valueList.length).slice(0, -2)})`;
         return this;
     }
     values(valueLists = []) {
+        this.#query += 'VALUES ';
         valueLists.forEach(valueList => {
             this.#values = [...this.#values, ...valueList]
             this.#query += `(${'?, '.repeat(valueList.length).slice(0, -2)}),`;
@@ -32,7 +35,7 @@ export class InsertInto {
         return this;
     }
     sendQuery() {
-        return { query: this.#query + ';', values: this.#values };
+        return connection.query(this.#query + ';', this.#values);
     }
 }
 
@@ -178,3 +181,10 @@ export class Operation {
         return this.#values;
     }
 }
+const insert = new Insert();
+insert.into('tb_testes')
+    .columns(['item_name', 'item_quantidade'])
+    .values([["Batata doce", 10],["Salada", 1]])
+    .sendQuery()
+    .then(console.log)
+    .catch(console.error)
