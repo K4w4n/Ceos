@@ -246,10 +246,3 @@ export class Operation {
         return this.#values;
     }
 }
-new Insert().into('tb_usuarios')
-    .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
-    .values([
-        ['Kawan', 'Araujo', 'kawan@email.com', '123456'],
-        ['Quezi', 'Mikelly', 'quezi@email.com', '123456'],
-        ['kayque', 'Araujo', 'kayque@email.com', '123456']
-    ])
