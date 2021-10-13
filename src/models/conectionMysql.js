@@ -8,23 +8,84 @@ const connection = mysql2.createPool({
     database: process.env.database || 'db_ceos',
     password: process.env.password || '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL&4ASeSOpt%4UoHe'
 });
-
+/** 
+ * Classe responsavel por Inserir dados no banco de dados MYSQL.
+ * 
+ * A maioria dos métodos internos retornam a referencia do objeto, fazendo com que seja possivel encadear 
+ * metodos com syntaxe parecida ao sql.
+ * 
+ * Ao terminar a query basta utilizar o método ```sendQuery```.
+ * 
+ * Exemplos:
+ * 
+ * ```
+ * new Insert().into("tb_usuarios");
+ * ```
+*/
 export class Insert {
+    /** armazena a query formatada @type {String} */
     #query = '';
+    /** armazena os dados que devem ser enviados na query @type {Array} */
     #values = [];
+    /**
+     * Deve ser o primeiro metodo a ser invocado ao criar o objeto e só pode ser invocado uma vez.
+     * 
+     * Caso seja usado mais de uma vez será retornado um erro ao enviar a query.
+     * 
+     * O proximo método a ser chamado deverá ser o ```columns```
+     * 
+     * @param {String} tableName Nome da tabela onde os dados devem ser inseridos, este deve respeitar a syntaxe mysql.
+     * @returns {Insert} Retorna a referencia do objeto, assim podendo encadear o próximo método.
+     * */
     into(tableName) {
         this.#query += `INSERT INTO ${tableName}`;
         return this;
     }
+    /**
+     * Recebe a lista de colunas em que os dados devem ser inseridos.
+     * 
+     * O proximo método a ser chamado deverá ser o ```value``` ou ```values```
+     * 
+     * @param {String[]} columnList Array contendo os nomes das colunas.
+     * @returns {Insert} Retorna a referencia do objeto, assim podendo encadear o próximo método.
+     *  */
     columns(columnList) {
         this.#query += `(${columnList.join(', ')})`;
         return this;
     }
+    /**
+     * Recebe um array com os dados que devem ser inseridos na tabela.
+     * 
+     * Exemplo:
+     * ```javascript
+     * const insert = new Insert();
+     * insert.into('tb_usuarios')
+     *  .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
+     *  .values(['Kawan', 'Araujo', 'kawan@email.com', '123456']);
+     * ```
+     * @param {Array} valueList Lista de dados que devem ser inseridos na tabela
+     * @returns {Insert} Retorna a referencia do objeto, assim podendo encadear o próximo método.
+     */
     value(valueList) {
         this.#values = [...this.#values, ...valueList];
         this.#query += `VALUES (${'?, '.repeat(valueList.length).slice(0, -2)})`;
         return this;
     }
+    /**
+     * Recebe um array de arrays seguindo o exemplo:
+     * ```
+     * const insert = new Insert();
+     * insert.into('tb_usuarios')
+     *  .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
+     *  .values([
+     *    ['Kawan', 'Araujo',  'kawan@email.com',  '123456'],
+     *    ['Quezi', 'Mikelly', 'quezi@email.com',  '123456'],
+     *    ['kayque','Araujo',  'kayque@email.com', '123456']
+     *])
+     * ```
+     * @param {Array[]} valueLists Lista de listas de dados que devem ser inseridos na tabela
+     * @returns {Insert} Retorna a referencia do objeto, assim podendo encadear o próximo método.
+     */
     values(valueLists = []) {
         this.#query += 'VALUES ';
         valueLists.forEach(valueList => {
@@ -34,6 +95,10 @@ export class Insert {
         this.#query = this.#query.slice(0, -1);
         return this;
     }
+    /**
+     * Envia a query para o banco de dados.
+     * @returns {Promise} Resultado da consulta
+     */
     sendQuery() {
         return connection.query(this.#query + ';', this.#values);
     }
@@ -181,3 +246,10 @@ export class Operation {
         return this.#values;
     }
 }
+new Insert().into('tb_usuarios')
+    .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
+    .values([
+        ['Kawan', 'Araujo', 'kawan@email.com', '123456'],
+        ['Quezi', 'Mikelly', 'quezi@email.com', '123456'],
+        ['kayque', 'Araujo', 'kayque@email.com', '123456']
+    ])
