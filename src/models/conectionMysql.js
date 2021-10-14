@@ -190,58 +190,137 @@ export class Select {
         return connection.query(this.#query + ';', this.#values);
     }
 }
-
+/**
+ * Classe responsavel por definir as operações lógicas que podem ser inseridas no where e on
+ * 
+ * Exemplos:
+ * - Exemplo simples com Where
+ * ```
+ * new Select(['column1', 'column2', 'column3'])
+ *   .from(['table1'])
+ *   .where(new Operation().column('column1').equal.value(1));
+ * ```
+ * - Exemplo com inner join e where
+ * ```
+ * new Select(['column1', 'column2', 'column3'])
+ *   .from(['table1'])
+ *   .innerJoin('table2')
+ *   .on(new Operation().column('table1.column1').equal.column('table2.column1'))
+ *   .where(new Operation().column('table1.column1').equal.value(1));
+ * ```
+ */
 export class Operation {
     #values = [];
     #conditions = '';
     #replacementKey = 'replacement_Key_06.01.2019';
+    /**
+     *Indica a coluna para fazer uma comparação.
+     * @param {String} columnName Nome da coluna
+     * @returns {this} Referencia do objeto para fazer o encadeamento
+     */
     column(columnName) {
         this.#conditions += ' ' + columnName;
         return this;
     }
+    /**
+     * Indica um valor para fazer uma comparação.
+     * @param {String|Number|Boolean} value 
+     * @returns 
+     */
     value(value) {
         this.#conditions += ' ' + this.#replacementKey;
         this.#values.push(value);
         return this;
     }
+    /** 
+     * operação de igualdade entre valores ou colunas.
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get equal() {
         this.#conditions += ' =';
         return this;
     }
+    /**
+     * compara duas expreções booleans, a primeira expreção deve ser declarada antes do and e a segunda depois.
+     * 
+     * Exemplo:
+     * ```
+     * new Operation().column('user_nome').equal.value('kawan').and.column('senha').equal.value('123456')
+     * ```
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get and() {
         this.#conditions += ' AND';
         return this;
     }
+    /**
+     * compara duas expreções booleans, a primeira expreção deve ser declarada antes do OR e a segunda depois.
+     * 
+     * Exemplo:
+     * ```
+     * new Operation().column('user_cargo').equal.value('admin').or.column('user_cargo').equal.value('sub admin')
+     * ```
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get or() {
         this.#conditions += ' OR';
         return this;
     }
+    /** 
+     * Operação de menor(<) entre valores ou colunas.
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get lesser() {
         this.#conditions += ' <';
         return this;
     }
+    /** 
+     * Operação de menor igual(<=) entre valores ou colunas.
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get lesserEqual() {
         this.#conditions += ' <=';
         return this;
     }
+    /** 
+     * Operação de maior(>) entre valores ou colunas.
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get greater() {
         this.#conditions += ' >';
         return this;
     }
+    /** 
+     * Operação de maior igual(>=) entre valores ou colunas.
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get greaterEqual() {
         this.#conditions += ' >=';
         return this;
     }
+    /** 
+     * Operação de diferente(<>) entre valores ou colunas. O equivalente no javascript seria !=
+     * @returns {this} Referencia do objeto para fazer o encadeamento.
+     */
     get different() {
         this.#conditions += ' <>';
         return this;
     }
+    /**
+     * Transforma a operação em string
+     * @param {String} value Valor que deverá substituir os dados da query 
+     * @returns {String} Condição no formato string
+     */
     toString(value = '?') {
         const stringCondition = this.#values.reduce((accumulator, currentValue) => {
             return accumulator.replace(this.#replacementKey, value || currentValue);
         }, this.#conditions);
         return stringCondition;
     }
+    /**
+     * retorna todos os dados da query
+     * @returns {Array} Lista de dados da query
+     */
     allValues() {
         return this.#values;
     }
