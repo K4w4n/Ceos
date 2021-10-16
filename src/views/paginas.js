@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import Biblioteca from '../models/biblioteca.js';
 import Validador from '../models/validador.js';
-import connection from '../models/conectionMysql.js';
+import { connection } from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
 
 const validador = new Validador();

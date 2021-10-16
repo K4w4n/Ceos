@@ -3,7 +3,7 @@ import ControleConta from '../models/controleConta.js';
 import Biblioteca from '../models/biblioteca.js';
 import Editora from '../models/editora.js';
 import Validador from '../models/validador.js';
-import connection from '../models/conectionMysql.js';
+import { connection } from '../models/conectionMysql.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
@@ -16,7 +16,7 @@ api.use(cookieParser());
 
 api.use(cors());
 
-api.use((req, res, next)=>{
+api.use((req, res, next) => {
     console.log(req.cookies);
     next();
 });
