@@ -57,3 +57,16 @@ describe('Operation', () => {
         it('user_idade <= ? OR user_name = ?', () => expect(new Operation().column('user_idade').lesserEqual.value(18).or.column('user_name').equal.value('kawan').toString()).toBe('user_idade <= ? OR user_name = ?'));
     });
 });
+
+describe('Insert', () => {
+    
+});
+describe('Delete', () => {
+
+});
+describe('Update', () => {
+
+});
+describe('Select', () => {
+
+});
