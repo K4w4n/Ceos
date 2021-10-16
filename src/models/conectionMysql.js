@@ -1,8 +1,10 @@
 import dotenv from 'dotenv';
 const config = dotenv.config();
 import mysql2 from 'mysql2/promise';
-
-const connection = mysql2.createPool({
+/**
+ * @deprecated Só utilize isso em casos de teste, isso é necessario para tornar os testes com jest viaveis e manter o sistema estavel
+ */
+export const connection = mysql2.createPool({
     host: process.env.host || 'localhost',
     user: process.env.user || 'app',
     database: process.env.database || 'db_ceos',
@@ -219,7 +221,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento
      */
     column(columnName) {
-        this.#conditions += ' ' + columnName;
+        this.#conditions += columnName;
         return this;
     }
     /**
@@ -228,7 +230,7 @@ export class Operation {
      * @returns 
      */
     value(value) {
-        this.#conditions += ' ' + this.#replacementKey;
+        this.#conditions += this.#replacementKey;
         this.#values.push(value);
         return this;
     }
@@ -237,7 +239,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get equal() {
-        this.#conditions += ' =';
+        this.#conditions += ' = ';
         return this;
     }
     /**
@@ -250,7 +252,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get and() {
-        this.#conditions += ' AND';
+        this.#conditions += ' AND ';
         return this;
     }
     /**
@@ -263,7 +265,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get or() {
-        this.#conditions += ' OR';
+        this.#conditions += ' OR ';
         return this;
     }
     /** 
@@ -271,7 +273,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get lesser() {
-        this.#conditions += ' <';
+        this.#conditions += ' < ';
         return this;
     }
     /** 
@@ -279,7 +281,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get lesserEqual() {
-        this.#conditions += ' <=';
+        this.#conditions += ' <= ';
         return this;
     }
     /** 
@@ -287,7 +289,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get greater() {
-        this.#conditions += ' >';
+        this.#conditions += ' > ';
         return this;
     }
     /** 
@@ -295,7 +297,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get greaterEqual() {
-        this.#conditions += ' >=';
+        this.#conditions += ' >= ';
         return this;
     }
     /** 
@@ -303,7 +305,7 @@ export class Operation {
      * @returns {this} Referencia do objeto para fazer o encadeamento.
      */
     get different() {
-        this.#conditions += ' <>';
+        this.#conditions += ' != ';
         return this;
     }
     /**
