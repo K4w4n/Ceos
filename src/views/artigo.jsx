@@ -81,7 +81,7 @@ module.exports = ({ titulo, conteudo, dataPublicacao, autorNome, autorSobrenome 
             <script src="/files/javascript/main.js"></script>
             <script src="/files/javascript/theme.js"></script>
 
-            <script src="/files/javascript/theme artigo.js"></script>
+            <script src="/files/javascript/theme-artigo.js"></script>
         </body >
     </html >
 }
