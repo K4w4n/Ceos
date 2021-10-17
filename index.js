@@ -1,6 +1,6 @@
-import paginas from './src/views/paginas.js';
+import paginas from './paginas.js';
 import createEngine from 'express-react-views';
-import api from './src/controllers/api.js';
+import api from './api.js';
 import express from 'express';
 import path from 'path';
 
