@@ -152,12 +152,8 @@ export class Update {
 export class Select {
     #values = [];
     #query = '';
-    constructor(listaColunas = '*') {
-        if (listaColunas == '*') {
-            this.#query += 'SELECT *\n'
-        } else {
-            this.#query += 'SELECT ' + listaColunas.join(', ') + '\n';
-        }
+    constructor(listaColunas = []) {
+        this.#query += 'SELECT ' + (listaColunas.join(', ') || '*');
         return this;
     }
     count(tableName) {
@@ -165,11 +161,11 @@ export class Select {
         return this;
     }
     from(listatabelas) {
-        this.#query += ' FROM ' + listatabelas.join(', ') + '\n';
+        this.#query += ' FROM ' + listatabelas.join(', ');
         return this;
     }
     where(condition) {
-        this.#query += ' WHERE' + condition.toString('?') + '\n';
+        this.#query += ' WHERE ' + condition.toString('?');
         this.#values = [...this.#values, ...condition.allValues()];
         return this;
     }
@@ -180,11 +176,11 @@ export class Select {
         return this;
     }
     innerJoin(tableName) {
-        this.#query += ' INNER JOIN ' + tableName + '\n';
+        this.#query += ' INNER JOIN ' + tableName;
         return this;
     }
     on(condition) {
-        this.#query += ' ON' + condition.toString('?') + '\n';
+        this.#query += ' ON ' + condition.toString('?');
         this.#values = [...this.#values, ...condition.allValues()];
         return this;
     }
