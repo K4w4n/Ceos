@@ -1,169 +1,116 @@
-const ApiCeos = (() => {
-    const dominio = 'http://localhost:8080';
-    /* const dominio = 'https://ceoscommunity.herokuapp.com'; */
-    class Usuario {
-        constructor() {
-            this.confirmeCredencial();
-        }
-        login(email, senha) {
-            return fetch(dominio + "/api/user/login/", {
-                method: "POST",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                }),
-                body: JSON.stringify({ email: email, senha: senha }),
-                credentials: 'same-origin'
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw Error(response.statusText);
-                    }
-                    return response
-                })
-                .then(response => {
-                    return response.json()
-                })
-                .then((data) => {
-                    Object.assign(this, data);
-                    return data;
-                });
-        }
-        registro(nome, sobrenome, email, senha) {
+class Artigo {
+    constructor(idArtigo, titulo, conteudo,) {
+        this.titulo = titulo;
+        this.conteudo = conteudo;
+        this.idArtigo = idArtigo;
+    }
+}
+const apiCeos = (() => {
+    const user = {
+        login(email, senha, callBack = console.log) {
+            const dataLogin = { email: email, senha: senha }
+            ajax('./api/user/login/', dataLogin, (data) => {
+                if (data.status.sucesso) {
+                    this.nome = data.dados.nome;
+                    this.sobrenome = data.dados.sobrenome;
+                    this.email = data.dados.email;
+                    this.credencial = data.dados.credencial;
+                }
+                callBack(data);
+            });
+        },
+        registre(nome, sobrenome, email, senha, callBack = console.log) {
             const dataUser = {
                 nome: nome,
                 sobrenome: sobrenome,
                 email: email,
                 senha: senha
             }
-            const aviseQuandoPuder = fetch(dominio + "/api/user/registro/", {
-                method: "POST",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                }),
-                body: JSON.stringify(dataUser),
+            ajax('./api/user/registro/', dataUser, (data) => {
+                //add futuramente uma forma dos dados do usuario virem junto com o registro
+                /* if (data.status.sucesso) {
+                    this.nome = data.dados.nome;
+                    this.sobrenome = data.dados.sobrenome;
+                    this.email = data.dados.email;
+                    this.credencial = data.dados.credencial;
+                } */
+                callBack(data);
             });
-            return aviseQuandoPuder;
-        }
-        logoff() {
-            const aviseQuandoPuder = fetch(dominio + "/api/user/logoff/", {
-                method: "DELETE",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            });
-            aviseQuandoPuder.then(() => {
-                this.credencial = undefined;
-                this.email = undefined;
-                this.nome = undefined;
-                this.sobrenome = undefined;
-            });
-            return aviseQuandoPuder;
-        }
-        confirmeCredencial() {
-            return fetch(`${dominio}/api/user/confirmecredencial/`, {
-                method: "GET",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            }).then(response => response.json()
-            ).then((dadosUsuario) => {
-                Object.assign(this, dadosUsuario);
-                return dadosUsuario;
+        },
+        logoff(callBack = console.log) {
+            const data = { credencial: this.credencial }
+            ajax('./api/user/logoff/', data, (data) => {
+                if (data.status.sucesso) {
+                    delete this.nome;
+                    delete this.sobrenome;
+                    delete this.email;
+                    delete this.credencial;
+                }
+                callBack(data);
             });
         }
     }
-    class Biblioteca {
-        constructor() {
-            this.resumos = [];
-        }
-        pushResumos(quantidadeArtigos) {
+    const bibliotecaLocal = {
+        resumos: [],
+        pushResumos(quantidadeArtigos, callBack) {
             const data = {
-                url: this.resumos[0] ? this.resumos[this.resumos.length - 1].url : undefined,
+                codArtigo: this.resumos[this.resumos.length - 1],
                 quantidadeArtigos: quantidadeArtigos
             }
-            const aviseQuandoPuder = fetch(dominio + `/api/biblioteca/pushResumos?${data.url ? `artigo=${data.url}&` : ''}quantidadeArtigos=${data.quantidadeArtigos}`, {
-                method: "GET",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            }).then(response => response.json());
-            aviseQuandoPuder.then((novosResumos) => {
-                this.resumos = [...this.resumos, ...novosResumos];
-            });
-            return aviseQuandoPuder;
-        }
-        pushMeusArtigos() {
-            const aviseQuandoPuder = fetch(dominio + '/api/biblioteca/meusArtigos', {
-                method: "GET",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            }).then(response => response.json());
-            aviseQuandoPuder.then((meusArtigos) => {
-                this.meusArtigos = meusArtigos;
-            });
-            return aviseQuandoPuder;
-        }
+            ajax('./api/biblioteca/pushResumos/', data, callBack);
+        },
         restart() {
             this.resumos = [];
         }
     }
-    class Editora {
-        constructor() { }
-        /* abrirArtigo(url) {
-            const data = { url: url }
-            const aviseQuandoPuder = fetch(dominio + `/api/editora/abrirArtigo?url=${url}`, {
-                method: "GET",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            }).then(response => response.json());
-            aviseQuandoPuder.then(data => this.artigoEmEdicao = { ...data, ...this.artigoEmEdicao });
-            return aviseQuandoPuder;
-        } */
-        criarArtigo(url) {
+    const editora = {
+        artigoEmEdicao: undefined,
+        abrirArtigo(idArtigo, credencial, callBack) {
             const data = {
-                url: url,
+                idArtigo: idArtigo,
+                credencial: credencial
             }
-            const aviseQuandoPuder = fetch(dominio + "/api/editora/criarArtigo/", {
-                method: "POST",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                }),
-                body: JSON.stringify(data)
-            }).then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                } else {
-                    return response;
-                }
-            })
-            return aviseQuandoPuder;
-        }
-        salvarArtigo(url, artigo) {/* Editar artigo? */
-            const data = { url, artigo }
-            const aviseQuandoPuder = fetch(dominio + "/api/editora/salvarArtigo/", {
-                method: "POST",
-                headers: new Headers({
-                    "Content-Type": "application/json",
-                }),
-                body: JSON.stringify(data)
-            }).then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                } else {
-                    return response;
-                }
-            })
-            return aviseQuandoPuder;
+            ajax('./api/editora/abrirArtigo/', data, callBack);
+        },
+        criarArtigo(idArtigo, credencial, callBack) {
+            const data = {
+                idArtigo: idArtigo,
+                credencial: credencial
+            }
+            ajax('./api/editora/criarArtigo/', data, callBack);
+        },
+        fecharArtigo(callBack) {
+            this.artigoEmEdicao = undefined;
+        },
+        salvarArtigo(credencial, callBack) {
+            const data = {
+                artigo: this.artigoEmEdicao,
+                credencial: credencial
+            }
+            ajax('./api/editora/salvarArtigo/', data, callBack);
         }
     }
-    class ApiCeos {
-        constructor() {
-            this.usuario = new Usuario();
-            this.biblioteca = new Biblioteca();
-            this.editora = new Editora();
-        }
-    }
-    return ApiCeos;
+
+    return ({
+        user: user,
+        bibliotecaLocal: bibliotecaLocal,
+        editora: editora
+    });
 })();
+
+function ajax(endereco, argumentos, callBack) {
+    const linkFormatado = Object.entries(argumentos).reduce(function (a, b) { return a + b[0] + '=' + b[1] + '&' }, endereco + '?');
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', linkFormatado);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            try {
+                callBack(JSON.parse(xhr.responseText));
+            } catch (e) {
+                alert('Nos desculpe pelo inconveniente, ocorreu algum erro.');
+                console.log(e);
+            }
+        }
+    }
+    xhr.send();
+}

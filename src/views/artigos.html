@@ -6,28 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-  <script src="files/javascript/apiCeos.js"></script>
   <link rel="stylesheet" href="./files/css/main.css" />
+  <link rel="stylesheet" href="./files/css/main_dark.css" />
   <link rel="stylesheet" href="./files/css/artigos.css" />
   <link rel="icon" type="image/png" href="./files/img/favicon.png" />
   <title>Ceos Community</title>
 </head>
 
-<body>
-  <div class="wrapper">
+<body class="body-light" id="body">
+  <div class="wrapper" id="wrapper">
     <nav>
       <input type="checkbox" id="show-search">
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-        <div class="logo"><a href="index.html"><img src="files/img/logo.png" class="logotipo"></a></div>
+        <div class="logo"><a href="artigos.html"><img src="files/img/logo1.png" class="logotipo"></a></div>
         <ul class="links">
           <li><a href="index.html">Home</a></li>
           <li><a href="artigos.html">Artigos</a></li>
           <li><a href="sobre.html">Sobre Nós</a></li>
           <li><a href="painel.html">Painel</a></li>
           <li>
-            <a href="#" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features">
             <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
             <ul>
@@ -35,6 +35,19 @@
               </li>
               <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features1">
+            <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><button onclick="darktheme_artigos()" class="theme"><i class="fas fa-moon"></i>
+                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                </button></li>
+              <li><button onclick="lightheme_artigos()" class="theme"><i class="fas fa-sun"></i>
+                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
+                </button></li>
             </ul>
           </li>
         </ul>
@@ -47,161 +60,183 @@
     </nav>
   </div>
 
+  <div class="container-artigos">
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
 
-  <div class="container">
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
 
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-artigo">
+      <div class="text-box" id="text-box">
+        <div class="top-area">
+          <label class="title-artigo" id="title-artigo">HTML - HISTÓRIA E USABILIDADE</label>
+          <label class="subtitle" id="subtitle">Guilherme Santos • 27/08/2021</label>
+        </div>
+        <div class="post-body" id="post-body">
+          <span>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e
+            composição. Lorem Ipsum tem sido o
+            texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou um modelo de
+            impressão
+            e embaralhou-o para fazer um livro de amostra de tipos. Ele sobreviveu não apenas cinco séculos, mas
+            também
+            ao salto para a composição eletrônica, permanecendo essencialmente inalterado. Ele foi popularizado
+            na
+            década de 1960 com o lançamento de folhas de Letraset contendo passagens de Lorem Ipsum e, mais
+            recentemente, com software de editoração eletrônica como Aldus PageMaker incluindo versões de Lorem
+            Ipsum.<p>...</p>
+            <a href="artigo_completo.html" class="read-more"> Ver Mais</a> </span>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
-  <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+  <script src="./files/javascript/main.js"></script>
+  <script src="./files/javascript/theme.js"></script>
 
   <script>
-    const backToTopButton = document.querySelector("#back-to-top-btn");
-
-    window.addEventListener("scroll", scrollFunction);
-
-    function scrollFunction() {
-      if (window.pageYOffset > 300) {
-        if (!backToTopButton.classList.contains("btnEntrance")) {
-          backToTopButton.classList.remove("btnExit");
-          backToTopButton.classList.add("btnEntrance");
-          backToTopButton.style.display = "block";
-        }
-      }
-      else { // Hide backToTopButton
-        if (backToTopButton.classList.contains("btnEntrance")) {
-          backToTopButton.classList.remove("btnEntrance");
-          backToTopButton.classList.add("btnExit");
-          setTimeout(function () {
-            backToTopButton.style.display = "none";
-          }, 250);
-        }
-      }
-    }
-
-    backToTopButton.addEventListener("click", smoothScrollBackToTop);
-
-    function smoothScrollBackToTop() {
-      const targetPosition = 0;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = 750;
-      let start = null;
-
-      window.requestAnimationFrame(step);
-
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        window.scrollTo(0, easeInOutCubic(progress, startPosition, distance, duration));
-        if (progress < duration) window.requestAnimationFrame(step);
-      }
-    }
-
-    function easeInOutCubic(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return c / 2 * t * t * t + b;
-      t -= 2;
-      return c / 2 * (t * t * t + 2) + b;
-    };
-
-
-    let navbar = document.querySelector('nav');
-    var scrollPrev = window.pageYOffset;
-    window.onscroll = function () {
-      var scrollCur = window.pageYOffset;
-      if (scrollPrev > scrollCur) {
-        navbar.style.top = "0";
-      } else {
-        navbar.style.top = "-80px";
-
-      }
-      scrollPrev = scrollCur;
+    const theme = localStorage.getItem('Theme')
+    if (theme == 'dark') {
+      darktheme_artigos()
+    } else {
+      lightheme_artigos()
     }
   </script>
-  <script>
-    $('nav ul li').click(function () {
-      $(this).addClass("active").siblings().removeClass("active");
-    });
-  </script>
 
-  <script src="./files/javascript/app.js"></script>
-  <script>
-    apiCeos = new ApiCeos()
-    function createArtigo(artigo) {
-      const titulo = artigo.titulo;
-      const conteudo = artigo.conteudo;
-      const nomeAutor = artigo.nomeEscritor + ' ' + artigo.sobrenomeEscritor;
-      const dataPublicacao = dataAtualFormatada(new Date(artigo.dataPublicacao));
-      const url = artigo.url;
-
-      const divArtigo = document.createElement('div');
-      divArtigo.classList.add('container-artigo');
-
-      const textBox = document.createElement('div');
-      textBox.classList.add('text-box');
-
-      const topArea = document.createElement('div');
-      topArea.classList.add('top-area');
-
-      const labelTitle = document.createElement('label');
-      labelTitle.classList.add('title');
-      labelTitle.append(titulo);
-
-      const labelSubtitle = document.createElement('label');
-      labelSubtitle.classList.add('subtitle');
-      labelSubtitle.append(nomeAutor + ' • ' + dataPublicacao);
-
-      const divPostBody = document.createElement('div');
-      divPostBody.classList.add('post-body');
-
-      const tresPontos = document.createElement('p');
-      tresPontos.append('...');
-
-      const artigoCompleto = document.createElement('a');
-      artigoCompleto.classList.add('read-more');
-      artigoCompleto.setAttribute('href', url);
-      artigoCompleto.append('Ver mais');
-
-      const spanContent = document.createElement('span');
-      spanContent.append(conteudo);
-      spanContent.append(artigoCompleto);
-      spanContent.append(tresPontos);
-
-      divArtigo.append(textBox);
-      textBox.append(topArea);
-      textBox.append(divPostBody)
-      divPostBody.append(spanContent);
-      topArea.append(labelTitle);
-      topArea.append(labelSubtitle);
-      topArea.append(labelSubtitle);
-
-      return divArtigo;
-    }
-    function dataAtualFormatada(data) {
-      dia = data.getDate().toString(),
-        diaF = (dia.length == 1) ? '0' + dia : dia,
-        mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
-        mesF = (mes.length == 1) ? '0' + mes : mes,
-        anoF = data.getFullYear();
-      return diaF + "/" + mesF + "/" + anoF;
-    }
-    function carregarResumos() {
-      apiCeos.biblioteca.pushResumos(5)
-        .then((artigos) => {
-          artigos.forEach((artigo) => {
-            document.querySelector('.container').append(createArtigo(artigo))
-          });
-        });
-    }
-    window.addEventListener('scroll', event => {
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 5) {
-        carregarResumos();
-      }
-    });
-    carregarResumos();
-  </script>
 </body>
 
 </html>

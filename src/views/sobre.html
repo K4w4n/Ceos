@@ -2,166 +2,91 @@
 <html lang="PT-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./files/css/main.css" />
-    <link rel="stylesheet" href="./files/css/sobre.css" />
-    <link rel="icon" type="image/png" href="./files/img/favicon.png" />
-    <title>Ceos Community</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./files/css/main.css" />
+  <link rel="stylesheet" href="./files/css/main_dark.css" />
+  <link rel="icon" type="image/png" href="./files/img/favicon.png" />
+  <title>Ceos Community</title>
 </head>
 
-<body>
-    <div class="wrapper">
-        <nav>
-          <input type="checkbox" id="show-search">
-          <input type="checkbox" id="show-menu">
-          <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
-          <div class="content">
-            <div class="logo"><a href="index.html"><img src="files/img/logo.png" class="logotipo"></a></div>
-            <ul class="links">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="artigos.html">Artigos</a></li>
-              <li><a href="sobre.html">Sobre Nós</a></li>
-              <li><a href="painel.html">Painel</a></li>
-              <li>
-                <a href="#" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
-                <input type="checkbox" id="show-features">
-                <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
-                <ul>
-                  <li><a href="login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a></li>
-                  <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
-                  <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
-                </ul>
+<body class="body-light" id="body">
+  <div class="wrapper" id="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <div class="logo"><a href="index.html"><img src="files/img/logo1.png" class="logotipo"></a></div>
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="artigos.html">Artigos</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="painel.html">Painel</a></li>
+          <li>
+            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><a href="login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
               </li>
+              <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
+              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
             </ul>
-          </div>
-          <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-          <form action="#" class="search-box">
-            <input type="text" placeholder="Pesquisar..." required>
-            <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-          </form>
-        </nav>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features1">
+            <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><button onclick="darktheme_sobre()" class="theme"><i class="fas fa-moon"></i>
+                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                </button></li>
+              <li><button onclick="lightheme_sobre()" class="theme"><i class="fas fa-sun"></i>
+                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
+                </button></li>
+            </ul>
+          </li>
+        </ul>
       </div>
+      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+      <form action="#" class="search-box">
+        <input type="text" placeholder="Pesquisar..." required>
+        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+      </form>
+    </nav>
+  </div>
 
-      <div class="container">
-
-    <div class="scroll-conatiner">
-        <div class="scroll-area">
-            <div class="container-sobre">
-                <p class="title-sobre">Ceos Community</p>
-                <p class="content-sobre">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                    survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                    containing Lorem Ipsum passages, and more recently
-                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="cards">
-                <div class="card">
-                    <div class="container">
-                        <img src="./files/img/sobre1.jpg" class="card-img">
-                    </div>
-                    <div class="details">
-                        <h3>Ceos Community</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus
-                            aperiam adipisci exercitationem.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-area">
-            <div class="container-sobre">
-                <p class="title-sobre">Ceos Community</p>
-                <p class="content-sobre">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                    survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                    containing Lorem Ipsum passages, and more recently
-                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="cards">
-                <div class="card">
-                    <div class="container">
-                        <img src="./files/img/sobre1.jpg" class="card-img">
-                    </div>
-                    <div class="details">
-                        <h3>Ceos Community</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus
-                            aperiam adipisci exercitationem.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="scroll-area">
-            <div class="container-sobre">
-                <p class="title-sobre">Ceos Community</p>
-                <p class="content-sobre">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                    survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                    containing Lorem Ipsum passages, and more recently
-                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-            <div class="cards">
-                <div class="card">
-                    <div class="container">
-                        <img src="./files/img/sobre1.jpg" class="card-img">
-                    </div>
-                    <div class="details">
-                        <h3>Ceos Community</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus
-                            aperiam adipisci exercitationem.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <footer>
+    <div class="footer-content">
+      <img src="files/img/logo.png">
+      <h3>CEOS COMMUNITY</h3>
+      <p>"Conhecimento nunca é demais"</p>
+      <ul class="socials">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+      </ul>
     </div>
+    <div class="footer-bottom">
+      <p>&copy; 2021 Ceos Community</p>
+    </div>
+  </footer>
+  
+  <script src="./files/javascript/main.js"></script>
+  <script src="./files/javascript/theme.js"></script>
 
-</div>
-
-    <footer>
-        <div class="footer-content">
-            <img src="files/img/logo.png">
-            <h3>CEOS COMMUNITY</h3>
-            <p>"Conhecimento nunca é demais"</p>
-            <ul class="socials">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2021 Ceos Community</p>
-        </div>
-    </footer>
-
-    <script>
-        let navbar = document.querySelector('nav');
-          var scrollPrev = window.pageYOffset;
-          window.onscroll = function () {
-              var scrollCur = window.pageYOffset;
-              if (scrollPrev > scrollCur) {
-                  navbar.style.top = "0";
-              } else {
-                  navbar.style.top = "-80px";
-        
-              }
-              scrollPrev = scrollCur;
-          }
-          </script>
-
-
-    <script src="./files/javascript/app.js"></script>
+  <script>
+    const theme = localStorage.getItem('Theme')
+    if (theme == 'dark') {
+      darktheme_sobre()
+    } else {
+      lightheme_sobre()
+    }
+  </script>
 
 </body>
 

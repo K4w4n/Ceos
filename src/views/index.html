@@ -7,31 +7,46 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./files/css/main.css" />
+  <link rel="stylesheet" href="./files/css/main_dark.css" />
   <link rel="icon" type="image/png" href="./files/img/favicon.png" />
   <title>Ceos Community</title>
 </head>
 
-<body>
-  <div class="wrapper">
+<body class="body-light" id="body">
+  <div class="wrapper" id="wrapper">
     <nav>
       <input type="checkbox" id="show-search">
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-        <div class="logo"><a href="index.html"><img src="files/img/logo.png" class="logotipo"></a></div>
+        <div class="logo"><a href="index.html"><img src="files/img/logo1.png" class="logotipo"></a></div>
         <ul class="links">
           <li><a href="index.html">Home</a></li>
           <li><a href="artigos.html">Artigos</a></li>
           <li><a href="sobre.html">Sobre Nós</a></li>
           <li><a href="painel.html">Painel</a></li>
           <li>
-            <a href="#" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features">
             <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
-            <ul>
-              <li><a href="login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a></li>
+            <ul id="dropdown">
+              <li><a href="login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              </li>
               <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features1">
+            <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><button onclick="darktheme_index()" class="theme"><i class="fas fa-moon"></i>
+                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                </button></li>
+              <li><button onclick="lightheme_index()" class="theme"><i class="fas fa-sun"></i>
+                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
+                </button></li>
             </ul>
           </li>
         </ul>
@@ -43,45 +58,19 @@
       </form>
     </nav>
   </div>
+  <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
-
-  
-
-
-  <footer>
-    <div class="footer-content">
-      <img src="files/img/logo.png">
-      <h3>CEOS COMMUNITY</h3>
-      <p>"Conhecimento nunca é demais"</p>
-      <ul class="socials">
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-      </ul>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2021 Ceos Community</p>
-    </div>
-  </footer>
-
+  <script src="./files/javascript/main.js"></script>
+  <script src="./files/javascript/theme.js"></script>
 
   <script>
-  let navbar = document.querySelector('nav');
-    var scrollPrev = window.pageYOffset;
-    window.onscroll = function () {
-        var scrollCur = window.pageYOffset;
-        if (scrollPrev > scrollCur) {
-            navbar.style.top = "0";
-        } else {
-            navbar.style.top = "-80px";
-  
-        }
-        scrollPrev = scrollCur;
+    const theme = localStorage.getItem('Theme')
+    if (theme == 'dark') {
+      darktheme_index()
+    } else {
+      lightheme_index()
     }
-    </script>
-  
-  <script src="./files/javascript/app.js"></script>
+  </script>
 
 </body>
 

@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import Biblioteca from './src/biblioteca.js';
-import { connection } from './src/conectionMysql.js';
 import cookieParser from 'cookie-parser';
 
 const biblioteca = new Biblioteca();

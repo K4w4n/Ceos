@@ -1,9 +1,6 @@
-body{
-  background-color: #FFF;
-}
-
-.container{
-  padding-top: 8vh;
+/*Artigos*/
+.container-artigos{
+  padding-top: 80px;
 }
 
 .container-artigo{
@@ -12,15 +9,15 @@ body{
   align-items: center;
 }
 
-.title{
-    width: 100%;
-    height: 2%;
-    background: #fff;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 18pt;
-    font-weight: 600;
+.title-artigo{
+  width: 100%;
+  height: 2%;
+  background: transparent;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 18pt;
+  font-weight: 600;
 }
 
 .subtitle{
@@ -43,7 +40,6 @@ body{
 }
 
 .text-box .top-area{
-
   display: block;
   justify-content: space-between;
   align-items: center;
@@ -65,31 +61,28 @@ body{
   font-weight: 500;
 }
 
-
-
 .btn-enviar{
-    width: 8vw;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
-    background-color: #17f69a;
-    color: #000;
-    font-size: 14pt;
-    font-weight: 600;
-    border: 2px solid #000;
-    transition: .7s;
+  width: 8vw;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #17f69a;
+  color: #000;
+  font-size: 14pt;
+  font-weight: 600;
+  border: 2px solid #000;
+  transition: .7s;
 }
 
 .btn-enviar:hover{
-    background-color: #00ffc8;
-    
-    
+  background-color: #00ffc8;
 }
 
 .post-body{
   position: relative;
-  background: #fff;
+  background: transparent;
   text-align: justify;
+  color: #000;
 }
 
 p{
@@ -97,19 +90,17 @@ p{
 }
 
 .read-more{
-  color: rgb(107, 107, 107);
+  color: #288ddb;
   cursor: pointer;
   font-weight: 500;
 }
 
-
-a {
+a{
   text-decoration: none;
 }
 
-
-
-#back-to-top-btn {
+/*Botao Voltar ao Topo*/
+.back-to-top-btn{
   display: none;
   position: fixed;
   bottom: 20px;
@@ -127,24 +118,59 @@ a {
   transition-timing-function: ease-in-out;
   transition-property: background-color, color;
 }
-#back-to-top-btn:hover, #back-to-top-btn:focus {
+
+.back-to-top-btn:hover, .back-to-top-btn:focus{
   background-color: #333;
   color: #fff;  
 }
 
-
-
-@media(min-width: 992px){
-  
-  #back-to-top-btn{
-    transition: .5s;
-  }
-
+/*Estilos do Botao Voltar o Topo*/
+.btnEntrance{
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: btnEntrance;
 }
 
-@media(max-width: 850px) {
+@keyframes btnEntrance{
   
-  #back-to-top-btn { 
+  from{
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.btnExit{
+  animation-duration: 0.25s;
+  animation-fill-mode: both;  
+  animation-name: btnExit;
+}
+
+@keyframes btnExit{
+  
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+/*Artigos Responsivel*/
+@media(min-width: 992px){
+  
+  .back-to-top-btn{
+    transition: .5s;
+  }
+}
+
+@media(max-width: 850px){
+  
+  .back-to-top-btn{ 
     background-color: #333;
     color: #FFF;
     font-size: 22px; 
@@ -154,65 +180,6 @@ a {
     right: 15px; 
     transition: .7s;
   }
-}
-
-
-/* Animations */
-.btnEntrance {
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-name: btnEntrance;
-}
-/* zoomIn */
-/* @keyframes btnEntrance { 
-  from {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-  to {
-    opacity: 1;
-  }    
-} */
-
-/* fadeInUp */
-@keyframes btnEntrance {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.btnExit {
-  animation-duration: 0.25s;
-  animation-fill-mode: both;  
-  animation-name: btnExit;
-}
-/* zoomOut */
-/* @keyframes btnExit {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-} */
-
-/* fadeOutDown */
-@keyframes btnExit {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-}
-@media(max-width:850px){
 
   .text-box{
     width: 100vw;
@@ -223,9 +190,4 @@ a {
     border-bottom: 1px solid #000;
     transition: .7s;
   }
-
-  
-
-  
-  
 }
