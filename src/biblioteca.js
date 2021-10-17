@@ -1,23 +1,19 @@
-import * as mysql from "./conectionMysql.js";
+import { Select, Operation } from "./conectionMysql.js";
 import Validador from "./validador.js";
+
+const validador = new Validador();
+
 class Biblioteca {
-    #Select;
-    #validador;
-    #Operation = mysql.Operation;
-    constructor(sqlDb, validador) {
-        this.#Select = sqlDb.Select;
-        this.#validador = validador;
-        this.#Operation = sqlDb.Operation;
+    constructor() {
     }
-    async pegueArtigo(urlArtigo, credencial) {
-        if (!this.#validador.urlArtigo(urlArtigo)) throw new Error("Erro inesperado");
-        const select = new this.#Select();
-        const Operation = this.#Operation;
+    async pegueArtigo(urlArtigo) {
+        if (!validador.urlArtigo(urlArtigo)) throw new Error("Erro inesperado");
+        const select = new Select();
         select
             .from(['tb_artigos'])
             .innerJoin('tb_usuarios')
             .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
-            .where(new this.#Operation().column('art_url').equal.value(urlArtigo))
+            .where(new Operation().column('art_url').equal.value(urlArtigo))
         const artigoBruto = (await select.sendQuery())[0][0];
         const artigoProcessado = {
             titulo: artigoBruto['art_titulo'],

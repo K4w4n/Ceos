@@ -19,7 +19,7 @@ module.exports = (data) => {
             </label>
             <br />
             <label>
-                Escrito por: {data.voceEscritor ? 'Voce' : data.nomeAutor + ' ' + data.sobrenomeAutor}
+                Escrito por: { data.nomeAutor + ' ' + data.sobrenomeAutor}
             </label>
         </body>
     </html>
