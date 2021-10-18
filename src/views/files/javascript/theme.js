@@ -210,22 +210,6 @@ function lightheme_artigos() {
   wrapper_dark.classList.remove('wrapper-dark');
   wrapper_dark.classList.add('wrapper');
 
-  let text_box = document.getElementById('text-box');
-  text_box.classList.remove('text-box-dark');
-  text_box.classList.add('text-box');
-
-  let title_artigo = document.getElementById('title-artigo');
-  title_artigo.classList.remove('title-artigo-dark');
-  title_artigo.classList.add('title-artigo');
-
-  let subtitle_artigo = document.getElementById('subtitle');
-  subtitle_artigo.classList.remove('subtitle-artigo-dark');
-  subtitle_artigo.classList.add('subtitle');
-
-  let post_body = document.getElementById('post-body');
-  post_body.classList.remove('post-body-dark');
-  post_body.classList.add('post-body');
-
   let back_to_top = document.getElementById('back-to-top-btn');
   back_to_top.classList.remove('back-to-top-btn-dark');
   back_to_top.classList.add('back-to-top-btn');

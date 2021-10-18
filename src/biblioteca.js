@@ -43,21 +43,33 @@ class Biblioteca {
             }
         }); */
     }
-    resumaVariosArtigos(quantidadeArtigos, urlArtigo) {
-        /* return new Promise((resolve, reject) => {
-            if (!((!urlArtigo || this.#validador.urlArtigo(urlArtigo)) && this.#validador.stringENumero(quantidadeArtigos))) {
-                reject({ msg: "Dados invalidos" });
-            } else {
-                this.#sqlDb.query("CALL pro_resuma_varios_artigos(?, ?)", [quantidadeArtigos, urlArtigo || ''],
-                    (err, results) => {
-                        if (err) {
-                            reject({ msg: err });
-                        } else {
-                            resolve(results[0]);
-                        }
-                    });
-            }
-        }); */
+    async resumaVariosArtigos(quantidade = 5, pagina = 0) {
+        const select = new Select();
+        const artigosBruto = (await select
+            .from(['tb_artigos'])
+            .innerJoin('tb_usuarios')
+            .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
+            .limit(quantidade, pagina * quantidade)
+            .sendQuery())[0];
+        return artigosBruto.map(artigo => {
+            const novoArtigo = processeArtigo(artigo);
+            novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
+            return novoArtigo;
+        });
     }
 }
 export default Biblioteca;
+
+function processeArtigo(artigoBruto) {
+    const artigoProcessado = {
+        titulo: artigoBruto['art_titulo'],
+        conteudo: artigoBruto['art_conteudo'],
+        dataPublicacao: artigoBruto['art_data_publicacao'],
+        id: artigoBruto['art_id'],
+        url: artigoBruto['art_url'],
+        autorId: artigoBruto['user_id'],
+        autorNome: artigoBruto['user_nome'],
+        autorSobrenome: artigoBruto['user_sobrenome'],
+    }
+    return artigoProcessado;
+}
