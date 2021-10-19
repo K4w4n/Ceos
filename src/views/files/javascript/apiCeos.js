@@ -1,9 +1,8 @@
 const ApiCeos = (() => {
-    const dominio = 'http://localhost:8080';
-    /* const dominio = 'https://ceoscommunity.herokuapp.com'; */
+    const dominio = window.origin;
     class Usuario {
         constructor() {
-            this.confirmeCredencial();
+            this.confirmeToken();
         }
         async login(email, senha) {
             const response = await fetch(dominio + "/api/user/login/", {
@@ -52,17 +51,17 @@ const ApiCeos = (() => {
             });
             return aviseQuandoPuder;
         }
-        confirmeCredencial() {
-            return fetch(`${dominio}/api/user/confirmecredencial/`, {
+        async confirmeToken() {
+            const response = await fetch(`${dominio}/api/user/confirmetoken/`, {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 })
-            }).then(response => response.json()
-            ).then((dadosUsuario) => {
-                Object.assign(this, dadosUsuario);
-                return dadosUsuario;
             });
+
+            const dadosUsuario = await response.json();
+            Object.assign(this, dadosUsuario);
+            return dadosUsuario;
         }
     }
     class Biblioteca {

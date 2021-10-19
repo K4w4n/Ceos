@@ -47,8 +47,8 @@ api.delete('/user/logoff/', function (req, res) {
             res.status(500).send(err);
         });
 });
-api.get('/user/confirmecredencial/', function (req, res) {
-    controleConta.confirmeChaveCredencial(req.cookies.credencial)
+api.get('/user/confirmetoken/', function (req, res) {
+    controleConta.confirmeToken(req.cookies.credencial)
         .then(dados => {
             res.send(dados);
         })
