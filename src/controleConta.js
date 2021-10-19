@@ -1,37 +1,32 @@
+import { Select, Operation } from "./conectionMysql.js";
+import Validador from "./validador.js";
+import jwt from 'jsonwebtoken';
+
+const secret = process.env.secret;
+
+const validador = new Validador;
 class ControleConta {
-    #connection;
-    #validador;
-    constructor(connection, validador) {
-        this.#connection = connection;
-        this.#validador = validador;
-    }
-    facaLogin(email, senha) {
-        return new Promise((resolve, reject) => {
-            if (!this.#validador.email(email) && !this.#validador.senha(senha)) {
-                reject({ msg: "Dados invalidos" });
-            } else {
-                this.#connection.query('CALL pro_login(?, ?)', [email, senha],
-                    (err, results) => {
-                        if (err) {
-                            reject({ msg: err });
-                        } else {
-                            if (results[0]) {
-                                if (results[0][0]) {
-                                    resolve(results[0][0]);
-                                } else {
-                                    reject({ msg: 'Conta não encontrada' });
-                                }
-                            } else {
-                                reject({ msg: 'Conta não encontrada' });
-                            }
-                        }
-                    });
-            }
-        });
+    async facaLogin(email, senha) {
+        if (validador.email(email) && validador.senha(senha)) throw new Error("Erro inesperado");
+
+        const select = new Select(["user_id", "user_email", "user_nome", "user_sobrenome"])
+            .from(['tb_usuarios'])
+            .where(new Operation().column('user_email').equal.value(email).and.column('user_senha').equal.value(senha));
+
+        const dadosDb = await select.sendQuery();
+        const token = jwt.sign({ id: dadosDb[0][0]['user_id'] }, secret, { expiresIn: 5184000 }); //60 dias
+        const usuario = {
+            nome: dadosDb[0][0]['user_nome'],
+            sobrenome: dadosDb[0][0]['user_sobrenome'],
+            email: dadosDb[0][0]['user_email'],
+            id: dadosDb[0][0]['user_id'],
+            token,
+        };
+        return usuario;
     }
     registre(nome, sobreNome, email, senha) {
         return new Promise((resolve, reject) => {
-            if (!(this.#validador.nome(nome)
+            /* if (!(this.#validador.nome(nome)
                 && this.#validador.sobrenome(sobreNome)
                 && this.#validador.email(email)
                 && this.#validador.senha(senha))) {
@@ -45,12 +40,12 @@ class ControleConta {
                             resolve();
                         }
                     });
-            }
+            } */
         });
     }
     confirmeChaveCredencial(credencial) {
         return new Promise((resolve, reject) => {
-            if (!this.#validador.credencial(credencial)) {
+            /* if (!this.#validador.credencial(credencial)) {
                 reject({ msg: "Dados invalidos" });
             } else {
                 this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
@@ -61,12 +56,12 @@ class ControleConta {
                             resolve(results[0][0]);
                         }
                     });
-            }
+            } */
         });
     }
     canceleChaveCredencial(credencial) {
         return new Promise((resolve, reject) => {
-            if (!this.#validador.credencial(credencial)) {
+            /* if (!this.#validador.credencial(credencial)) {
                 reject({ msg: "Dados invalidos" });
             } else {
                 this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
@@ -77,7 +72,7 @@ class ControleConta {
                             resolve();
                         }
                     });
-            }
+            } */
         });
     }
 }

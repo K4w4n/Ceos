@@ -5,28 +5,21 @@ const ApiCeos = (() => {
         constructor() {
             this.confirmeCredencial();
         }
-        login(email, senha) {
-            return fetch(dominio + "/api/user/login/", {
+        async login(email, senha) {
+            const response = await fetch(dominio + "/api/user/login/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
                 body: JSON.stringify({ email: email, senha: senha }),
                 credentials: 'same-origin'
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw Error(response.statusText);
-                    }
-                    return response
-                })
-                .then(response => {
-                    return response.json()
-                })
-                .then((data) => {
-                    Object.assign(this, data);
-                    return data;
-                });
+            });
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            const dadosUsuario = await response.json();
+            Object.assign(this, dadosUsuario);
+            return dadosUsuario;
         }
         registro(nome, sobrenome, email, senha) {
             const dataUser = {
