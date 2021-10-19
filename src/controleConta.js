@@ -1,4 +1,4 @@
-import { Select, Operation } from "./conectionMysql.js";
+import { Select, Operation, Insert } from "./conectionMysql.js";
 import Validador from "./validador.js";
 import jwt from 'jsonwebtoken';
 
@@ -7,7 +7,7 @@ const secret = process.env.secret;
 const validador = new Validador;
 class ControleConta {
     async facaLogin(email, senha) {
-        if (!validador.email(email) && !validador.senha(senha)) { throw new Error("Erro inesperado") };
+        if (!validador.email(email) && !validador.senha(senha)) throw new Error("Erro inesperado");
         const select = new Select(["user_id", "user_email", "user_nome", "user_sobrenome"])
             .from(['tb_usuarios'])
             .where(new Operation().column('user_email').equal.value(email).and.column('user_senha').equal.value(senha));
@@ -23,24 +23,17 @@ class ControleConta {
         };
         return usuario;
     }
-    registre(nome, sobreNome, email, senha) {
-        return new Promise((resolve, reject) => {
-            /* if (!(this.#validador.nome(nome)
-                && this.#validador.sobrenome(sobreNome)
-                && this.#validador.email(email)
-                && this.#validador.senha(senha))) {
-                reject({ msg: "Dados invalidos" });
-            } else {
-                this.#connection.query('CALL pro_registro(?, ?, ?, ?)', [email, senha, nome, sobreNome],
-                    (err) => {
-                        if (err) {
-                            reject({ msg: err });
-                        } else {
-                            resolve();
-                        }
-                    });
-            } */
-        });
+    async registre(nome, sobreNome, email, senha) {
+        if (!(validador.nome(nome)
+            && validador.sobrenome(sobreNome)
+            && validador.email(email)
+            && validador.senha(senha))) throw new Error("Erro inesperado");
+        const insert = new Insert();
+        insert.into('tb_usuarios')
+            .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
+            .value([nome, sobreNome, email, senha]);
+        await insert.sendQuery();
+        return await this.facaLogin(email, senha);
     }
     async confirmeToken(token) {
         const { id } = jwt.verify(token, secret);

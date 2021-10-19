@@ -20,21 +20,23 @@ const ApiCeos = (() => {
             Object.assign(this, dadosUsuario);
             return dadosUsuario;
         }
-        registro(nome, sobrenome, email, senha) {
+        async registro(nome, sobrenome, email, senha) {
             const dataUser = {
                 nome: nome,
                 sobrenome: sobrenome,
                 email: email,
                 senha: senha
             }
-            const aviseQuandoPuder = fetch(dominio + "/api/user/registro/", {
+            const response = await fetch(dominio + "/api/user/registro/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
                 body: JSON.stringify(dataUser),
             });
-            return aviseQuandoPuder;
+            const dadosUsuario = await response.json();
+            Object.assign(this, dadosUsuario);
+            return dadosUsuario;
         }
         logoff() {
             const aviseQuandoPuder = fetch(dominio + "/api/user/logoff/", {

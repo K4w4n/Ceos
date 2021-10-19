@@ -58,12 +58,12 @@ api.get('/user/confirmetoken/', function (req, res) {
 });
 api.post('/user/registro/', function (req, res) {
     controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha)
-        .then(dados => {
-            res.status(200).end();
+        .then(usuario => {
+            res.cookie('credencial', usuario.token, { httpOnly: true, maxAge: 5184000000, secure: true });/*Token com 60 dias */
+            usuario.token = undefined;
+            res.status(200).send(usuario);
         })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+        .catch(err => res.status(404).send(err));
 });
 api.get('/biblioteca/pushResumos/', function (req, res) {
     const data = req.query;
