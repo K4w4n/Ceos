@@ -76,7 +76,8 @@ api.get('/biblioteca/pushResumos/', function (req, res) {
         });
 });
 api.get('/biblioteca/meusArtigos/', function (req, res) {
-    biblioteca.meusArtigos(req.cookies.credencial)
+    const data = req.query;
+    biblioteca.meusArtigos(req.cookies.credencial, parseInt(data.quantidadeArtigos), parseInt(data.pagina))
         .then(dados => {
             res.send(dados);
         })

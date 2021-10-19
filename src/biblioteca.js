@@ -1,6 +1,8 @@
 import { Select, Operation } from "./conectionMysql.js";
 import Validador from "./validador.js";
+import jwt from 'jsonwebtoken';
 
+const secret = process.env.secret;
 const validador = new Validador();
 
 class Biblioteca {
@@ -27,21 +29,21 @@ class Biblioteca {
         }
         return artigoProcessado;
     }
-    meusArtigos(credencial) {
-        /* return new Promise((resolve, reject) => {
-            if (!this.#validador.credencial(credencial)) {
-                reject({ msg: "Dados invalidos" });
-            } else {
-                this.#sqlDb.query("CALL pro_pegue_meus_artigos(?);", [credencial],
-                    (err, results) => {
-                        if (err) {
-                            reject({ msg: err });
-                        } else {
-                            resolve(results[0]);
-                        }
-                    });
-            }
-        }); */
+    async meusArtigos(token, quantidade = 5, pagina = 0) {
+        const { id } = jwt.verify(token, secret);
+        const select = new Select();
+        const artigosBruto = (await select
+            .from(['tb_artigos'])
+            .innerJoin('tb_usuarios')
+            .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
+            .where(new Operation().column('tb_artigos.user_id').equal.value(id))
+            .limit(quantidade, pagina * quantidade)
+            .sendQuery())[0];
+        return artigosBruto.map(artigo => {
+            const novoArtigo = processeArtigo(artigo);
+            novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
+            return novoArtigo;
+        });
     }
     async resumaVariosArtigos(quantidade = 5, pagina = 0) {
         const select = new Select();

@@ -67,12 +67,14 @@ const ApiCeos = (() => {
         }
     }
     class Biblioteca {
-        #pagina = 0;
+        #paginaResumos = 0;
+        #paginaMeusArtigos = 0;
+        meusArtigos = [];
         constructor() {
             this.resumos = [];
         }
         async pushResumos() {
-            const response = await fetch(dominio + `/api/biblioteca/pushResumos?quantidadeArtigos=5&pagina=${this.#pagina}`, {
+            const response = await fetch(dominio + `/api/biblioteca/pushResumos?quantidadeArtigos=5&pagina=${this.#paginaResumos}`, {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -80,20 +82,21 @@ const ApiCeos = (() => {
             });
             const artigosJson = await response.json();
             this.resumos = [...this.resumos, ...artigosJson];
-            this.#pagina++;
+            this.#paginaResumos++;
             return artigosJson;
         }
-        pushMeusArtigos() {
-            const aviseQuandoPuder = fetch(dominio + '/api/biblioteca/meusArtigos', {
+        async pushMeusArtigos() {
+            console.log(dominio + `/api/biblioteca/meusArtigos?quantidadeArtigos=5&pagina=${this.#paginaResumos}`);
+            const response = await fetch(dominio + `/api/biblioteca/meusArtigos?quantidadeArtigos=5&pagina=${this.#paginaMeusArtigos}`, {
                 method: "GET",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 })
-            }).then(response => response.json());
-            aviseQuandoPuder.then((meusArtigos) => {
-                this.meusArtigos = meusArtigos;
             });
-            return aviseQuandoPuder;
+            const meusArtigos = await response.json();
+            this.meusArtigos = [...this.meusArtigos, ...meusArtigos];
+            this.#paginaMeusArtigos++;
+            return meusArtigos;
         }
         restart() {
             this.resumos = [];
