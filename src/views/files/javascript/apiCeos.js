@@ -99,6 +99,9 @@ const ApiCeos = (() => {
         }
         restart() {
             this.resumos = [];
+            this.meusArtigos = [];
+            this.#paginaResumos = 0;
+            this.#paginaMeusArtigos = 0;
         }
     }
     class Editora {
