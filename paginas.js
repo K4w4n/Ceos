@@ -29,15 +29,12 @@ paginas.get('/artigos/', function (req, res) {
 paginas.get('/meus_artigos/', function (req, res) {
     res.sendFile(pastaFiles + '/meus_artigos.html');
 });
-paginas.get('/artigos/:id', function (req, res) {
+paginas.get('/artigos/:id', function (req, res, next) {
     biblioteca.pegueArtigo(req.params.id)
         .then(dados => {
             res.render('artigo', dados);
         })
-        .catch(err => {
-            console.log('err:', err)
-            res.status(500).send("Artigo não encontrado, sentimos muito, mas ninguem teve paciencia pra desenvolver uma tela de erro descente.");
-        });
+        .catch(err => next());
 });
 paginas.get('/artigosjson/:id', function (req, res) {
     biblioteca.pegueArtigo(req.params.id, req.cookies.credencial)
