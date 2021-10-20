@@ -39,11 +39,12 @@ class Biblioteca {
             .where(new Operation().column('tb_artigos.user_id').equal.value(id))
             .limit(quantidade, pagina * quantidade)
             .sendQuery())[0];
-        return artigosBruto.map(artigo => {
+        const ListaArtigo =  artigosBruto.map(artigo => {
             const novoArtigo = processeArtigo(artigo);
             novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
             return novoArtigo;
         });
+        return ListaArtigo;
     }
     async resumaVariosArtigos(quantidade = 5, pagina = 0) {
         const select = new Select();

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./files/css/main.css" />
+  <link rel="stylesheet" href="./files/css/main_dark.css" />
+  <link rel="stylesheet" href="./files/css/artigos.css" />
+  <link rel="icon" type="image/png" href="./files/img/favicon.png" />
+  <script src="/files/javascript/apiCeos.js"></script>
+  <title>Ceos Community</title>
+</head>
+
+<body class="body-light" id="body">
+  <div class="wrapper" id="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <div class="logo"><a href="artigos.html"><img src="files/img/logo1.png" class="logotipo"></a></div>
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="artigos.html">Artigos</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="painel.html">Painel</a></li>
+          <li>
+            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><a href="login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              </li>
+              <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
+              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features1">
+            <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><button onclick="darktheme_artigos()" class="theme"><i class="fas fa-moon"></i>
+                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                </button></li>
+              <li><button onclick="lightheme_artigos()" class="theme"><i class="fas fa-sun"></i>
+                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
+                </button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+      <form action="#" class="search-box">
+        <input type="text" placeholder="Pesquisar..." required>
+        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+      </form>
+    </nav>
+  </div>
+
+  <div class="container-artigos"></div>
+
+  <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+
+  <script src="./files/javascript/main.js"></script>
+  <script src="./files/javascript/theme.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('Theme')
+    if (theme == 'dark') {
+      darktheme_artigos()
+    } else {
+      lightheme_artigos()
+    }
+
+    function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome }) {
+      url = window.origin + "/artigos/" + url;
+      const el = el => document.createElement(el);
+      const div1 = el('div');
+      const div2 = el('div');
+      const div3 = el('div');
+      const div4 = el('div');
+      const label1 = el('label');
+      const label2 = el('label');
+      const span1 = el('span');
+      const p = el('p');
+      const a = el('a');
+
+      a.classList.add("read-more");
+      div1.classList.add("container-artigo");
+      div2.classList.add("text-box");
+      div3.classList.add("top-area");
+      div4.classList.add("post-body");
+      label1.classList.add("title-artigo");
+      label2.classList.add("subtitle");
+      div2.setAttribute("id", "text-box");
+      div4.setAttribute("id", "post-body");
+      label1.setAttribute("id", "title-artigo");
+      label2.setAttribute("id", "subtitle");
+      a.setAttribute("href", url);
+      div1.append(div2);
+      div2.append(div3);
+      div2.append(div4);
+      div3.append(label1);
+      div3.append(label2);
+      div4.append(span1);
+      span1.append(conteudo);
+      p.append("...")
+      span1.append(p);
+      a.append("Ver Mais");
+      span1.append(a);
+      label1.append(titulo);
+      label2.append(`${dataFormatada(dataPublicacao)} • ${autorNome} ${autorSobrenome}`);
+      return div1;
+    }
+    function dataFormatada(data) {
+      data = new Date(data);
+      const dia = data.getDate().toString().padStart(2, '0');
+      const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+      const ano = data.getFullYear();
+      return dia + "/" + mes + "/" + ano;
+    }
+
+    const apiCeos = new ApiCeos();
+    let libLivre = true;
+    window.addEventListener('scroll', () => {
+      el = document.documentElement;
+      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
+        libLivre = false;
+        apiCeos.biblioteca.pushMeusArtigos()
+          .then(artigoList => {
+            libLivre = true;
+            artigoList.forEach(artigo => {
+              document.querySelector('.container-artigos').append(artigoHTML(artigo));
+            });
+          })
+          .catch(err => {
+            console.error(err);
+            libLivre = true;
+          });
+      }
+    });
+    apiCeos.biblioteca.pushMeusArtigos()
+      .then(artigoList => {
+        artigoList.forEach(artigo => {
+          document.querySelector('.container-artigos').append(artigoHTML(artigo));
+        });
+      })
+      .catch(console.error);
+  </script>
+
+</body>
+
+</html>

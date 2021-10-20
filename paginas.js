@@ -26,6 +26,9 @@ paginas.get('/painel/', function (req, res) {
 paginas.get('/artigos/', function (req, res) {
     res.sendFile(pastaFiles + '/artigos.html');
 });
+paginas.get('/meus_artigos/', function (req, res) {
+    res.sendFile(pastaFiles + '/meus_artigos.html');
+});
 paginas.get('/artigos/:id', function (req, res) {
     biblioteca.pegueArtigo(req.params.id)
         .then(dados => {

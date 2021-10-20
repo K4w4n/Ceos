@@ -85,7 +85,6 @@ const ApiCeos = (() => {
             return artigosJson;
         }
         async pushMeusArtigos() {
-            console.log(dominio + `/api/biblioteca/meusArtigos?quantidadeArtigos=5&pagina=${this.#paginaResumos}`);
             const response = await fetch(dominio + `/api/biblioteca/meusArtigos?quantidadeArtigos=5&pagina=${this.#paginaMeusArtigos}`, {
                 method: "GET",
                 headers: new Headers({
