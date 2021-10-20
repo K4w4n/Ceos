@@ -39,7 +39,7 @@ api.post('/user/login/', function (req, res) {
         });
 });
 api.delete('/user/logoff/', function (req, res) {
-    controleConta.canceleChaveCredencial(req.cookies.credencial)
+    controleConta.canceleToken(req.cookies.credencial)
         .then(() => {
             res.clearCookie("credencial")
             res.status(200).end();

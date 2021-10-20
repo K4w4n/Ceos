@@ -38,20 +38,19 @@ const ApiCeos = (() => {
             Object.assign(this, dadosUsuario);
             return dadosUsuario;
         }
-        logoff() {
-            const aviseQuandoPuder = fetch(dominio + "/api/user/logoff/", {
+        async logoff() {
+            const response = await fetch(dominio + "/api/user/logoff/", {
                 method: "DELETE",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 })
             });
-            aviseQuandoPuder.then(() => {
-                this.credencial = undefined;
-                this.email = undefined;
-                this.nome = undefined;
-                this.sobrenome = undefined;
-            });
-            return aviseQuandoPuder;
+            this.credencial = undefined;
+            this.email = undefined;
+            this.nome = undefined;
+            this.sobrenome = undefined;
+            this.id = undefined;
+            return;
         }
         async confirmeToken() {
             const response = await fetch(`${dominio}/api/user/confirmetoken/`, {

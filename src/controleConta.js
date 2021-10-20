@@ -50,21 +50,9 @@ class ControleConta {
         };
         return usuario;
     }
-    canceleChaveCredencial(credencial) {
-        return new Promise((resolve, reject) => {
-            /* if (!this.#validador.credencial(credencial)) {
-                reject({ msg: "Dados invalidos" });
-            } else {
-                this.#connection.query('CALL pro_confirme_credencial(?)', [credencial],
-                    (err) => {
-                        if (err) {
-                            reject({ msg: err });
-                        } else {
-                            resolve();
-                        }
-                    });
-            } */
-        });
+    async canceleToken(token) {
+        //criar tabela que vai armazenar os tokens desnecessrios
+        return;
     }
 }
 export default ControleConta;
