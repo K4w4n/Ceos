@@ -125,17 +125,22 @@
     }
 
     const apiCeos = new ApiCeos();
-
+    let libLivre = true;
     window.addEventListener('scroll', () => {
       el = document.documentElement;
-      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
+      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
+        libLivre = false;
         apiCeos.biblioteca.pushResumos()
           .then(artigoList => {
+            libLivre = true;
             artigoList.forEach(artigo => {
               document.querySelector('.container-artigos').append(artigoHTML(artigo));
             });
           })
-          .catch(console.error);
+          .catch(err => {
+            console.error(err);
+            libLivre = true;
+          });
       }
     });
     apiCeos.biblioteca.pushResumos()
