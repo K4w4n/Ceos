@@ -12,7 +12,7 @@ module.exports = ({ titulo, conteudo, dataPublicacao, autorNome, autorSobrenome 
             <link rel="stylesheet" href="/files/css/main_dark.css" />
             <link rel="stylesheet" href="/files/css/artigos_completos.css" />
             <link rel="icon" type="image/png" href="/files/img/favicon.png" />
-            <title>{titulo}</title>
+            <title>{`${titulo} • ${autorNome} ${autorSobrenome}`}</title>
         </head>
 
         <body className="body-light" id="body">
