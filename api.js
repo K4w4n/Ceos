@@ -2,7 +2,6 @@ import express from 'express';
 import ControleConta from './src/controleConta.js';
 import Biblioteca from './src/biblioteca.js';
 import Editora from './src/editora.js';
-import Validador from './src/validador.js';
 import { connection } from './src/conectionMysql.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -21,11 +20,9 @@ api.use((req, res, next) => {
     next();
 });
 
-const validador = new Validador();
-
-const controleConta = new ControleConta(connection, validador);
-const biblioteca = new Biblioteca(connection, validador);
-const editora = new Editora(connection, validador);
+const controleConta = new ControleConta();
+const biblioteca = new Biblioteca();
+const editora = new Editora();
 
 api.post('/user/login/', function (req, res) {
     controleConta.facaLogin(req.body.email, req.body.senha)
@@ -86,10 +83,10 @@ api.get('/biblioteca/meusArtigos/', function (req, res) {
         });
 });
 api.post('/editora/criarArtigo/', function (req, res) {
-    const url = req.body.url;
-    const credencial = req.cookies.credencial;
-    editora.crieArtigo(url, credencial).then(() => {
-        res.sendStatus(200);
+    const {titulo, conteudo, url } = req.body;
+    const token = req.cookies.credencial;
+    editora.crieArtigo({titulo, conteudo, url }, token).then(artigo => {
+        res.status(200).send(artigo);
     })
         .catch(err => {
             res.status(500).send(err);

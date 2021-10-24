@@ -105,35 +105,17 @@ const ApiCeos = (() => {
     }
     class Editora {
         constructor() { }
-        /* abrirArtigo(url) {
-            const data = { url: url }
-            const aviseQuandoPuder = fetch(dominio + `/api/editora/abrirArtigo?url=${url}`, {
-                method: "GET",
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            }).then(response => response.json());
-            aviseQuandoPuder.then(data => this.artigoEmEdicao = { ...data, ...this.artigoEmEdicao });
-            return aviseQuandoPuder;
-        } */
-        criarArtigo(url) {
-            const data = {
-                url: url,
-            }
-            const aviseQuandoPuder = fetch(dominio + "/api/editora/criarArtigo/", {
+        async criarArtigo(titulo, conteudo, url) {
+            const response = await fetch(dominio + "/api/editora/criarArtigo/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
-                body: JSON.stringify(data)
-            }).then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                } else {
-                    return response;
-                }
-            })
-            return aviseQuandoPuder;
+                body: JSON.stringify({ titulo, conteudo, url })
+            });
+            const artigo = await response.json();
+            artigo.url = `${dominio}/artigos/${artigo.url}`;
+            return artigo;
         }
         salvarArtigo(url, artigo) {/* Editar artigo? */
             const data = { url, artigo }

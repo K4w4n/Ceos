@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="/files/javascript/apiCeos.js"></script>
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./files/css/main.css" />
   <link rel="stylesheet" href="./files/css/main_dark.css" />
@@ -108,6 +109,26 @@
     }
   </script>
 
+  <script>
+    const apiCeos = new ApiCeos();
+    const tituloInput = document.querySelector('#title');
+    const conteudoInput = document.querySelector('#texto');
+    const urlInput = document.querySelector('#extension');
+    const btnEnviar = document.querySelector('.btn-enviar');
+
+    btnEnviar.addEventListener('click', () => {
+      const titulo = tituloInput.value;
+      const conteudo = conteudoInput.value;
+      const url = urlInput.value;
+      apiCeos.editora.criarArtigo(titulo, conteudo, url)
+        .then(artigo => {
+          window.location.assign(artigo.url);
+        })
+        .catch(console.error)
+    });
+
+
+  </script>
 </body>
 
 </html>
