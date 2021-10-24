@@ -1,38 +1,32 @@
-const login = document.querySelector('.login');
-const registro = document.querySelector('.registro');
+const apiCeos = new ApiCeos();
 
-login.addEventListener('click', () => {
-    const email = document.querySelector('#email2').value.trim();
-    const senha = document.querySelector('#senha2').value;
-    apiCeos.user.login(email, senha, (dados) => {
-        if (dados.status.sucesso) {
-            alert('Logado');
-        } else {
-            alert('Erro ao fazer login');
-        }
-    });
+const loginBtn = document.querySelector('.login');
+const registroBtn = document.querySelector('.registro');
+const signInForm = document.querySelector('.sign-in-form');
+const signUpForm = document.querySelector('.sign-up-form');
+
+const emailLogin = signInForm.querySelector('.email');
+const senhaLogin = signInForm.querySelector('.senha');
+
+const nomeRegistro = signUpForm.querySelector('.nome');
+const sobrenomeRegistro = signUpForm.querySelector('.sobrenome');
+const emailRegistro = signUpForm.querySelector('.email');
+const senhaRegistro = signUpForm.querySelector('.senha1');
+const confirmSenhaRegistro = signUpForm.querySelector('.senha2');
+
+/* const input = document.querySelector() */
+loginBtn.addEventListener('click', async () => {
+    const email = emailLogin.value;
+    const senha = senhaLogin.value;
+    await apiCeos.usuario.login(email, senha);
 });
-registro.addEventListener('click', () => {
-    //selecionar dados
-    const nome = document.querySelector('#nome').value.trim();
-    const sobrenome = document.querySelector('#sobrenome').value.trim();
-    const email = document.querySelector('#email').value.trim();
-    const senha = document.querySelector('#senha').value;
-    //validar
-    apiCeos.user.registre(nome, sobrenome, email, senha, (dados) => {
-        if (dados.status.sucesso) {
-            apiCeos.user.login(email, senha, (dados) => {
-                if (dados.status.sucesso) {
-                    //login funcionou
-                    alert('Conta criada, aguarde até a implementação de novos recursos!');
-                } else {
-                    //login não funcionou
-                    alert('Voce foi registrado mas algo deu errado, por favor tente novamente em "Login"');
-                }
-            });
-        } else {
-            //erro ao cadastrar
-            alert('Erro ao cadastrar');
-        }
-    });
+registroBtn.addEventListener('click', async () => {
+    const nome = nomeRegistro.value;
+    const sobrenome = sobrenomeRegistro.value;
+    const email = emailRegistro.value;
+    const senha = senhaRegistro.value;
+    const confirmSenha = confirmSenhaRegistro.value;
+
+    if (!(senha == confirmSenha)) throw new Error("Senha invalida");
+    await apiCeos.usuario.registro(nome, sobrenome, email, senha);
 });
