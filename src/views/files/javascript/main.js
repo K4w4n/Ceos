@@ -14,8 +14,7 @@ window.onscroll = function () {
 
 /*Botao Retornar ao Topo da Pagina*/
 const backToTopButton = document.querySelector("#back-to-top-btn");
-
-window.addEventListener("scroll", scrollFunction);
+if (backToTopButton) window.addEventListener("scroll", scrollFunction);
 
 function scrollFunction() {
   if (window.pageYOffset > 300) {
@@ -36,7 +35,7 @@ function scrollFunction() {
   }
 }
 
-backToTopButton.addEventListener("click", smoothScrollBackToTop);
+if (backToTopButton) backToTopButton.addEventListener("click", smoothScrollBackToTop);
 
 function smoothScrollBackToTop() {
   const targetPosition = 0;
