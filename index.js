@@ -37,9 +37,9 @@ app.use('/', paginas);
 app.use('/api', api);
 app.use('/files', express.static(pastaPublica));
 
-app.get('*', function(req, res){
-    res.send('404 a pagina não existe', 404);
-  });
+app.get('*', function (req, res) {
+    res.status(404).send('404 a pagina não existe');
+});
 
 const porta = process.env.PORT || 8080;
 app.listen(porta, () => console.log(`Servidor rodando em http://localhost:${porta}`));
