@@ -238,6 +238,11 @@ export class Operation {
         this.#conditions += ' = ';
         return this;
     }
+    like(seachValue){
+        this.#conditions += ' LIKE ?';
+        this.#values.push(seachValue);
+        return this;
+    }
     /**
      * compara duas expreções booleans, a primeira expreção deve ser declarada antes do and e a segunda depois.
      * 

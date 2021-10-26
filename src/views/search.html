@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="//files/css/main.css" />
-  <link rel="stylesheet" href="//files/css/main_dark.css" />
-  <link rel="stylesheet" href="//files/css/artigos.css" />
-  <link rel="icon" type="image/png" href="//files/img/favicon.png" />
+  <link rel="stylesheet" href="/files/css/main.css" />
+  <link rel="stylesheet" href="/files/css/main_dark.css" />
+  <link rel="stylesheet" href="/files/css/artigos.css" />
+  <link rel="icon" type="image/png" href="/files/img/favicon.png" />
   <script src="/files/javascript/apiCeos.js"></script>
   <title>Ceos Community</title>
 </head>
@@ -21,7 +21,7 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-        <div class="logo"><a href="artigos.html"><img src="files/img/logo1.png" class="logotipo"></a></div>
+        <div class="logo"><a href="/artigos.html"><img src="/files/img/logo1.png" class="logotipo"></a></div>
         <ul class="links">
           <li><a href="/index.html">Home</a></li>
           <li><a href="/artigos.html">Artigos</a></li>
@@ -126,11 +126,12 @@
 
     const apiCeos = new ApiCeos();
     let libLivre = true;
+    const query = '' || queryObj().q;
     window.addEventListener('scroll', () => {
       el = document.documentElement;
       if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
         libLivre = false;
-        apiCeos.biblioteca.pushMeusArtigos()
+        apiCeos.biblioteca.pesquise(query)
           .then(artigoList => {
             libLivre = true;
             artigoList.forEach(artigo => {
@@ -143,7 +144,15 @@
           });
       }
     });
-    apiCeos.biblioteca.pushMeusArtigos()
+    function queryObj() {
+      var result = {}, keyValuePairs = location.search.slice(1).split("&");
+      keyValuePairs.forEach(function (keyValuePair) {
+        keyValuePair = keyValuePair.split('=');
+        result[decodeURIComponent(keyValuePair[0])] = decodeURIComponent(keyValuePair[1]) || '';
+      });
+      return result;
+    }
+    apiCeos.biblioteca.pesquise(query)
       .then(artigoList => {
         artigoList.forEach(artigo => {
           document.querySelector('.container-artigos').append(artigoHTML(artigo));

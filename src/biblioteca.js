@@ -39,7 +39,7 @@ class Biblioteca {
             .where(new Operation().column('tb_artigos.user_id').equal.value(id))
             .limit(quantidade, pagina * quantidade)
             .sendQuery())[0];
-        const ListaArtigo =  artigosBruto.map(artigo => {
+        const ListaArtigo = artigosBruto.map(artigo => {
             const novoArtigo = processeArtigo(artigo);
             novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
             return novoArtigo;
@@ -59,6 +59,25 @@ class Biblioteca {
             novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
             return novoArtigo;
         });
+    }
+    async pesquisar(textoPesquisa, quantidade = 5, pagina = 0) {
+        textoPesquisa = `%${textoPesquisa.replace(/ /g, '%')}%`
+        const select = new Select();
+        const op = new Operation();
+        select.from(['tb_artigos'])
+            .innerJoin('tb_usuarios')
+            .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
+            .where(op.column('art_titulo').like(textoPesquisa)
+                .or.column('art_conteudo').like(textoPesquisa)
+                .or.column('art_url').like(textoPesquisa))
+            .limit(quantidade, pagina * quantidade);
+        const artigosBruto = (await select.sendQuery())[0];
+        const artigo = artigosBruto.map(artigo => {
+            const novoArtigo = processeArtigo(artigo);
+            novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
+            return novoArtigo;
+        });
+        return artigo;
     }
 }
 export default Biblioteca;

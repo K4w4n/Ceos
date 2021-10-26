@@ -36,6 +36,9 @@ paginas.get('/artigos/:id', function (req, res, next) {
         })
         .catch(err => next());
 });
+paginas.get('/search/', function (req, res) {
+    res.sendFile(pastaFiles + '/search.html');
+});
 paginas.get('/artigosjson/:id', function (req, res) {
     biblioteca.pegueArtigo(req.params.id, req.cookies.credencial)
         .then(dados => {

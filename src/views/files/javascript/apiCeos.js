@@ -68,7 +68,9 @@ const ApiCeos = (() => {
     class Biblioteca {
         #paginaResumos = 0;
         #paginaMeusArtigos = 0;
+        #paginaPesquisa = 0
         meusArtigos = [];
+        pesquisaArtigos = [];
         constructor() {
             this.resumos = [];
         }
@@ -95,6 +97,18 @@ const ApiCeos = (() => {
             this.meusArtigos = [...this.meusArtigos, ...meusArtigos];
             this.#paginaMeusArtigos++;
             return meusArtigos;
+        }
+        async pesquise(texto) {
+            const response = await fetch(dominio + `/api/biblioteca/search?quantidadeArtigos=5&pagina=${this.#paginaPesquisa}&texto=${texto}`, {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            });
+            const pesquisaArtigos = await response.json();
+            this.pesquisaArtigos = [...this.pesquisaArtigos, ...pesquisaArtigos];
+            this.#paginaPesquisa++;
+            return pesquisaArtigos;
         }
         restart() {
             this.resumos = [];

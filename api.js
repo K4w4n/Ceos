@@ -83,9 +83,9 @@ api.get('/biblioteca/meusArtigos/', function (req, res) {
         });
 });
 api.post('/editora/criarArtigo/', function (req, res) {
-    const {titulo, conteudo, url } = req.body;
+    const { titulo, conteudo, url } = req.body;
     const token = req.cookies.credencial;
-    editora.crieArtigo({titulo, conteudo, url }, token).then(artigo => {
+    editora.crieArtigo({ titulo, conteudo, url }, token).then(artigo => {
         res.status(200).send(artigo);
     })
         .catch(err => {
@@ -98,5 +98,16 @@ api.post('/editora/salvarArtigo/', function (req, res) {
     }).catch(err => {
         res.status(500).send(err);
     });
+});
+api.get('/biblioteca/search/', function (req, res) {
+    const quantidadeArtigos = parseInt(req.query.quantidadeArtigos);
+    const pagina = parseInt(req.query.pagina);
+    const { texto } = req.query
+    biblioteca.pesquisar(texto, quantidadeArtigos, pagina)
+        .then(dados => {
+            res.send(dados);
+        }).catch(err => {
+            res.status(500).send(err);
+        })
 });
 export default api;
