@@ -5,10 +5,10 @@ import mysql2 from 'mysql2/promise';
  * @deprecated Só utilize isso em casos de teste, isso é necessario para tornar os testes com jest viaveis e manter o sistema estavel
  */
 export const connection = mysql2.createPool({
-    host: process.env.host || 'localhost',
-    user: process.env.user || 'app',
-    database: process.env.database || 'db_ceos',
-    password: process.env.password || '1RP9n3yCi&Y8jpdD2PLf@g@%^LKu5tVcQSL&4ASeSOpt%4UoHe'
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    database: process.env.MYSQL_DATABASE,
+    password: process.env.MYSQL_PASSWORD
 });
 /** 
  * Classe responsavel por Inserir dados no banco de dados MYSQL.

@@ -1,22 +1,23 @@
 import { Select, Operation } from "./conectionMysql.js";
 import Validador from "./validador.js";
 import jwt from 'jsonwebtoken';
+import { errorList } from './erros.js';
 
 const secret = process.env.secret;
 const validador = new Validador();
 
 class Biblioteca {
-    constructor() {
-    }
     async pegueArtigo(urlArtigo) {
-        if (!validador.urlArtigo(urlArtigo)) throw new Error("Erro inesperado");
+        validador.urlArtigo(urlArtigo);
         const select = new Select();
         select
             .from(['tb_artigos'])
             .innerJoin('tb_usuarios')
             .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
-            .where(new Operation().column('art_url').equal.value(urlArtigo))
+            .where(new Operation().column('art_url').equal.value(urlArtigo));
+
         const artigoBruto = (await select.sendQuery())[0][0];
+
         const artigoProcessado = {
             titulo: artigoBruto['art_titulo'],
             conteudo: artigoBruto['art_conteudo'],
@@ -47,13 +48,16 @@ class Biblioteca {
         return ListaArtigo;
     }
     async resumaVariosArtigos(quantidade = 5, pagina = 0) {
+
         const select = new Select();
+
         const artigosBruto = (await select
             .from(['tb_artigos'])
             .innerJoin('tb_usuarios')
             .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
             .limit(quantidade, pagina * quantidade)
             .sendQuery())[0];
+            
         return artigosBruto.map(artigo => {
             const novoArtigo = processeArtigo(artigo);
             novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;

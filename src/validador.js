@@ -1,3 +1,4 @@
+import { errorList } from './erros.js';
 class Validador {
     #config = {
         email: {
@@ -49,17 +50,17 @@ class Validador {
             && sobrenome.length >= this.#config.sobrenome.tamanhoMin);
     }
     urlArtigo(urlArtigo) {
-        let urlValida = typeof urlArtigo == 'string' && urlArtigo.length > 0;
-        if (urlValida) {
-            const caracteresValidos = 'abcdefghijklmnopqrstuvwxyz0123456789-';
-            for (const letraUrlIndex in urlArtigo) {
-                const letraUrl = urlArtigo[letraUrlIndex];
-                if (caracteresValidos.indexOf(letraUrl) == -1) {
-                    urlValida = false;
-                }
-            }
-        }
-        return urlValida;
+            if (typeof urlArtigo != 'string') throw errorList[1];
+
+            if (urlArtigo.length == 0) throw errorList[2];
+
+            if (urlArtigo.toLowerCase() != urlArtigo) throw errorList[3];
+
+            if (urlArtigo.search(' ') != -1) throw errorList[5];
+
+            if (/\W|_/.test('loren'.replaceAll('-', ''))) throw errorList[4];
+
+        return true;
     }
     stringENumero(string) {
         return (!isNaN(parseFloat(string)) && isFinite(string));

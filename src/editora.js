@@ -7,16 +7,22 @@ const validador = new Validador();
 
 class Editora {
     async crieArtigo({ titulo, conteudo, url }, token) {
+
         const { id } = jwt.verify(token, secret);
-        if (!validador.urlArtigo(url)) throw new Error("Dados invalidos");
+
+        validador.urlArtigo(url);
+
         const insert = new Insert();
+
         await insert.into('tb_artigos')
             .columns(['user_id', 'art_titulo', 'art_conteudo', 'art_url'])
             .value([id, titulo, conteudo, url]).sendQuery();
+
         const select = new Select();
         select.from(['tb_artigos'])
-            .where(new Operation().column('art_url').equal.value(url)).sendQuery();
+            .where(new Operation().column('art_url').equal.value(url));
         const artigoBruto = (await select.sendQuery())[0][0];
+
         const artigo = {
             titulo: artigoBruto['art_titulo'],
             conteudo: artigoBruto['art_conteudo'],
