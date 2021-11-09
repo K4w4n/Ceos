@@ -29,23 +29,21 @@ paginas.get('/artigos/', function (req, res) {
 paginas.get('/meus_artigos/', function (req, res) {
     res.sendFile(pastaFiles + '/meus_artigos.html');
 });
+paginas.get('/perfil/', function (req, res) {
+    res.sendFile(pastaFiles + '/perfil.html');
+});
+paginas.get('/termos/', function (req, res) {
+    res.sendFile(pastaFiles + '/termos.html');
+});
+paginas.get('/admin/', function (req, res) {
+    res.sendFile(pastaFiles + '/perfil.html');
+});
 paginas.get('/artigos/:id', function (req, res, next) {
     biblioteca.pegueArtigo(req.params.id)
-        .then(dados => {
-            res.render('artigo', dados);
-        })
-        .catch(err => next());
+        .then(dados => res.sendFile(pastaFiles + '/artigos_completos.html'))
+        .catch(err => next(err));
 });
 paginas.get('/search/', function (req, res) {
     res.sendFile(pastaFiles + '/search.html');
-});
-paginas.get('/artigosjson/:id', function (req, res) {
-    biblioteca.pegueArtigo(req.params.id, req.cookies.credencial)
-        .then(dados => {
-            res.send(dados);
-        })
-        .catch(err => {
-            res.status(500).send(err);
-        });
 });
 export default paginas;

@@ -1,14 +1,68 @@
-/*Artigos*/
-.container-artigos{
+/*Infos Perfil*/
+.container-perfil{
   padding-top: 80px;
 }
 
+.container-perfil-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 300px;
+  border-bottom: 2px solid #000;
+}
+
+.container-infos{
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.title-bem-vindo{
+  font-size: 35px;
+  color: #2f50f5;
+  font-weight: 800;
+}
+
+.title-infos{
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  padding: 15px 0px;
+}
+
+.subtitle-infos{
+  font-weight: 800;
+  padding: 5px 0px;
+}
+
+.info{
+  font-weight: 400;
+}
+
+/* Meus Artigos*/
+.meus-artigos{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  color: #2f50f5;
+}
+
+.title-meus-artigos{
+  font-size: 30px;
+  font-weight: 800;
+}
+  
 .container-artigo{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+  
 .title-artigo{
   width: 100%;
   height: 2%;
@@ -19,13 +73,13 @@
   font-size: 18pt;
   font-weight: 600;
 }
-
+  
 .subtitle{
   padding-top: 5px;
   display: flex;
   font-weight: 400;
 }
-
+  
 .text-box{
   position: relative;
   background-color: #fff;
@@ -38,31 +92,31 @@
   outline: none;
   transition: .7s;
 }
-
+  
 .text-box .top-area{
   display: block;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
 }
-
+  
 .post-body{
   position: relative;
   background: transparent;
   text-align: justify;
   color: #000;
 }
-
+  
 p{
   display: inline;
 }
-
+  
 .read-more{
   color: #288ddb;
   cursor: pointer;
   font-weight: 500;
 }
-
+  
 /*Botao Voltar ao Topo*/
 .back-to-top-btn{
   display: none;
@@ -82,21 +136,21 @@ p{
   transition-timing-function: ease-in-out;
   transition-property: background-color, color;
 }
-
+  
 .back-to-top-btn:hover, .back-to-top-btn:focus{
   background-color: #333;
   color: #fff;  
 }
-
+  
 /*Estilos do Botao Voltar o Topo*/
 .btnEntrance{
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-name: btnEntrance;
 }
-
-@keyframes btnEntrance{
   
+@keyframes btnEntrance{
+    
   from{
     opacity: 0;
     transform: translate3d(0, 100%, 0);
@@ -106,15 +160,15 @@ p{
     transform: translate3d(0, 0, 0);
   }
 }
-
+  
 .btnExit{
   animation-duration: 0.25s;
   animation-fill-mode: both;  
   animation-name: btnExit;
 }
-
-@keyframes btnExit{
   
+@keyframes btnExit{
+    
   from{
     opacity: 1;
   }
@@ -123,17 +177,17 @@ p{
     transform: translate3d(0, 100%, 0);
   }
 }
-
+  
 /*Artigos Responsivel*/
 @media screen and (min-width: 992px){
-  
+    
   .back-to-top-btn{
     transition: .5s;
   }
 }
-
-@media screen and (max-width: 850px){
   
+@media screen and (max-width: 850px){
+    
   .back-to-top-btn{ 
     background-color: #333;
     color: #FFF;
@@ -144,7 +198,7 @@ p{
     right: 15px; 
     transition: .7s;
   }
-
+  
   .text-box{
     width: 100vw;
     margin: 0;
@@ -154,4 +208,57 @@ p{
     border-bottom: 2px solid #000;
     transition: .7s;
   }
+}
+
+@media screen and (max-width: 415px){
+
+  .container-infos{
+    text-align: left;
+  }
+
+  .title-bem-vindo{
+    font-size: 26px;
+  }
+
+  .subtitle-infos{
+    padding: 5px 20px;
+  }
+}
+
+@media screen and (max-width: 360px){
+  
+  .title-bem-vindo{
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 320px){
+
+  .title-bem-vindo{
+    font-size: 20px;
+  }
+
+  .title-infos{
+    font-size: 18px;
+  }
+
+  .subtitle-infos{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 280px){
+
+  .title-bem-vindo{
+    font-size: 18px;
+  }
+
+  .title-infos{
+    font-size: 16px;
+  }
+
+  .subtitle-infos{
+    font-size: 12px;
+  }
+
 }

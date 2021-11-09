@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="/files/javascript/apiCeos.js"></script>
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/files/css/main.css" />
   <link rel="stylesheet" href="/files/css/main_dark.css" />
-  <link rel="stylesheet" href="/files/css/artigos.css" />
-  <link rel="icon" type="image/png" href="/files/img/favicon.png" />
-  <script src="/files/javascript/apiCeos.js"></script>
+  <link rel="stylesheet" href="/files/css/perfil.css" />
+  <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
   <title>Ceos Community</title>
 </head>
 
@@ -21,32 +21,34 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-        <div class="logo"><a href="/artigos.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
+        <div class="logo"><a href="/index.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
         <ul class="links">
           <li><a href="/index.html">Home</a></li>
           <li><a href="/artigos.html">Artigos</a></li>
           <li><a href="/sobre.html">Sobre Nós</a></li>
           <li><a href="/painel.html">Painel</a></li>
           <li>
-            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features">
-            <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
-            <ul>
-              <li><a href="/login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+            <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
+            <ul id="dropdown">
+              <li><a href="/login.html"><i class="fas fa-door-open"></i><span
+                    class="text-submenu">Login/Cadastro</span></a>
               </li>
-              <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
+              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              </li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
             </ul>
           </li>
           <li>
-            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features1">
             <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
             <ul>
-              <li><button onclick="darktheme_artigos()" class="theme"><i class="fas fa-moon"></i>
+              <li><button onclick="darktheme_perfil()" class="theme"><i class="fas fa-moon"></i>
                   <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
                 </button></li>
-              <li><button onclick="lightheme_artigos()" class="theme"><i class="fas fa-sun"></i>
+              <li><button onclick="lightheme_perfil()" class="theme"><i class="fas fa-sun"></i>
                   <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
                 </button></li>
             </ul>
@@ -61,7 +63,28 @@
     </nav>
   </div>
 
-  <div class="container-artigos"></div>
+  <div id="progressbar"></div>
+  <div id="scrollpath"></div>
+
+  <div class="container-perfil">
+
+    <div class="container-perfil-info" id="container-perfil-info">
+      <p class="title-bem-vindo">
+        <spam>Bem Vindo(a) Rogerinho!</spam>
+      </p>
+      <div class="container-infos" id="container-infos">
+        <p class="title-infos">Dados da Conta</p>
+        <p class="subtitle-infos">Nome Completo:<span class="info"> Rogerinho da Silva Mendes</span></p>
+        <p class="subtitle-infos">E-mail Cadastrado:<span class="info"> teste@gmail.com</span></p>
+        <p class="subtitle-infos">Artigos Criados:<span class="info"> 500</span></p>
+      </div>
+    </div>
+
+    <div class="meus-artigos">
+      <p class="title-meus-artigos">Meus Artigos</p>
+    </div>
+
+  </div>
 
   <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
@@ -69,12 +92,11 @@
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const theme = localStorage.getItem('Theme')
-    if (theme == 'dark') {
-      darktheme_artigos()
-    } else {
-      lightheme_artigos()
-    }
+    const theme = localStorage.getItem('Theme');
+    if (theme == 'dark') darktheme_perfil();
+    else lightheme_perfil();
+
+    const apiCeos = new ApiCeos();
 
     function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome }) {
       url = window.origin + "/artigos/" + url;
@@ -124,14 +146,12 @@
       return dia + "/" + mes + "/" + ano;
     }
 
-    const apiCeos = new ApiCeos();
     let libLivre = true;
-    const query = '' || queryObj().q;
     window.addEventListener('scroll', () => {
       el = document.documentElement;
       if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
         libLivre = false;
-        apiCeos.biblioteca.pesquise(query)
+        apiCeos.biblioteca.pushMeusArtigos()
           .then(artigoList => {
             libLivre = true;
             artigoList.forEach(artigo => {
@@ -144,18 +164,10 @@
           });
       }
     });
-    function queryObj() {
-      var result = {}, keyValuePairs = location.search.slice(1).split("&");
-      keyValuePairs.forEach(function (keyValuePair) {
-        keyValuePair = keyValuePair.split('=');
-        result[decodeURIComponent(keyValuePair[0])] = decodeURIComponent(keyValuePair[1]) || '';
-      });
-      return result;
-    }
-    apiCeos.biblioteca.pesquise(query)
+    apiCeos.biblioteca.pushMeusArtigos()
       .then(artigoList => {
         artigoList.forEach(artigo => {
-          document.querySelector('.container-artigos').append(artigoHTML(artigo));
+          document.querySelector('.container-perfil').append(artigoHTML(artigo));
         });
       })
       .catch(console.error);

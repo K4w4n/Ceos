@@ -38,4 +38,5 @@ export const errorList = [
     new Erro('Sobrenome invalido', 18, 'O sobrenome precisa ser fornecido'),
     new Erro('Sobrenome invalido', 19, 'O sobrenome não pode conter caracteres especiais'),
     new Erro('Sobrenome invalido', 20, 'O sobrenome não pode conter numeros'),
+    new Erro('Url invalida', 21, 'O artigo procurado não existe ou foi removido'),
 ];

@@ -22,7 +22,7 @@
 /*Forms Login e Cadastro*/
 .signin-signup{
   position: absolute;
-  top: 40%;
+  top: 45%;
   transform: translate(-50%, -50%);
   left: 75%;
   width: 50%;
@@ -100,6 +100,22 @@ form.sign-in-form{
 
 .fa-eye-slash{
   cursor: pointer;
+}
+
+.termos{
+  font-size: 15px;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.container-text-termos{
+  margin-left: 5px;
+}
+
+.link_termos{
+  color: #2f50f5;
+  font-weight: 600;
 }
   
 .btn{
@@ -249,7 +265,7 @@ form.sign-in-form{
 }
 
 /*Login Responsivel*/
-@media (max-width: 870px){
+@media screen and (max-width: 870px){
   
   .container {
     min-height: 800px;
@@ -258,7 +274,7 @@ form.sign-in-form{
   
   .signin-signup{
     width: 100%;
-    top: 95%;
+    top: 98%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
@@ -349,12 +365,12 @@ form.sign-in-form{
   }
   
   .container.sign-up-mode .signin-signup{
-    top: 5%;
+    top: 2%;
     transform: translate(-50%, 0);
   }
 }
   
-@media (max-width: 570px){
+@media screen and (max-width: 570px){
   
   form {
     padding: 0 1.5rem;
@@ -384,5 +400,19 @@ form.sign-in-form{
   .container.sign-up-mode:before{
     bottom: 28%;
     left: 50%;
+  }
+}
+
+@media screen and (max-width: 375px){
+
+  .container-text-termos{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 280px){
+
+  .container-text-termos{
+    font-size: 12px;
   }
 }

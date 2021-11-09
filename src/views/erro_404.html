@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/files/css/erro_404.css" />
+  <link rel="stylesheet" href="/files/css/main_dark.css" />
+  <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
+  <title>Ceos Community</title>
+</head>
+
+<body class="body-light" id="body">
+  <div class="container-erro-404">
+    <img src="/files/img/erro_404/erro_404.png" class="erro-404">
+    <p class="title-erro-404" id="title-erro-404">Desculpe, esta Página não está disponível.</p>
+    <p class="text-erro-404" id="text-erro-404">O Link que você seguiu pode estar quebrado ou a Página pode ter sido
+      removida. Volte para
+      <a class="link-erro-404" href="/index.html">Ceos Community.</a>
+    </p>
+  </div>
+
+  <script src="/files/javascript/theme.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('Theme');
+    if (theme == 'dark') darktheme_erro_404();
+    else lightheme_erro_404();
+  </script>
+
+</body>
+
+</html>

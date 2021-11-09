@@ -2,158 +2,167 @@
 <html lang="PT-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./files/css/artigos_completos.css" />
-    <link rel="icon" type="image/png" href="./files/img/favicon.png" />
-    <title>Ceos Community</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/files/css/main.css" />
+  <link rel="stylesheet" href="/files/css/main_dark.css" />
+  <link rel="stylesheet" href="/files/css/artigo_completo.css" />
+  <link rel="icon" type="image/png" href="/files/img/main/logo.png" />
+  <title>Ceos Community</title>
 </head>
 
-<body>
+<body class="body-light" id="body">
+  <div class="wrapper" id="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <div class="logo"><a href="index.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
+        <ul class="links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/artigos.html">Artigos</a></li>
+          <li><a href="/sobre.html">Sobre Nós</a></li>
+          <li><a href="/painel.html">Painel</a></li>
+          <li>
+            <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
+            <ul id="dropdown">
+              <li><a href="/login.html"><i class="fas fa-door-open"></i><span
+                    class="text-submenu">Login/Cadastro</span></a>
+              </li>
+              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a></li>
+              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <input type="checkbox" id="show-features1">
+            <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
+            <ul>
+              <li><button onclick="darktheme_artigo_completo()" class="theme"><i class="fas fa-moon"></i>
+                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                </button></li>
+              <li><button onclick="lightheme_artigo_completo()" class="theme"><i class="fas fa-sun"></i>
+                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
+                </button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+      <form action="/search" class="search-box">
+        <input type="text" placeholder="Pesquisar..." required name="q">
+        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+      </form>
+    </nav>
+  </div>
 
+  <div id="progressbar"></div>
+  <div id="scrollpath"></div>
 
-    <div class="btn">
-        <a href="artigos.html"><button class="btn-voltar"><span>Voltar</span></button></a>
-    </div>
-    
+  <div class="btn">
+    <a href="/artigos.html"><button class="btn-voltar"><span>Voltar</span></button></a>
+  </div>
 
-    <div class="container">
-        <label class="title">HTML - HISTÓRIA E USABILIDADE</label>
+  <div class="container-artigo-completo" id="container_artigo_completo">
+    <label class="title-artigo-completo" id="title_artigo_completo">HTML - HISTÓRIA E USABILIDADE</label>
 
-        <label class="subtitle">Guilherme Santos • 27/08/2021</label>
+    <label class="subtitle_artigo_completo" id="subtitle_artigo_completo">Guilherme Santos • 27/08/2021</label>
 
-        <span class="text">"On the other hand, we denounce with righteous indignation and dislike men who are so
-            beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot
-            foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their
-            duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases
-            are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and
-            when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every
-            pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it
-            will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore
-            always holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."
+    <span class="text-artigo-completo" id="text_artigo_completo">"On the other hand, we denounce with righteous
+      "indignation and dislike men who are so
+      beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot
+      foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their
+      duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases
+      are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and
+      when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every
+      pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it
+      will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore
+      always holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."
 
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."
+      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
+      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
+      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
+      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
+      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
+      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
+      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
+      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."
 
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."
+      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
+      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
+      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
+      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
+      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
+      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
+      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
+      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."
 
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."
+      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
+      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
+      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
+      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
+      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
+      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
+      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
+      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."
 
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains."</span>
-    </div>
+      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
+      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
+      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
+      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
+      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
+      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
+      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
+      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."
+      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
+      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
+      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
+      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
+      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
+      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
+      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
+      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."
+      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
+      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
+      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
+      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
+      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
+      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
+      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
+      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
+      pleasures, or else he endures pains to avoid worse pains."</span>
+  </div>
 
-    <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+  <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
-    <script>
+  <script src="/files/javascript/main.js"></script>
+  <script src="/files/javascript/theme.js"></script>
 
-
-        const backToTopButton = document.querySelector("#back-to-top-btn");
-
-        window.addEventListener("scroll", scrollFunction);
-
-        function scrollFunction() {
-            if (window.pageYOffset > 300) {
-                if (!backToTopButton.classList.contains("btnEntrance")) {
-                    backToTopButton.classList.remove("btnExit");
-                    backToTopButton.classList.add("btnEntrance");
-                    backToTopButton.style.display = "block";
-                }
-            }
-            else { // Hide backToTopButton
-                if (backToTopButton.classList.contains("btnEntrance")) {
-                    backToTopButton.classList.remove("btnEntrance");
-                    backToTopButton.classList.add("btnExit");
-                    setTimeout(function () {
-                        backToTopButton.style.display = "none";
-                    }, 250);
-                }
-            }
-        }
-
-        backToTopButton.addEventListener("click", smoothScrollBackToTop);
-
-        function smoothScrollBackToTop() {
-            const targetPosition = 0;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            const duration = 750;
-            let start = null;
-
-            window.requestAnimationFrame(step);
-
-            function step(timestamp) {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                window.scrollTo(0, easeInOutCubic(progress, startPosition, distance, duration));
-                if (progress < duration) window.requestAnimationFrame(step);
-            }
-        }
-
-        function easeInOutCubic(t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t * t + b;
-            t -= 2;
-            return c / 2 * (t * t * t + 2) + b;
-        };
-    </script>
+  <script>
+    const theme = localStorage.getItem('Theme')
+    if (theme == 'dark') {
+      darktheme_artigo_completo()
+    } else {
+      lightheme_artigo_completo()
+    }
+  </script>
 
 </body>
 

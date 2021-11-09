@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta Nome do Usuário="viewport" content="width=device-width, minimum-scale=1.0">
+    <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./files/css/main.css" />
+    <link rel="stylesheet" href="./files/css/main_dark.css" />
+    <link rel="stylesheet" href="./files/css/admin.css">
+    <link rel="icon" type="image/png" href="./files/img/main/favicon.png" />
+    <title>Ceos Community</title>
+</head>
+
+<body class="body-light" id="body">
+
+    <div id="progressbar"></div>
+    <div id="scrollpath"></div>
+
+    <div class="container-table">
+        <h1 class="title-admin"> Bem Vindo(a) ADMIN!</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome do Usuário</th>
+                    <th>Data de Publicação</th>
+                    <th>Título do Artigo</th>
+                    <th>Revisar Artigo</th>
+                    <th>Aprovar Artigo</th>
+                    <th>Reprovar Artigo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Nome do Usuário:">Guilherme</td>
+                    <td data-label="Data de Publicação:">02/11/2021</td>
+                    <td data-label="Título do Artigo:">HTML - HISTÓRIA E USABILIDADE</td>
+                    <td data-label="Revisar Artigo:"><i class="fas fa-file-word"></i></td>
+                    <td data-label="Aprovar Artigo:"><i class="fas fa-check-circle"></i></td>
+                    <td data-label="Reprovar Artigo:"><i class="fas fa-ban"></i></td>
+                </tr>
+                <tr>
+                    <td data-label="Nome do Usuário:">Guilherme</td>
+                    <td data-label="Data de Publicação:">02/11/2021</td>
+                    <td data-label="Título do Artigo:">HTML - HISTÓRIA E USABILIDADE</td>
+                    <td data-label="Revisar Artigo:"><i class="fas fa-file-word"></i></td>
+                    <td data-label="Aprovar Artigo:"><i class="fas fa-check-circle"></i></td>
+                    <td data-label="Reprovar Artigo:"><i class="fas fa-ban"></i></td>
+                </tr>
+                <tr>
+                    <td data-label="Nome do Usuário:">Guilherme</td>
+                    <td data-label="Data de Publicação:">02/11/2021</td>
+                    <td data-label="Título do Artigo:">HTML - HISTÓRIA E USABILIDADE</td>
+                    <td data-label="Revisar Artigo:"><i class="fas fa-file-word"></i></td>
+                    <td data-label="Aprovar Artigo:"><i class="fas fa-check-circle"></i></td>
+                    <td data-label="Reprovar Artigo:"><i class="fas fa-ban"></i></td>
+                </tr>
+                <tr>
+                    <td data-label="Nome do Usuário:">Guilherme</td>
+                    <td data-label="Data de Publicação:">02/11/2021</td>
+                    <td data-label="Título do Artigo:">HTML - HISTÓRIA E USABILIDADE</td>
+                    <td data-label="Revisar Artigo:"><i class="fas fa-file-word"></i></td>
+                    <td data-label="Aprovar Artigo:"><i class="fas fa-check-circle"></i></td>
+                    <td data-label="Reprovar Artigo:"><i class="fas fa-ban"></i></td>
+                </tr>
+                <tr>
+                    <td data-label="Nome do Usuário:">Guilherme</td>
+                    <td data-label="Data de Publicação:">02/11/2021</td>
+                    <td data-label="Título do Artigo:">HTML - HISTÓRIA E USABILIDADE</td>
+                    <td data-label="Revisar Artigo:"><i class="fas fa-file-word"></i></td>
+                    <td data-label="Aprovar Artigo:"><i class="fas fa-check-circle"></i></td>
+                    <td data-label="Reprovar Artigo:"><i class="fas fa-ban"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./files/javascript/theme.js"></script>
+
+    <script>
+        const theme = localStorage.getItem('Theme')
+        if (theme == 'dark') {
+            darktheme_admin()
+        } else {
+            lightheme_admin()
+        }
+    </script>
+
+</body>
+
+</html>

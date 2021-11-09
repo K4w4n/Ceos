@@ -12,8 +12,20 @@ window.onscroll = function () {
   scrollPrev = scrollCur;
 }
 
+/*Scroll Continuo*/
+window.addEventListener('scroll', handleScroll);
+
+function handleScroll() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+
+  document.getElementById("progressbar").style.height = scrolled + "%";
+}
+
 /*Botao Retornar ao Topo da Pagina*/
 const backToTopButton = document.querySelector("#back-to-top-btn");
+
 if (backToTopButton) window.addEventListener("scroll", scrollFunction);
 
 function scrollFunction() {

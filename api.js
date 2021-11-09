@@ -31,27 +31,19 @@ api.post('/user/login/', function (req, res) {
             usuario.token = undefined;
             res.status(200).send(usuario);
         })
-        .catch(err => {
-            res.status(404).send(err);
-        });
+        .catch(err => res.status(404).send(err));
 });
 api.delete('/user/logoff/', function (req, res) {
     controleConta.canceleToken(req.cookies.credencial)
         .then(() => {
-            res.clearCookie("credencial")
+            res.clearCookie("credencial");
             res.status(200).end();
-        }).catch(err => {
-            res.status(500).send(err);
-        });
+        }).catch(err => res.status(500).send(err));
 });
 api.get('/user/confirmetoken/', function (req, res) {
     controleConta.confirmeToken(req.cookies.credencial)
-        .then(dados => {
-            res.send(dados);
-        })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+        .then(dados => res.send(dados))
+        .catch(err => res.status(500).send(err));
 });
 api.post('/user/registro/', function (req, res) {
     controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha)
@@ -60,54 +52,43 @@ api.post('/user/registro/', function (req, res) {
             usuario.token = undefined;
             res.status(200).send(usuario);
         })
-        .catch(err => res.status(404).send(err));
+        .catch(err => res.status(500).send(err));
 });
 api.get('/biblioteca/pushResumos/', function (req, res) {
     const data = req.query;
     biblioteca.resumaVariosArtigos(parseInt(data.quantidadeArtigos), parseInt(data.pagina))
-        .then(dados => {
-            res.send(dados);
-        })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+        .then(dados => res.send(dados))
+        .catch(err => res.status(500).send(err));
 });
 api.get('/biblioteca/meusArtigos/', function (req, res) {
     const data = req.query;
     biblioteca.meusArtigos(req.cookies.credencial, parseInt(data.quantidadeArtigos), parseInt(data.pagina))
-        .then(dados => {
-            res.send(dados);
-        })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+        .then(dados => res.send(dados))
+        .catch(err => res.status(500).send(err));
 });
 api.post('/editora/criarArtigo/', function (req, res) {
     const { titulo, conteudo, url } = req.body;
     const token = req.cookies.credencial;
-    editora.crieArtigo({ titulo, conteudo, url }, token).then(artigo => {
-        res.status(200).send(artigo);
-    })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+    editora.crieArtigo({ titulo, conteudo, url }, token)
+        .then(artigo => res.status(200).send(artigo))
+        .catch(err => res.status(500).send(err));
 });
 api.post('/editora/salvarArtigo/', function (req, res) {
-    editora.editeArtigo(req.body.url, req.body.artigo, req.cookies.credencial).then(() => {//url, artigo, credencial
-        res.sendStatus(200);
-    }).catch(err => {
-        res.status(500).send(err);
-    });
+    editora.editeArtigo(req.body.url, req.body.artigo, req.cookies.credencial)
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
 });
 api.get('/biblioteca/search/', function (req, res) {
     const quantidadeArtigos = parseInt(req.query.quantidadeArtigos);
     const pagina = parseInt(req.query.pagina);
     const { texto } = req.query
     biblioteca.pesquisar(texto, quantidadeArtigos, pagina)
-        .then(dados => {
-            res.send(dados);
-        }).catch(err => {
-            res.status(500).send(err);
-        })
+        .then(dados => res.send(dados))
+        .catch(err => res.status(500).send(err))
+});
+api.get('/artigos/:id', function (req, res) {
+    biblioteca.pegueArtigo(req.params.id, req.cookies.credencial)
+        .then(dados => res.send(dados))
+        .catch(err => res.status(500).send(err));
 });
 export default api;

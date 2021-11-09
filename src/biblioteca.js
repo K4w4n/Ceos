@@ -17,7 +17,7 @@ class Biblioteca {
             .where(new Operation().column('art_url').equal.value(urlArtigo));
 
         const artigoBruto = (await select.sendQuery())[0][0];
-
+        if(!artigoBruto) throw errorList[21];
         const artigoProcessado = {
             titulo: artigoBruto['art_titulo'],
             conteudo: artigoBruto['art_conteudo'],
@@ -57,7 +57,7 @@ class Biblioteca {
             .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
             .limit(quantidade, pagina * quantidade)
             .sendQuery())[0];
-            
+
         return artigosBruto.map(artigo => {
             const novoArtigo = processeArtigo(artigo);
             novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;

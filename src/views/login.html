@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/files/css/main.css" />
   <link rel="stylesheet" href="/files/css/main_dark.css" />
   <link rel="stylesheet" href="/files/css/login.css" />
-  <link rel="icon" type="image/png" href="/files/img/favicon.png" />
+  <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
   <title>Ceos Community</title>
 </head>
 
@@ -21,34 +21,34 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-        <div class="logo"><a href="/index.html"><img src="files/img/logo1.png" class="logotipo"></a></div>
+        <div class="logo"><a href="/index.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
         <ul class="links">
           <li><a href="/index.html">Home</a></li>
           <li><a href="/artigos.html">Artigos</a></li>
           <li><a href="/sobre.html">Sobre Nós</a></li>
           <li><a href="/painel.html">Painel</a></li>
           <li>
-            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features">
-            <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
-            <ul>
-              <li><a href="/login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+            <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
+            <ul id="dropdown">
+              <li><a href="/login.html"><i class="fas fa-door-open"></i><span
+                    class="text-submenu">Login/Cadastro</span></a>
               </li>
-              <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
+              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              </li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
             </ul>
           </li>
           <li>
-            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features1">
             <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
             <ul>
-              <li><button onclick="darktheme_login()" class="theme"><i
-                    class="fas fa-moon"></i>
+              <li><button onclick="darktheme_login()" class="theme"><i class="fas fa-moon"></i>
                   <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
                 </button></li>
-              <li><button onclick="lightheme_login()" class="theme"><i
-                    class="fas fa-sun"></i>
+              <li><button onclick="lightheme_login()" class="theme"><i class="fas fa-sun"></i>
                   <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
                 </button></li>
             </ul>
@@ -63,6 +63,9 @@
     </nav>
   </div>
 
+  <div id="progressbar"></div>
+  <div id="scrollpath"></div>
+
   <div class="container-login">
     <div class="container" id="container">
       <div class="forms-container">
@@ -71,11 +74,11 @@
             <h2 class="title" id="title">Entrar</h2>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="text" id="email" placeholder="Email" class="email"/>
+              <input type="text" id="email" placeholder="Email" class="email" required />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Senha" class="senha" />
+              <input type="password" placeholder="Senha" class="senha" required />
             </div>
             <input type="button" value="Conectar-se" class="btn solid login" />
 
@@ -85,23 +88,29 @@
             <h2 class="title" id="title1">Criar Conta</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nome" class="nome" />
+              <input type="text" placeholder="Nome" class="nome" required />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Sobrenome" class="sobrenome"/>
+              <input type="text" placeholder="Sobrenome" class="sobrenome" required />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" class="email"/>
+              <input type="email" placeholder="Email" class="email" required />
             </div>
             <div class="input-field">
               <i class="fas fa-lock" id="lock" onclick="show()"></i>
-              <input type="password" id="senha" onclick="animation_lock()" placeholder="Senha" class="senha1" />
+              <input type="password" id="senha" onclick="animation_lock()" placeholder="Senha" class="senha1"
+                minlength="6" maxlength="12" required />
             </div>
             <div class="input-field">
               <i class="fas fa-lock" id="lock1" onclick="show1()"></i>
-              <input type="password" id="senha1" onclick="animation_lock1()" placeholder="Confirmar Senha" class="senha2"/>
+              <input type="password" id="senha1" onclick="animation_lock1()" placeholder="Confirmar Senha"
+                class="senha2" minlength="7" maxlength="12" required />
+            </div>
+            <div class="termos" id="termos"><input type="checkbox" required>
+              <p class="container-text-termos">Concordo com os <a class="link_termos" href="/termos.html">Termos de
+                  Uso.</a></p>
             </div>
             <input type="button" class="btn registro" value="Cadastrar" />
           </form>
@@ -119,7 +128,7 @@
               Cadastre-se
             </button>
           </div>
-          <img src="/files/img/login.svg" class="image" alt="" />
+          <img src="/files/img/login/login.svg" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -131,12 +140,12 @@
               Entrar
             </button>
           </div>
-          <img src="/files/img/register.svg" class="image" alt="" />
+          <img src="/files/img/login/register.svg" class="image" alt="" />
         </div>
       </div>
     </div>
   </div>
-  
+
   <script src="/files/javascript/main.js"></script>
   <script src="/files/javascript/container_forms.js"></script>
   <script src="/files/javascript/theme.js"></script>

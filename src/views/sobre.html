@@ -8,7 +8,8 @@
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/files/css/main.css" />
   <link rel="stylesheet" href="/files/css/main_dark.css" />
-  <link rel="icon" type="image/png" href="/files/img/favicon.png" />
+  <link rel="stylesheet" href="/files/css/sobre.css" />
+  <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
   <title>Ceos Community</title>
 </head>
 
@@ -19,25 +20,27 @@
       <input type="checkbox" id="show-menu">
       <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
       <div class="content">
-        <div class="logo"><a href="/index.html"><img src="/files/img/logo1.png" class="logotipo"></a></div>
+        <div class="logo"><a href="/index.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
         <ul class="links">
           <li><a href="/index.html">Home</a></li>
           <li><a href="/artigos.html">Artigos</a></li>
           <li><a href="/sobre.html">Sobre Nós</a></li>
           <li><a href="/painel.html">Painel</a></li>
           <li>
-            <a href="" class="desktop-link">Perfil <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features">
-            <label for="show-features">Perfil <i class="fas fa-angle-down"></i></label>
-            <ul>
-              <li><a href="/login.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+            <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
+            <ul id="dropdown">
+              <li><a href="/login.html"><i class="fas fa-door-open"></i><span class="text-submenu">Login/Cadastro</span>
+                </a>
               </li>
-              <li><a href="#"><i class="fas fa-newspaper"></i><span class="text-submenu">Meus Artigos</span></a></li>
+              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              </li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
             </ul>
           </li>
           <li>
-            <a href="#" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+            <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features1">
             <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
             <ul>
@@ -59,34 +62,222 @@
     </nav>
   </div>
 
-  <footer>
-    <div class="footer-content">
-      <img src="files/img/logo.png">
-      <h3>CEOS COMMUNITY</h3>
-      <p>"Conhecimento nunca é demais"</p>
-      <ul class="socials">
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-      </ul>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2021 Ceos Community</p>
-    </div>
-  </footer>
-  
-  <script src="/files/javascript/main.js"></script>
-  <script src="/files/javascript/theme.js"></script>
+  <div id="progressbar"></div>
+  <div id="scrollpath"></div>
 
-  <script>
-    const theme = localStorage.getItem('Theme')
-    if (theme == 'dark') {
-      darktheme_sobre()
-    } else {
-      lightheme_sobre()
-    }
-  </script>
+  <div class="container-sobre">
+    <div class="container-sobre-objetivo" id="container-sobre-objetivo">
+      <h2 class="title-sobre">Sobre nós</h2>
+      <p class="text-sobre">
+        A Ceos community foi fundada em 2021, com o intuito de desenvolver uma plataforma que agregue conhecimento para
+        a comunidade de programação em geral, desde aqueles que estão iniciando na área, quanto aqueles que já possuem
+        experiência.
+      </p>
+
+      <h2 class="title-sobre">Objetivo</h2>
+      <p class="text-sobre">
+        Nosso objetivo é colaborar com a comunidade de programação, desde aqueles que estão iniciando na àrea, quanto
+        aqueles que já possuem o conhecimento. Nosso diferencial é uma plataforma totalmente em português brasileiro,
+        pois somente 5% da população brasileira é fluente em inglês.
+      </p>
+    </div>
+
+    <p class="title-membros">Nossa Equipe</p>
+
+    <section class="container-membros">
+
+      <div class="card">
+        <div class="bg-image">
+          <img src="/files/img/sobre/bg-image.jpg" alt="">
+        </div>
+        <div class="pic">
+          <img src="/files/img/sobre/pic1.png" alt="">
+        </div>
+        <div class="info">
+          <h3>Gabriel Borges</h3>
+          <span><i class="fas fa-pencil-ruler"></i> UI Design</span>
+          <div class="social-media">
+            <a href="#" class="social-instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-github">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bg-image">
+          <img src="/files/img/sobre/bg-image.jpg" alt="">
+        </div>
+        <div class="pic">
+          <img src="/files/img/sobre/pic1.png" alt="">
+        </div>
+        <div class="info">
+          <h3>Guilherme Barbosa</h3>
+          <span><i class="fas fa-pencil-ruler"></i> UI Design </span>
+          <div class="social-media">
+            <a href="#" class="social-instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-github">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bg-image">
+          <img src="/files/img/sobre/bg-image.jpg" alt="">
+        </div>
+        <div class="pic">
+          <img src="/files/img/sobre/pic1.png" alt="">
+        </div>
+        <div class="info">
+          <h3>Guilherme Santos</h3>
+          <span><i class="fas fa-code"></i> Desenvolvedor Full Stack </span>
+          <div class="social-media">
+            <a href="#" class="social-instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-github">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bg-image">
+          <img src="/files/img/sobre/bg-image.jpg" alt="">
+        </div>
+        <div class="pic">
+          <img src="/files/img/sobre/pic1.png" alt="">
+        </div>
+        <div class="info">
+          <h3>Isaque Sena</h3>
+          <span><i class="fas fa-code"></i> Desenvolvedor Front-End </span>
+          <div class="social-media">
+            <a href="#" class="social-instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-github">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bg-image">
+          <img src="/files/img/sobre/bg-image.jpg" alt="">
+        </div>
+        <div class="pic">
+          <img src="/files/img/sobre/pic1.png" alt="">
+        </div>
+        <div class="info">
+          <h3>Kawan Araujo</h3>
+          <span><i class="fas fa-code"></i> Desenvolvedor Full Stack </span>
+
+          <div class="social-media">
+            <a href="#" class="social-instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-github">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bg-image">
+          <img src="/files/img/sobre/bg-image.jpg" alt="">
+        </div>
+        <div class="pic">
+          <img src="/files/img/sobre/pic1.png" alt="">
+        </div>
+        <div class="info">
+          <h3>Matheus Tiburcio</h3>
+          <span><i class="fas fa-code"></i> Desenvolvedor Front-End </span>
+          <div class="social-media">
+            <a href="#" class="social-instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-linkedin">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-github">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <img src="/files/img/main/logo.png" class="img-rodape">
+        <h3>CEOS COMMUNITY</h3>
+        <p>"Conhecimento nunca é demais"</p>
+        <ul class="socials">
+          <li><a href="https://www.facebook.com/etecdesapopemba"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://twitter.com/etecdesapopemba"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://www.instagram.com/etecdesapopemba"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2021 Ceos Community</p>
+      </div>
+    </footer>
+
+    <script src="/files/javascript/main.js"></script>
+    <script src="/files/javascript/theme.js"></script>
+
+    <script>
+      const theme = localStorage.getItem('Theme')
+      if (theme == 'dark') {
+        darktheme_sobre()
+      } else {
+        lightheme_sobre()
+      }
+    </script>
 
 </body>
 

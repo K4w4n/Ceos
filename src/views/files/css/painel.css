@@ -139,7 +139,7 @@
 }
 
 /*Painel Responsivel*/
-@media (max-width: 1900px){
+@media screen and (max-width: 1900px){
 
   .link-btn{
     display: inline;
@@ -159,7 +159,7 @@
   }
 }
 
-@media (max-width: 1515px){
+@media screen and (max-width: 1515px){
 
   .text-box{
     width: 75vw;
@@ -175,21 +175,21 @@
   }
 }
 
-@media (max-width: 1024px) and (max-height: 768px){
+@media screen and (max-width: 1024px) and (max-height: 768px){
 
   .link{
     height: 5vh;
   }
 }
 
-@media (max-width: 1024px) and (max-height: 600px){
+@media screen and (max-width: 1024px) and (max-height: 600px){
 
   .link{
     height: 6vh;
   }
 }
 
-@media (max-width: 990px){
+@media screen and (max-width: 990px){
   
   .text-box{
     width: 75vw;
@@ -206,7 +206,7 @@
   }
 }
 
-@media (max-width: 700px){
+@media screen and (max-width: 700px){
 
   .container-artigo{
     padding-top: 0px;
@@ -225,40 +225,36 @@
   }
 }
 
-@media (max-width: 670px) and (max-height: 375px){
+@media screen and (max-width: 670px) and (max-height: 375px){
   
   .link{
     height: 22vh;
   }
 }
 
-@media (max-width: 640px) and (max-height: 360px){
+@media screen and (max-width: 640px) and (max-height: 360px){
 
   .link{
     height: 20vh;
   }
 }
 
-@media (max-width: 420px){
+@media screen and (max-width: 420px){
 
   .link{
     height: 110px;
   }
 
   .extension{
-    padding-top: 3px;
+    padding-top: 10px;
   }
 
   .btn-enviar{
     height: 37px;
   }
-
-  .extension{
-    padding-top: 10px;
-  }
 }
 
-@media (max-width: 280px){
+@media screen and (max-width: 280px){
 
   .cod{
     font-size: 12px;
