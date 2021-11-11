@@ -98,6 +98,16 @@ const ApiCeos = (() => {
             this.#paginaMeusArtigos++;
             return meusArtigos;
         }
+        async pegueArtigo(url) {
+            const response = await fetch(dominio + `/api/biblioteca/artigo/${url}`, {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            });
+            const artigo = await response.json();
+            return artigo;
+        }
         async pesquise(texto) {
             const response = await fetch(dominio + `/api/biblioteca/search?quantidadeArtigos=5&pagina=${this.#paginaPesquisa}&texto=${texto}`, {
                 method: "GET",

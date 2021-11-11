@@ -1,5 +1,6 @@
 /*Painel*/
-.container-artigo{
+
+.container-artigo {
   padding-top: 80px;
   padding-bottom: 100px;
   display: flex;
@@ -7,7 +8,7 @@
   align-items: center;
 }
 
-.title-painel{
+.title-painel {
   width: 100%;
   height: 2%;
   background: #fff;
@@ -19,7 +20,7 @@
   text-align: center;
 }
 
-.text-box{
+.text-box {
   position: relative;
   background: #2f50f5;
   width: 50vw;
@@ -32,19 +33,19 @@
   transition: .7s;
 }
 
-.text-box .top-area{
+.text-box .top-area {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
 }
 
-.contador{
+.contador {
   color: #fff;
   font-weight: 600;
 }
 
-.text-box .textarea{
+.text-box .textarea {
   width: 100%;
   height: 430px;
   font-size: 1em;
@@ -58,24 +59,24 @@
   text-decoration: none;
 }
 
-.textarea::placeholder{
+.textarea::placeholder {
   font-size: 18pt;
   font-weight: 600;
   text-align: center;
   padding-top: 180px;
 }
 
-.link-btn{
+.link-btn {
   background-color: transparent;
   display: flex;
   height: 4vh;
 }
 
-.title-link{
+.title-link {
   font-weight: 700;
 }
 
-.link{
+.link {
   display: block;
   background-color: #fff;
   padding-left: 7px;
@@ -88,7 +89,7 @@
   padding-top: 8px;
 }
 
-.extension{
+.extension {
   border: none;
   outline: none;
   border-bottom: 1px solid #000;
@@ -99,7 +100,17 @@
   background-color: transparent;
 }
 
-.btn-enviar{
+.body-dark>.container-artigo>.text-box>#editorjs {
+  background-color: #242526;
+  color: #fff;
+}
+
+.body-light>.container-artigo>.text-box>#editorjs {
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-enviar {
   width: 8vw;
   cursor: pointer;
   border-radius: 5px;
@@ -112,14 +123,14 @@
   font-weight: 600;
 }
 
-.btn-enviar span{
+.btn-enviar span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.btn-enviar span:after{
+.btn-enviar span:after {
   content: '\00bb';
   position: absolute;
   font-size: 15pt;
@@ -127,31 +138,29 @@
   top: 0;
   right: -20px;
   transition: 0.5s;
-  }
+}
 
-.btn-enviar:hover span{
+.btn-enviar:hover span {
   padding-right: 25px;
 }
 
-.btn-enviar:hover span:after{
+.btn-enviar:hover span:after {
   opacity: 1;
   right: 0;
 }
 
 /*Painel Responsivel*/
-@media screen and (max-width: 1900px){
 
-  .link-btn{
+@media screen and (max-width: 1900px) {
+  .link-btn {
     display: inline;
   }
-
-  .link{
+  .link {
     width: 100%;
     border-radius: 5px;
     height: 36px;
   }
-
-  .btn-enviar{
+  .btn-enviar {
     transition: .7s;
     width: 100%;
     margin-top: 10px;
@@ -159,108 +168,90 @@
   }
 }
 
-@media screen and (max-width: 1515px){
-
-  .text-box{
+@media screen and (max-width: 1515px) {
+  .text-box {
     width: 75vw;
   }
-
-  .title-link{
+  .title-link {
     width: 500px;
     align-items: center;
   }
-
-  .extension{
+  .extension {
     width: 26%;
   }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 768px){
-
-  .link{
+@media screen and (max-width: 1024px) and (max-height: 768px) {
+  .link {
     height: 5vh;
   }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 600px){
-
-  .link{
+@media screen and (max-width: 1024px) and (max-height: 600px) {
+  .link {
     height: 6vh;
   }
 }
 
-@media screen and (max-width: 990px){
-  
-  .text-box{
+@media screen and (max-width: 990px) {
+  .text-box {
     width: 75vw;
   }
-
-  .link{
+  .link {
     height: 80px;
     text-align: center;
   }
-
-  .extension{
+  .extension {
     width: 60%;
     text-align: center;
   }
 }
 
-@media screen and (max-width: 700px){
-
-  .container-artigo{
+@media screen and (max-width: 700px) {
+  .container-artigo {
     padding-top: 0px;
     padding-bottom: 0px;
-    background: #2f50f5;  
+    background: #2f50f5;
   }
-
-  .text-box{
+  .text-box {
     width: 100vw;
     padding: 5px;
     padding-top: 50px;
   }
-
-  .link{
+  .link {
     height: 10vh;
   }
 }
 
-@media screen and (max-width: 670px) and (max-height: 375px){
-  
-  .link{
+@media screen and (max-width: 670px) and (max-height: 375px) {
+  .link {
     height: 22vh;
   }
 }
 
-@media screen and (max-width: 640px) and (max-height: 360px){
-
-  .link{
+@media screen and (max-width: 640px) and (max-height: 360px) {
+  .link {
     height: 20vh;
   }
 }
 
-@media screen and (max-width: 420px){
-
-  .link{
+@media screen and (max-width: 420px) {
+  .link {
     height: 110px;
   }
-
-  .extension{
+  .extension {
     padding-top: 10px;
   }
-
-  .btn-enviar{
+  .btn-enviar {
     height: 37px;
   }
 }
 
-@media screen and (max-width: 280px){
-
-  .cod{
+@media screen and (max-width: 280px) {
+  .cod {
     font-size: 12px;
   }
-
-  .extension{
+  .extension {
     width: 165px;
   }
 }

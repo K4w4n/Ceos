@@ -36,12 +36,12 @@ paginas.get('/termos/', function (req, res) {
     res.sendFile(pastaFiles + '/termos.html');
 });
 paginas.get('/admin/', function (req, res) {
-    res.sendFile(pastaFiles + '/perfil.html');
+    res.sendFile(pastaFiles + '/admin.html');
 });
 paginas.get('/artigos/:id', function (req, res, next) {
     biblioteca.pegueArtigo(req.params.id)
         .then(dados => res.sendFile(pastaFiles + '/artigos_completos.html'))
-        .catch(err => next(err));
+        .catch(err => next());
 });
 paginas.get('/search/', function (req, res) {
     res.sendFile(pastaFiles + '/search.html');

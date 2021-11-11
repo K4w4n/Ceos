@@ -16,7 +16,7 @@ class Editora {
 
         await insert.into('tb_artigos')
             .columns(['user_id', 'art_titulo', 'art_conteudo', 'art_url'])
-            .value([id, titulo, conteudo, url]).sendQuery();
+            .value([id, titulo, JSON.stringify(conteudo), url]).sendQuery();
 
         const select = new Select();
         select.from(['tb_artigos'])

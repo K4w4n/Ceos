@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="/files/javascript/apiCeos.js"></script>
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
   <link rel="stylesheet" href="/files/css/main.css" />
   <link rel="stylesheet" href="/files/css/main_dark.css" />
   <link rel="stylesheet" href="/files/css/painel.css" />
@@ -45,10 +46,10 @@
             <input type="checkbox" id="show-features1">
             <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
             <ul>
-              <li><button onclick="darktheme_painel()" class="theme"><i class="fas fa-moon"></i>
+              <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
                   <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
                 </button></li>
-              <li><button onclick="lightheme_painel()" class="theme"><i class="fas fa-sun"></i>
+              <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
                   <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
                 </button></li>
             </ul>
@@ -74,7 +75,7 @@
       <div class="contador">
         <span id="cont">5000</span> Caracteres Restantes
       </div>
-      <textarea onkeyup="limite_textarea(this.value)" id="texto" placeholder="Conteúdo" class="textarea"></textarea>
+      <div id="editorjs"></div>
       <div class="link-btn">
         <label class="link" id="link"><label class="title-link" id="title-link">Link do seu Artigo:</label><label
             class="cod" id="cod">
@@ -105,24 +106,23 @@
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const theme = localStorage.getItem('Theme')
-    if (theme == 'dark') {
-      darktheme_painel()
-    } else {
-      lightheme_painel()
-    }
-  </script>
-
-  <script>
     const apiCeos = new ApiCeos();
+
+    const editorjs = new EditorJS({
+      autofocus: true,
+      holder: 'editorjs',
+      readOnly: false,
+      placeholder: 'Ensine algo para o mundo!',
+    });
+
     const tituloInput = document.querySelector('#title');
-    const conteudoInput = document.querySelector('#texto');
     const urlInput = document.querySelector('#extension');
     const btnEnviar = document.querySelector('#btn-enviar');
 
-    btnEnviar.addEventListener('click', () => {
+    btnEnviar.addEventListener('click', async () => {
       const titulo = tituloInput.value;
-      const conteudo = conteudoInput.value;
+      const conteudo = await editorjs.save();
+      console.log(conteudo);
       const url = urlInput.value;
       apiCeos.editora.criarArtigo(titulo, conteudo, url)
         .then(artigo => window.location.assign(artigo.url))

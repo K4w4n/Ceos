@@ -86,7 +86,7 @@ api.get('/biblioteca/search/', function (req, res) {
         .then(dados => res.send(dados))
         .catch(err => res.status(500).send(err))
 });
-api.get('/artigos/:id', function (req, res) {
+api.get('/biblioteca/artigo/:id', function (req, res) {
     biblioteca.pegueArtigo(req.params.id, req.cookies.credencial)
         .then(dados => res.send(dados))
         .catch(err => res.status(500).send(err));

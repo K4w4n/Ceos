@@ -45,10 +45,10 @@
             <input type="checkbox" id="show-features1">
             <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
             <ul>
-              <li><button onclick="darktheme_perfil()" class="theme"><i class="fas fa-moon"></i>
+              <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
                   <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
                 </button></li>
-              <li><button onclick="lightheme_perfil()" class="theme"><i class="fas fa-sun"></i>
+              <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
                   <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
                 </button></li>
             </ul>
@@ -92,10 +92,6 @@
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const theme = localStorage.getItem('Theme');
-    if (theme == 'dark') darktheme_perfil();
-    else lightheme_perfil();
-
     const apiCeos = new ApiCeos();
 
     function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome }) {

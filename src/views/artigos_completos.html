@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
+  <script src="/files/javascript/apiCeos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
   <link rel="stylesheet" href="/files/css/main.css" />
   <link rel="stylesheet" href="/files/css/main_dark.css" />
   <link rel="stylesheet" href="/files/css/artigo_completo.css" />
@@ -34,7 +36,8 @@
               <li><a href="/login.html"><i class="fas fa-door-open"></i><span
                     class="text-submenu">Login/Cadastro</span></a>
               </li>
-              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a></li>
+              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              </li>
               <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
             </ul>
           </li>
@@ -43,10 +46,10 @@
             <input type="checkbox" id="show-features1">
             <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
             <ul>
-              <li><button onclick="darktheme_artigo_completo()" class="theme"><i class="fas fa-moon"></i>
+              <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
                   <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
                 </button></li>
-              <li><button onclick="lightheme_artigo_completo()" class="theme"><i class="fas fa-sun"></i>
+              <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
                   <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
                 </button></li>
             </ul>
@@ -73,81 +76,7 @@
 
     <label class="subtitle_artigo_completo" id="subtitle_artigo_completo">Guilherme Santos • 27/08/2021</label>
 
-    <span class="text-artigo-completo" id="text_artigo_completo">"On the other hand, we denounce with righteous
-      "indignation and dislike men who are so
-      beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot
-      foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their
-      duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases
-      are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and
-      when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every
-      pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it
-      will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore
-      always holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."
-
-      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."
-
-      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."
-
-      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."
-
-      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."
-      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."
-      "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-      demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-      and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-      weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-      perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-      nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-      avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-      frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-      holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-      pleasures, or else he endures pains to avoid worse pains."</span>
+    <div id="editorjs"></div>
   </div>
 
   <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
@@ -156,12 +85,17 @@
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const theme = localStorage.getItem('Theme')
-    if (theme == 'dark') {
-      darktheme_artigo_completo()
-    } else {
-      lightheme_artigo_completo()
-    }
+    const apiCeos = new ApiCeos();
+    const url = window.location.toString().split('/').pop();
+    apiCeos.biblioteca.pegueArtigo(url)
+      .then((artigo) => {
+        const editorjs = new EditorJS({
+          holder: 'editorjs',
+          readOnly: true,
+          placeholder: 'Artigo em branco',
+          data: artigo.conteudo
+        });
+      }).catch(console.error);
   </script>
 
 </body>

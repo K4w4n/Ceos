@@ -17,10 +17,10 @@ class Biblioteca {
             .where(new Operation().column('art_url').equal.value(urlArtigo));
 
         const artigoBruto = (await select.sendQuery())[0][0];
-        if(!artigoBruto) throw errorList[21];
+        if (!artigoBruto) throw errorList[21];
         const artigoProcessado = {
             titulo: artigoBruto['art_titulo'],
-            conteudo: artigoBruto['art_conteudo'],
+            conteudo: JSON.parse(artigoBruto['art_conteudo']),
             dataPublicacao: artigoBruto['art_data_publicacao'],
             id: artigoBruto['art_id'],
             url: artigoBruto['art_url'],
