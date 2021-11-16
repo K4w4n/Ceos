@@ -93,7 +93,6 @@
       .then((artigo) => {
         titleHtml.append(artigo.titulo);
         subtitleHtml.append(`${artigo.autorNome} ${artigo.autorSobrenome} • ${dataFormatada(artigo.dataPublicacao)}`);
-        console.log(artigo)
         const editorjs = new EditorJS({
           holder: 'editorjs',
           readOnly: true,
