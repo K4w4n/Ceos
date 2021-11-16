@@ -1,11 +1,16 @@
 /*Artigo Completo*/
-.btn{
+
+.btn {
   display: flex;
   justify-content: center;
   padding-top: 90px;
 }
 
-.btn-voltar{
+.ce-paragraph {
+  text-align: justify;
+}
+
+.btn-voltar {
   width: 120px;
   height: 40px;
   padding: 5px;
@@ -19,14 +24,14 @@
   color: white;
 }
 
-.btn-voltar span{
+.btn-voltar span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.btn-voltar span:after{
+.btn-voltar span:after {
   content: '←';
   position: absolute;
   font-size: 15pt;
@@ -37,16 +42,16 @@
   transition: 0.5s;
 }
 
-.btn-voltar:hover span{
+.btn-voltar:hover span {
   padding-left: 25px;
 }
 
-.btn-voltar:hover span:after{
+.btn-voltar:hover span:after {
   opacity: 1;
   right: 0;
 }
 
-.container-artigo-completo{
+.container-artigo-completo {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -58,20 +63,20 @@
   background-color: #fff;
 }
 
-.title-artigo-completo{
+.title-artigo-completo {
   font-size: 20pt;
   font-weight: 600;
   padding-bottom: 5px;
   text-align: center;
 }
 
-.subtitle-artigo-completo{
+.subtitle-artigo-completo {
   font-size: 12pt;
   padding-bottom: 5px;
   border-bottom: 1px solid #000;
 }
 
-.text-artigo-completo{
+.text-artigo-completo {
   padding-top: 30px;
   text-align: justify;
   font-size: 12pt;
@@ -79,7 +84,9 @@
 }
 
 /*Botao Voltar ao Topo*/
+
 .back-to-top-btn {
+  z-index: 2000;
   display: none;
   position: fixed;
   bottom: 20px;
@@ -98,69 +105,66 @@
   transition-property: background-color, color;
 }
 
-.back-to-top-btn:hover, .back-to-top-btn:focus{
+.back-to-top-btn:hover, .back-to-top-btn:focus {
   background-color: #333;
-  color: #fff;  
+  color: #fff;
 }
 
 /*Estilos do Botao Voltar o Topo*/
-.btnEntrance{
+
+.btnEntrance {
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-name: btnEntrance;
 }
 
-@keyframes btnEntrance{
-  
-  from{
+@keyframes btnEntrance {
+  from {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
-  to{
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-.btnExit{
+.btnExit {
   animation-duration: 0.25s;
-  animation-fill-mode: both;  
+  animation-fill-mode: both;
   animation-name: btnExit;
 }
 
-@keyframes btnExit{
-  
-  from{
+@keyframes btnExit {
+  from {
     opacity: 1;
   }
-  to{
+  to {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
 }
-  
+
 /*Artigo Completo Responsivel*/
-@media screen and (min-width: 992px){
-  
-  .back-to-top-btn{
+
+@media screen and (min-width: 992px) {
+  .back-to-top-btn {
     transition: .5s;
   }
 }
-  
-@media screen and (max-width: 850px){
-  
-  .container-artigo-completo{
+
+@media screen and (max-width: 850px) {
+  .container-artigo-completo {
     padding: 20px;
   }
-  
-  .back-to-top-btn{ 
+  .back-to-top-btn {
     background-color: #333;
     color: #FFF;
-    font-size: 22px; 
-    width: 40px; 
-    height: 40px; 
-    bottom: 15px; 
-    right: 15px; 
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    bottom: 15px;
+    right: 15px;
     transition: .7s;
   }
 }

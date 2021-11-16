@@ -69,13 +69,6 @@
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const theme = localStorage.getItem('Theme')
-    if (theme == 'dark') {
-      darktheme_artigos()
-    } else {
-      lightheme_artigos()
-    }
-
     function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome }) {
       url = window.origin + "/artigos/" + url;
       const el = el => document.createElement(el);

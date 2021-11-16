@@ -106,6 +106,7 @@ const ApiCeos = (() => {
                 })
             });
             const artigo = await response.json();
+            artigo.dataPublicacao = new Date(artigo.dataPublicacao);
             return artigo;
         }
         async pesquise(texto) {

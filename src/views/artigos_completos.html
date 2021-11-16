@@ -72,9 +72,9 @@
   </div>
 
   <div class="container-artigo-completo" id="container_artigo_completo">
-    <label class="title-artigo-completo" id="title_artigo_completo">HTML - HISTÓRIA E USABILIDADE</label>
+    <label class="title-artigo-completo" id="title_artigo_completo"></label>
 
-    <label class="subtitle_artigo_completo" id="subtitle_artigo_completo">Guilherme Santos • 27/08/2021</label>
+    <label class="subtitle_artigo_completo" id="subtitle_artigo_completo"></label>
 
     <div id="editorjs"></div>
   </div>
@@ -87,8 +87,13 @@
   <script>
     const apiCeos = new ApiCeos();
     const url = window.location.toString().split('/').pop();
+    const titleHtml = document.querySelector('.title-artigo-completo');
+    const subtitleHtml = document.querySelector('.subtitle_artigo_completo');
     apiCeos.biblioteca.pegueArtigo(url)
       .then((artigo) => {
+        titleHtml.append(artigo.titulo);
+        subtitleHtml.append(`${artigo.autorNome} ${artigo.autorSobrenome} • ${dataFormatada(artigo.dataPublicacao)}`);
+        console.log(artigo)
         const editorjs = new EditorJS({
           holder: 'editorjs',
           readOnly: true,
@@ -96,6 +101,14 @@
           data: artigo.conteudo
         });
       }).catch(console.error);
+    function dataFormatada(data) {
+      const dia = data.getDate().toString(),
+        diaF = (dia.length == 1) ? '0' + dia : dia,
+        mes = (data.getMonth() + 1).toString(),
+        mesF = (mes.length == 1) ? '0' + mes : mes,
+        anoF = data.getFullYear();
+      return diaF + "/" + mesF + "/" + anoF;
+    }
   </script>
 
 </body>

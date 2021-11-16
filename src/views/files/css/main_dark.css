@@ -40,7 +40,7 @@
 }
 
 .body-dark .wrapper #show-search:checked~.search-icon i::before {
-  content: "\f00d"; 
+  content: "\f00d";
   color: #ff7922;
 }
 
@@ -278,21 +278,11 @@
   text-align: center;
 }
 
-.body-dark #editorjs {
+.body-dark .container-artigo-completo {
   background-color: #242526;
   color: #fff;
-  width: 100%;
-  height: 430px;
-  font-size: 1em;
-  padding: 10px;
-  outline: none;
-  resize: none;
-  border-radius: 5px;
-  border: 2px solid #fff;
-  margin-bottom: 15px;
-  text-align: justify;
-  text-decoration: none;
-  background-color: crimson;
+  min-height: 430px;
+  border: 2px solid #242526;
 }
 
 .body-dark #editorjs::placeholder {
