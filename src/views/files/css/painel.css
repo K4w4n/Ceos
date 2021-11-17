@@ -99,12 +99,12 @@
   background-color: transparent;
 }
 
-.body-dark>.container-artigo>.text-box>#editorjs {
+.body-dark #editorjs {
   background-color: #242526;
   color: #fff;
 }
 
-.body-light>.container-artigo>.text-box>#editorjs {
+.body-light #editorjs {
   background-color: #fff;
   color: #000;
 }
@@ -146,6 +146,13 @@
 .btn-enviar:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+/* Tirando o bug do framework */
+.ce-block__content {
+  margin: 9px;
+  max-width: 100%;
+  text-align: justify;
 }
 
 /*Painel Responsivel*/
