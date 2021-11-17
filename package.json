@@ -8,27 +8,13 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-react-views": "^0.11.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql2": "^2.2.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "mysql2": "^2.2.5"
   },
   "type": "module",
-  "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "babel-jest": "^27.2.0",
-    "jest": "^27.1.1"
-  },
+  "devDependencies": {},
   "scripts": {
-    "test": "jest",
     "start": "nodemon index.js"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    }
   },
   "repository": {
     "type": "git",
