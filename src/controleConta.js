@@ -7,7 +7,9 @@ const secret = process.env.secret;
 const validador = new Validador;
 class ControleConta {
     async facaLogin(email, senha) {
-        if (!validador.email(email) && !validador.senha(senha)) throw new Error("Erro inesperado");
+        validador.email(email);
+        validador.senha(senha);
+
         const select = new Select(["user_id", "user_email", "user_nome", "user_sobrenome"])
             .from(['tb_usuarios'])
             .where(new Operation().column('user_email').equal.value(email).and.column('user_senha').equal.value(senha));
@@ -24,14 +26,15 @@ class ControleConta {
         return usuario;
     }
     async registre(nome, sobreNome, email, senha) {
-        if (!(validador.nome(nome)
-            && validador.sobrenome(sobreNome)
-            && validador.email(email)
-            && validador.senha(senha))) throw new Error("Erro inesperado");
+        validador.nome(nome);
+        validador.sobrenome(sobreNome);
+        validador.email(email);
+        validador.senha(senha);
+        
         const insert = new Insert();
         insert.into('tb_usuarios')
-            .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
-            .value([nome, sobreNome, email, senha]);
+        .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
+        .value([nome, sobreNome, email, senha]);
         await insert.sendQuery();
         return await this.facaLogin(email, senha);
     }

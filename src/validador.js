@@ -25,9 +25,9 @@ class Validador {
         this.alterarConfiguracoes(config);
     }
     senha(senha) {
-        if (typeof urlArtigo != 'string') throw errorList[6];
-        if (senha.length >= this.#config.senha.tamanhoMin) throw errorList[7];
-        if (senha.length <= this.#config.senha.tamanhoMax) throw errorList[8];
+        //if (typeof urlArtigo != 'string') throw errorList[6];//Nem toda senha precisa ser uma string
+        if (senha.length < this.#config.senha.tamanhoMin) throw errorList[7];
+        if (senha.length > this.#config.senha.tamanhoMax) throw errorList[8];
         return true;
     }
     email(email) {
@@ -41,9 +41,8 @@ class Validador {
         const regCaractereEspecial = /\W|_/;
         if (!nome) throw errorList[11];
         if (regNumero.test(nome)) throw errorList[10];
-        if (regCaractereEspecial.test(nome)) throw errorList[15];
-        if (nome.length <= this.#config.nome.tamanhoMax) throw errorList[13];
-        if (nome.length >= this.#config.nome.tamanhoMin) throw errorList[14];
+        if (nome.length >= this.#config.nome.tamanhoMax) throw errorList[13];
+        if (nome.length <= this.#config.nome.tamanhoMin) throw errorList[14];
         return true;
     }
     sobrenome(sobrenome) {
@@ -52,7 +51,7 @@ class Validador {
         if (sobrenome.length > this.#config.sobrenome.tamanhoMax) throw errorList[16];
         if (sobrenome.length < this.#config.sobrenome.tamanhoMin) throw errorList[17];
         if (!sobrenome) throw errorList[18];
-        if (regCaractereEspecial.test(sobrenome)) throw errorList[19];
+        //if (regCaractereEspecial.test(sobrenome)) throw errorList[19];//Alguns sobrenomes podem conter caracteres especiais
         if (regNumero.test(sobrenome)) throw errorList[20];
         return true;
     }
