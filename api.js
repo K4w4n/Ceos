@@ -27,7 +27,7 @@ const editora = new Editora();
 api.post('/user/login/', function (req, res) {
     controleConta.facaLogin(req.body.email, req.body.senha)
         .then(usuario => {
-            res.cookie('credencial', usuario.token, { httpOnly: true, maxAge: 5184000000, secure: true });/*Token com 60 dias */
+            res.cookie('credencial', usuario.token);/*Token com 60 dias */
             usuario.token = undefined;
             res.status(200).send(usuario);
         })
@@ -48,7 +48,7 @@ api.get('/user/confirmetoken/', function (req, res) {
 api.post('/user/registro/', function (req, res) {
     controleConta.registre(req.body.nome, req.body.sobrenome, req.body.email, req.body.senha)
         .then(usuario => {
-            res.cookie('credencial', usuario.token, { httpOnly: true, maxAge: 5184000000, secure: true });/*Token com 60 dias */
+            res.cookie('credencial', usuario.token);/*Token com 60 dias */
             usuario.token = undefined;
             res.status(200).send(usuario);
         })
