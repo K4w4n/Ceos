@@ -74,9 +74,9 @@
       </p>
       <div class="container-infos" id="container-infos">
         <p class="title-infos">Dados da Conta</p>
-        <p class="subtitle-infos">Nome Completo:<span class="info"> Rogerinho da Silva Mendes</span></p>
-        <p class="subtitle-infos">E-mail Cadastrado:<span class="info"> teste@gmail.com</span></p>
-        <p class="subtitle-infos">Artigos Criados:<span class="info"> 500</span></p>
+        <p class="subtitle-infos">Nome Completo: <span class="info nome"></span></p>
+        <p class="subtitle-infos">E-mail Cadastrado: <span class="info email"></span></p>
+        <p class="subtitle-infos">Artigos Criados: <span class="info numero-artigos"></span></p>
       </div>
     </div>
 
@@ -92,8 +92,15 @@
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const apiCeos = new ApiCeos();
-
+    const apiCeos = new ApiCeos(appendHtmlDataUser);
+    const nomeHtml = document.querySelector('.nome');
+    const emailHtml = document.querySelector('.email');
+    const numeroArtigosHtml = document.querySelector('.numero-artigos');
+    function appendHtmlDataUser(usuario) {
+      nomeHtml.append(`${usuario.nome} ${usuario.sobrenome}`);
+      emailHtml.append(usuario.email);
+      numeroArtigosHtml.append(500);
+    }
     function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome }) {
       url = window.origin + "/artigos/" + url;
       const el = el => document.createElement(el);

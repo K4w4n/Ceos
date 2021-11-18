@@ -1,7 +1,9 @@
 const ApiCeos = (() => {
     const dominio = window.origin;
     class Usuario {
-        constructor() {
+        #callBack;
+        constructor(callBack = ()=>{}) {
+            this.#callBack = callBack;
             this.confirmeToken();
         }
         async login(email, senha) {
@@ -62,6 +64,7 @@ const ApiCeos = (() => {
 
             const dadosUsuario = await response.json();
             Object.assign(this, dadosUsuario);
+            this.#callBack(dadosUsuario);
             return dadosUsuario;
         }
     }
@@ -161,8 +164,8 @@ const ApiCeos = (() => {
         }
     }
     class ApiCeos {
-        constructor() {
-            this.usuario = new Usuario();
+        constructor(callBack = ()=>{}) {
+            this.usuario = new Usuario(callBack);
             this.biblioteca = new Biblioteca();
             this.editora = new Editora();
         }
