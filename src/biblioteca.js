@@ -33,19 +33,26 @@ class Biblioteca {
     async meusArtigos(token, quantidade = 5, pagina = 0) {
         const { id } = jwt.verify(token, secret);
         const select = new Select();
-        const artigosBruto = (await select
+
+        select
             .from(['tb_artigos'])
             .innerJoin('tb_usuarios')
             .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
             .where(new Operation().column('tb_artigos.user_id').equal.value(id))
-            .limit(quantidade, pagina * quantidade)
-            .sendQuery())[0];
-        const ListaArtigo = artigosBruto.map(artigo => {
+            .limit(quantidade, pagina * quantidade);
+
+        const artigosBruto = (await select.sendQuery())[0];
+
+        return artigosBruto.map(artigo => {
             const novoArtigo = processeArtigo(artigo);
-            novoArtigo.conteudo = typeof novoArtigo.conteudo == "string" ? novoArtigo.conteudo.substr(0, 630) : novoArtigo.conteudo;
+            novoArtigo.conteudo = JSON.parse(novoArtigo.conteudo);
+            let caracteresNum = 0;
+            novoArtigo.conteudo.blocks = novoArtigo.conteudo.blocks.filter(block => {
+                caracteresNum += block.data.text.length;
+                return caracteresNum < 700;
+            });
             return novoArtigo;
         });
-        return ListaArtigo;
     }
     async resumaVariosArtigos(quantidade = 5, pagina = 0) {
 
@@ -62,7 +69,6 @@ class Biblioteca {
             const novoArtigo = processeArtigo(artigo);
             novoArtigo.conteudo = JSON.parse(novoArtigo.conteudo);
             let caracteresNum = 0;
-            console.log(novoArtigo.conteudo)
             novoArtigo.conteudo.blocks = novoArtigo.conteudo.blocks.filter(block => {
                 caracteresNum += block.data.text.length;
                 return caracteresNum < 700;
@@ -90,7 +96,6 @@ class Biblioteca {
             const novoArtigo = processeArtigo(artigo);
             novoArtigo.conteudo = JSON.parse(novoArtigo.conteudo);
             let caracteresNum = 0;
-            console.log(novoArtigo.conteudo)
             novoArtigo.conteudo.blocks = novoArtigo.conteudo.blocks.filter(block => {
                 caracteresNum += block.data.text.length;
                 return caracteresNum < 700;

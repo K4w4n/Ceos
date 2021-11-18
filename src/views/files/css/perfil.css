@@ -1,9 +1,9 @@
 /*Infos Perfil*/
-.container-perfil{
+.container-perfil {
   padding-top: 80px;
 }
 
-.container-perfil-info{
+.container-perfil-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,38 +13,39 @@
   border-bottom: 2px solid #000;
 }
 
-.container-infos{
+.container-infos {
   display: flex;
   flex-direction: column;
   text-align: justify;
 }
 
-.title-bem-vindo{
+.title-bem-vindo {
   font-size: 35px;
   color: #2f50f5;
   font-weight: 800;
 }
 
-.title-infos{
+.title-infos {
   text-align: center;
   font-size: 22px;
   font-weight: 800;
   padding: 15px 0px;
 }
 
-.subtitle-infos{
+.subtitle-infos {
   font-weight: 800;
   padding: 5px 0px;
 }
 
-.info{
+.info {
   font-weight: 400;
 }
 
 /* Meus Artigos*/
-.meus-artigos{
+.meus-artigos {
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 35px;
@@ -52,18 +53,18 @@
   color: #2f50f5;
 }
 
-.title-meus-artigos{
+.title-meus-artigos {
   font-size: 30px;
   font-weight: 800;
 }
-  
-.container-artigo{
+
+.container-artigo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-  
-.title-artigo{
+
+.title-artigo {
   width: 100%;
   height: 2%;
   background: transparent;
@@ -73,14 +74,14 @@
   font-size: 18pt;
   font-weight: 600;
 }
-  
-.subtitle{
+
+.subtitle {
   padding-top: 5px;
   display: flex;
   font-weight: 400;
 }
-  
-.text-box{
+
+.text-box {
   position: relative;
   background-color: #fff;
   width: 700px;
@@ -92,33 +93,33 @@
   outline: none;
   transition: .7s;
 }
-  
-.text-box .top-area{
+
+.text-box .top-area {
   display: block;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
 }
-  
-.post-body{
+
+.post-body {
   position: relative;
   background: transparent;
   text-align: justify;
   color: #000;
 }
-  
-p{
+
+p {
   display: inline;
 }
-  
-.read-more{
+
+.read-more {
   color: #288ddb;
   cursor: pointer;
   font-weight: 500;
 }
-  
+
 /*Botao Voltar ao Topo*/
-.back-to-top-btn{
+.back-to-top-btn {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -136,70 +137,72 @@ p{
   transition-timing-function: ease-in-out;
   transition-property: background-color, color;
 }
-  
-.back-to-top-btn:hover, .back-to-top-btn:focus{
+
+.back-to-top-btn:hover, .back-to-top-btn:focus {
   background-color: #333;
-  color: #fff;  
+  color: #fff;
 }
-  
+
 /*Estilos do Botao Voltar o Topo*/
-.btnEntrance{
+.btnEntrance {
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-name: btnEntrance;
 }
-  
-@keyframes btnEntrance{
-    
-  from{
+
+@keyframes btnEntrance {
+
+  from {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
-  to{
+
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
-  
-.btnExit{
+
+.btnExit {
   animation-duration: 0.25s;
-  animation-fill-mode: both;  
+  animation-fill-mode: both;
   animation-name: btnExit;
 }
-  
-@keyframes btnExit{
-    
-  from{
+
+@keyframes btnExit {
+
+  from {
     opacity: 1;
   }
-  to{
+
+  to {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
 }
-  
+
 /*Artigos Responsivel*/
-@media screen and (min-width: 992px){
-    
-  .back-to-top-btn{
+@media screen and (min-width: 992px) {
+
+  .back-to-top-btn {
     transition: .5s;
   }
 }
-  
-@media screen and (max-width: 850px){
-    
-  .back-to-top-btn{ 
+
+@media screen and (max-width: 850px) {
+
+  .back-to-top-btn {
     background-color: #333;
     color: #FFF;
-    font-size: 22px; 
-    width: 40px; 
-    height: 40px; 
-    bottom: 15px; 
-    right: 15px; 
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    bottom: 15px;
+    right: 15px;
     transition: .7s;
   }
-  
-  .text-box{
+
+  .text-box {
     width: 100vw;
     margin: 0;
     border-radius: 0;
@@ -210,54 +213,54 @@ p{
   }
 }
 
-@media screen and (max-width: 415px){
+@media screen and (max-width: 415px) {
 
-  .container-infos{
+  .container-infos {
     text-align: left;
   }
 
-  .title-bem-vindo{
+  .title-bem-vindo {
     font-size: 26px;
   }
 
-  .subtitle-infos{
+  .subtitle-infos {
     padding: 5px 20px;
   }
 }
 
-@media screen and (max-width: 360px){
-  
-  .title-bem-vindo{
+@media screen and (max-width: 360px) {
+
+  .title-bem-vindo {
     font-size: 24px;
   }
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
 
-  .title-bem-vindo{
+  .title-bem-vindo {
     font-size: 20px;
   }
 
-  .title-infos{
+  .title-infos {
     font-size: 18px;
   }
 
-  .subtitle-infos{
+  .subtitle-infos {
     font-size: 14px;
   }
 }
 
-@media screen and (max-width: 280px){
+@media screen and (max-width: 280px) {
 
-  .title-bem-vindo{
+  .title-bem-vindo {
     font-size: 18px;
   }
 
-  .title-infos{
+  .title-infos {
     font-size: 16px;
   }
 
-  .subtitle-infos{
+  .subtitle-infos {
     font-size: 12px;
   }
 

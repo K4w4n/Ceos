@@ -122,14 +122,11 @@
     btnEnviar.addEventListener('click', async () => {
       const titulo = tituloInput.value;
       const conteudo = await editorjs.save();
-      console.log(conteudo);
       const url = urlInput.value;
       apiCeos.editora.criarArtigo(titulo, conteudo, url)
         .then(artigo => window.location.assign(artigo.url))
         .catch(console.error)
     });
-
-
   </script>
 </body>
 

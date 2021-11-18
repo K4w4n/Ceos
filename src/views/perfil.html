@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
   <script src="/files/javascript/apiCeos.js"></script>
   <script src="https://kit.fontawesome.com/7ca743346d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/files/css/main.css" />
@@ -70,7 +71,7 @@
 
     <div class="container-perfil-info" id="container-perfil-info">
       <p class="title-bem-vindo">
-        <spam>Bem Vindo(a) Rogerinho!</spam>
+        Bem Vindo(a) <spam class="bem-vindo"></spam>!
       </p>
       <div class="container-infos" id="container-infos">
         <p class="title-infos">Dados da Conta</p>
@@ -80,7 +81,7 @@
       </div>
     </div>
 
-    <div class="meus-artigos">
+    <div class="meus-artigos container-artigos">
       <p class="title-meus-artigos">Meus Artigos</p>
     </div>
 
@@ -96,50 +97,52 @@
     const nomeHtml = document.querySelector('.nome');
     const emailHtml = document.querySelector('.email');
     const numeroArtigosHtml = document.querySelector('.numero-artigos');
+    const bemVindoHtml = document.querySelector('.bem-vindo');
     function appendHtmlDataUser(usuario) {
+      bemVindoHtml.append(usuario.nome);
       nomeHtml.append(`${usuario.nome} ${usuario.sobrenome}`);
       emailHtml.append(usuario.email);
       numeroArtigosHtml.append(500);
     }
-    function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome }) {
+    function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome, id }) {
       url = window.origin + "/artigos/" + url;
       const el = el => document.createElement(el);
-      const div1 = el('div');
-      const div2 = el('div');
-      const div3 = el('div');
-      const div4 = el('div');
-      const label1 = el('label');
-      const label2 = el('label');
-      const span1 = el('span');
-      const p = el('p');
-      const a = el('a');
+      const containerArtigo = el('div');
+      const textBox = el('div');
+      const topArea = el('div');
+      const portBody = el('div');
+      const titleArtigo = el('label');
+      const subtitle = el('label');
+      const editorjs = el('div');
+      const tresPontos = el('p');
+      const readMore = el('a');
 
-      a.classList.add("read-more");
-      div1.classList.add("container-artigo");
-      div2.classList.add("text-box");
-      div3.classList.add("top-area");
-      div4.classList.add("post-body");
-      label1.classList.add("title-artigo");
-      label2.classList.add("subtitle");
-      div2.setAttribute("id", "text-box");
-      div4.setAttribute("id", "post-body");
-      label1.setAttribute("id", "title-artigo");
-      label2.setAttribute("id", "subtitle");
-      a.setAttribute("href", url);
-      div1.append(div2);
-      div2.append(div3);
-      div2.append(div4);
-      div3.append(label1);
-      div3.append(label2);
-      div4.append(span1);
-      span1.append(conteudo);
-      p.append("...")
-      span1.append(p);
-      a.append("Ver Mais");
-      span1.append(a);
-      label1.append(titulo);
-      label2.append(`${dataFormatada(dataPublicacao)} • ${autorNome} ${autorSobrenome}`);
-      return div1;
+      readMore.classList.add("read-more");
+      containerArtigo.classList.add("container-artigo");
+      textBox.classList.add("text-box");
+      topArea.classList.add("top-area");
+      portBody.classList.add("post-body");
+      titleArtigo.classList.add("title-artigo");
+      subtitle.classList.add("subtitle");
+      textBox.setAttribute("id", "text-box");
+      portBody.setAttribute("id", "post-body");
+      titleArtigo.setAttribute("id", "title-artigo");
+      subtitle.setAttribute("id", "subtitle");
+      readMore.setAttribute("href", url);
+      editorjs.setAttribute("id", `editorjs-${id}`);
+      containerArtigo.append(textBox);
+      textBox.append(topArea);
+      textBox.append(portBody);
+      topArea.append(titleArtigo);
+      topArea.append(subtitle);
+      portBody.append(editorjs);
+      tresPontos.append("...")
+      /* editorjs.append(tresPontos); */
+      readMore.append("Ver Mais");
+      textBox.append(readMore);
+      titleArtigo.append(titulo);
+      subtitle.append(`${dataFormatada(dataPublicacao)} • ${autorNome} ${autorSobrenome}`);
+      return containerArtigo;
     }
     function dataFormatada(data) {
       data = new Date(data);
@@ -150,6 +153,7 @@
     }
 
     let libLivre = true;
+
     window.addEventListener('scroll', () => {
       el = document.documentElement;
       if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
@@ -157,8 +161,17 @@
         apiCeos.biblioteca.pushMeusArtigos()
           .then(artigoList => {
             libLivre = true;
+            const artigosHtml = document.querySelector('.container-artigos');
             artigoList.forEach(artigo => {
-              document.querySelector('.container-artigos').append(artigoHTML(artigo));
+              artigosHtml.append(artigoHTML(artigo));
+              new EditorJS({
+                holder: `editorjs-${artigo.id}`,
+                readOnly: true,
+                placeholder: 'Artigo em branco',
+                data: artigo.conteudo,
+                onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
+              });
+
             });
           })
           .catch(err => {
@@ -169,11 +182,24 @@
     });
     apiCeos.biblioteca.pushMeusArtigos()
       .then(artigoList => {
+        libLivre = true;
+        const artigosHtml = document.querySelector('.container-artigos');
         artigoList.forEach(artigo => {
-          document.querySelector('.container-perfil').append(artigoHTML(artigo));
+          artigosHtml.append(artigoHTML(artigo));
+          new EditorJS({
+            holder: `editorjs-${artigo.id}`,
+            readOnly: true,
+            placeholder: 'Artigo em branco',
+            data: artigo.conteudo,
+            onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
+          });
+
         });
       })
-      .catch(console.error);
+      .catch(err => {
+        console.error(err);
+        libLivre = true;
+      });
   </script>
 
 </body>

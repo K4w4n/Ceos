@@ -102,7 +102,7 @@
 
 /*Dark Artigos*/
 
-.body-dark>.container-artigos>.container-artigo>#text-box {
+.body-dark #text-box {
   position: relative;
   background-color: #18191a;
   border: 2px solid #fff;
@@ -116,14 +116,14 @@
   transition: .7s;
 }
 
-.body-dark>.container-artigos>.container-artigo>#text-box>.top-area {
+.body-dark .top-area {
   display: block;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
 }
 
-.body-dark>.container-artigos>.container-artigo>#text-box>.top-area>#title-artigo {
+.body-dark #title-artigo {
   width: 100%;
   height: 2%;
   background: transparent;
@@ -135,14 +135,14 @@
   color: #fff;
 }
 
-.body-dark>.container-artigos>.container-artigo>#text-box>.top-area>#subtitle {
+.body-dark #subtitle {
   padding-top: 5px;
   display: flex;
   font-weight: 400;
   color: #fff;
 }
 
-.body-dark>.container-artigos>.container-artigo>#text-box>#post-body {
+.body-dark #post-body {
   position: relative;
   background: transparent;
   text-align: justify;
@@ -150,7 +150,7 @@
   font-weight: 300;
 }
 
-.body-dark>.container-artigos>.container-artigo>#text-box>#post-body>span>.read-more {
+.body-dark #post-body>span>.read-more {
   color: #288ddb;
   cursor: pointer;
   font-weight: 500;
@@ -199,7 +199,7 @@
     right: 15px;
     transition: .7s;
   }
-  .body-dark>.container-artigos>.container-artigo>#text-box {
+  .body-dark #text-box {
     width: 100vw;
     margin: 0;
     border-radius: 0;
@@ -213,7 +213,7 @@
 
 /*Dark Artigo Completo*/
 
-.container-artigo-completo-dark {
+.body-dark .container-artigo-completo {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -225,7 +225,7 @@
   background-color: #18191a;
 }
 
-.title-artigo-completo-dark {
+.body-dark .title-artigo-completo {
   font-size: 20pt;
   font-weight: 600;
   padding-bottom: 5px;
@@ -233,14 +233,14 @@
   color: #fff;
 }
 
-.subtitle-artigo-completo-dark {
+.body-dark .subtitle-artigo-completo {
   font-size: 12pt;
   padding-bottom: 5px;
   border-bottom: 1px solid #2f50f5;
   color: #fff;
 }
 
-.text-artigo-completo-dark {
+.body-dark .text-artigo-completo {
   padding-top: 30px;
   text-align: justify;
   font-size: 12pt;
@@ -251,7 +251,7 @@
 /*Dark Artigo Completo Responsivel*/
 
 @media screen and (max-width: 850px) {
-  .container-artigo-completo-dark {
+  .body-dark .container-artigo-completo {
     padding: 20px;
   }
 }
@@ -306,12 +306,12 @@
   padding-top: 8px;
 }
 
-.title-link-dark {
+.body-dark .title-link {
   font-weight: 700;
   color: #fff;
 }
 
-.cod-dark {
+.body-dark .cod {
   color: #fff;
 }
 
@@ -327,7 +327,7 @@
   border-bottom: 1px solid #21eb74;
 }
 
-.btn-enviar-dark {
+.body-dark .btn-enviar {
   width: 8vw;
   height: 40px;
   cursor: pointer;
@@ -341,14 +341,14 @@
   font-weight: 600;
 }
 
-.btn-enviar-dark span {
+.body-dark .btn-enviar span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.btn-enviar-dark span:after {
+.body-dark .btn-enviar span:after {
   content: '\00bb';
   position: absolute;
   font-size: 15pt;
@@ -358,11 +358,11 @@
   transition: 0.5s;
 }
 
-.btn-enviar-dark:hover span {
+.body-dark .btn-enviar:hover span {
   padding-right: 25px;
 }
 
-.btn-enviar-dark:hover span:after {
+.body-dark .btn-enviar:hover span:after {
   opacity: 1;
   right: 0;
 }
@@ -370,12 +370,12 @@
 /*Dark Painel Responsivel*/
 
 @media screen and (max-width: 1900px) {
-  .link-dark {
+  .body-dark .link {
     width: 100%;
     border-radius: 5px;
     height: 36px;
   }
-  .btn-enviar-dark {
+  .body-dark .btn-enviar {
     transition: .7s;
     width: 100%;
     margin-top: 10px;
@@ -384,64 +384,64 @@
 }
 
 @media screen and (max-width: 1515px) {
-  .title-link-dark {
+  .body-dark .title-link {
     width: 500px;
     align-items: center;
   }
-  .extension-dark {
+  .body-dark .extension {
     width: 26%;
   }
 }
 
 @media screen and (max-width: 1024px) and (max-height: 768px) {
-  .link-dark {
+  .body-dark .link {
     height: 5vh;
   }
 }
 
 @media screen and (max-width: 1024px) and (max-height: 600px) {
-  .link-dark {
+  .body-dark .link {
     height: 7vh;
   }
 }
 
 @media screen and (max-width: 990px) {
-  .link-dark {
+  .body-dark .link {
     height: 80px;
     text-align: center;
   }
-  .extension-dark {
+  .body-dark .extension {
     width: 60%;
     text-align: center;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .link-dark {
+  .body-dark .link {
     height: 10vh;
   }
 }
 
 @media screen and (max-width: 670px) and (max-height: 375px) {
-  .link-dark {
+  .body-dark .link {
     height: 23vh;
   }
 }
 
 @media screen and (max-width: 640px) and (max-height: 360px) {
-  .link-dark {
+  .body-dark .link {
     height: 20vh;
   }
 }
 
 @media screen and (max-width: 420px) {
-  .link-dark {
+  .body-dark .link {
     height: 110px;
   }
-  .extension-dark {
+  .body-dark .extension {
     padding-top: 10px;
   }
-  .btn-enviar-dark {
+  .body-dark .btn-enviar {
     height: 37px;
   }
 }
@@ -450,14 +450,14 @@
   .cod-dark {
     font-size: 13px;
   }
-  .extension-dark {
+  .body-dark .extension {
     width: 160px;
   }
 }
 
 /*Dark Perfil*/
 
-.container-perfil-info-dark {
+.body-dark .container-perfil-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -474,7 +474,7 @@
   color: #FFF;
 }
 
-.body-dark>.container-perfil>.container-artigo>#text-box {
+.body-dark #text-box {
   position: relative;
   background-color: #18191a;
   border: 2px solid #fff;
@@ -488,14 +488,14 @@
   transition: .7s;
 }
 
-.body-dark>.container-perfil>.container-artigo>#text-box>.top-area {
+.body-dark .top-area {
   display: block;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
 }
 
-.body-dark>.container-perfil>.container-artigo>#text-box>.top-area>#title-artigo {
+.body-dark #title-artigo {
   width: 100%;
   height: 2%;
   background: transparent;
@@ -507,14 +507,14 @@
   color: #fff;
 }
 
-.body-dark>.container-perfil>.container-artigo>#text-box>.top-area>#subtitle {
+.body-dark #subtitle {
   padding-top: 5px;
   display: flex;
   font-weight: 400;
   color: #fff;
 }
 
-.body-dark>.container-perfil>.container-artigo>#text-box>#post-body {
+.body-dark #post-body {
   position: relative;
   background: transparent;
   text-align: justify;
@@ -522,7 +522,7 @@
   font-weight: 300;
 }
 
-.body-dark>.container-perfil>.container-artigo>#text-box>#post-body>span>.read-more {
+.body-dark .read-more {
   color: #288ddb;
   cursor: pointer;
   font-weight: 500;
@@ -547,7 +547,7 @@
     right: 15px;
     transition: .7s;
   }
-  .body-dark>.container-perfil>.container-artigo>#text-box {
+  .body-dark #text-box {
     width: 100vw;
     margin: 0;
     border-radius: 0;

@@ -128,8 +128,17 @@
         apiCeos.biblioteca.pesquise(query)
           .then(artigoList => {
             libLivre = true;
+            const artigosHtml = document.querySelector('.container-artigos');
             artigoList.forEach(artigo => {
-              document.querySelector('.container-artigos').append(artigoHTML(artigo));
+              artigosHtml.append(artigoHTML(artigo));
+              new EditorJS({
+                holder: `editorjs-${artigo.id}`,
+                readOnly: true,
+                placeholder: 'Artigo em branco',
+                data: artigo.conteudo,
+                onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
+              });
+
             });
           })
           .catch(err => {
