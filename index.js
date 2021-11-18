@@ -1,5 +1,4 @@
 import paginas from './paginas.js';
-import createEngine from 'express-react-views';
 import api from './api.js';
 import express from 'express';
 import path from 'path';
@@ -11,10 +10,6 @@ const pastaFiles = path.resolve(__dirname, 'src', 'views');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.set('views', path.resolve(__dirname, 'src', 'views'));
-app.set('view engine', 'jsx');
-app.engine('jsx', createEngine.createEngine());
 
 //Implementação temporaria para facilitar a implementação das paginas
 app.get('/index.html', (req, res) => {
