@@ -1,15 +1,15 @@
 /*Artigos*/
-.container-artigos{
+.container-artigos {
   padding-top: 80px;
 }
 
-.container-artigo{
+.container-artigo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.title-artigo{
+.title-artigo {
   width: 100%;
   height: 2%;
   background: transparent;
@@ -20,13 +20,13 @@
   font-weight: 600;
 }
 
-.subtitle{
+.subtitle {
   padding-top: 5px;
   display: flex;
   font-weight: 400;
 }
 
-.text-box{
+.text-box {
   position: relative;
   background-color: #fff;
   width: 700px;
@@ -39,32 +39,32 @@
   transition: .7s;
 }
 
-.text-box .top-area{
+.text-box .top-area {
   display: block;
   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
 }
 
-.post-body{
+.post-body {
   position: relative;
   background: transparent;
   text-align: justify;
   color: #000;
 }
 
-p{
+p {
   display: inline;
 }
 
-.read-more{
+.read-more {
   color: #288ddb;
   cursor: pointer;
   font-weight: 500;
 }
 
 /*Botao Voltar ao Topo*/
-.back-to-top-btn{
+.back-to-top-btn {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -83,69 +83,76 @@ p{
   transition-property: background-color, color;
 }
 
-.back-to-top-btn:hover, .back-to-top-btn:focus{
+.back-to-top-btn:hover, .back-to-top-btn:focus {
   background-color: #333;
-  color: #fff;  
+  color: #fff;
+}
+
+/* Framework */
+.codex-editor__redactor> :last-child .ce-paragraph::after {
+  content: '...';
 }
 
 /*Estilos do Botao Voltar o Topo*/
-.btnEntrance{
+.btnEntrance {
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-name: btnEntrance;
 }
 
-@keyframes btnEntrance{
-  
-  from{
+@keyframes btnEntrance {
+
+  from {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
-  to{
+
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-.btnExit{
+.btnExit {
   animation-duration: 0.25s;
-  animation-fill-mode: both;  
+  animation-fill-mode: both;
   animation-name: btnExit;
 }
 
-@keyframes btnExit{
-  
-  from{
+@keyframes btnExit {
+
+  from {
     opacity: 1;
   }
-  to{
+
+  to {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
 }
 
 /*Artigos Responsivel*/
-@media screen and (min-width: 992px){
-  
-  .back-to-top-btn{
+@media screen and (min-width: 992px) {
+
+  .back-to-top-btn {
     transition: .5s;
   }
 }
 
-@media screen and (max-width: 850px){
-  
-  .back-to-top-btn{ 
+@media screen and (max-width: 850px) {
+
+  .back-to-top-btn {
     background-color: #333;
     color: #FFF;
-    font-size: 22px; 
-    width: 40px; 
-    height: 40px; 
-    bottom: 15px; 
-    right: 15px; 
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    bottom: 15px;
+    right: 15px;
     transition: .7s;
   }
 
-  .text-box{
+  .text-box {
     width: 100vw;
     margin: 0;
     border-radius: 0;
