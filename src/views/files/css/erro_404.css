@@ -1,7 +1,7 @@
 /*Infos Principais*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,12 +9,12 @@
   text-decoration: none;
 }
 
-html{
+html {
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
 
-.container-erro-404{
+.container-erro-404 {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -24,77 +24,77 @@ html{
   padding-bottom: 0;
 }
 
-.erro_404{
+.erro_404 {
   width: 500px;
 }
 
-.title-erro-404{
+.title-erro-404 {
   font-size: 25px;
   font-weight: 800;
   text-align: center;
 }
 
-.text-erro-404{
+.text-erro-404 {
   margin-top: 15px;
   font-size: 18px;
   text-align: center;
   padding-bottom: 50px;
 }
 
-.link-erro-404{
+.link-erro-404 {
   color: #2f50f5;
   font-weight: 800;
 }
 
 /*Erro 404 Responsivel*/
-@media screen and (max-width: 600px){
-    
-  .erro-404{
+@media screen and (max-width: 600px) {
+
+  .erro-404 {
     width: 350px;
   }
-  
-  .title-erro-404{
+
+  .title-erro-404 {
     font-size: 20px;
     font-weight: 800;
     text-align: center;
   }
-  
-  .text-erro-404{
+
+  .text-erro-404 {
     margin-top: 15px;
     font-size: 15px;
     text-align: center;
   }
 }
 
-@media screen and (max-width: 1024px) and (max-height: 600px){
+@media screen and (max-width: 1024px) and (max-height: 600px) {
 
-  .erro-404{
+  .erro-404 {
     width: 350px;
   }
 }
 
-@media screen and (max-width: 850px) and (max-height: 550px){
-    
-  .erro-404{
+@media screen and (max-width: 850px) and (max-height: 550px) {
+
+  .erro-404 {
     width: 220px;
   }
 
-  .title-erro-404{
+  .title-erro-404 {
     font-size: 15px;
     font-weight: 800;
     text-align: center;
   }
-  
-  .text-erro-404{
+
+  .text-erro-404 {
     margin-top: 15px;
     font-size: 15px;
     text-align: center;
   }
 }
 
-@media screen and (max-width: 568px) and (max-height: 320px){
-    
-  .erro-404{
+@media screen and (max-width: 568px) and (max-height: 320px) {
+
+  .erro-404 {
     width: 180px;
   }
 }

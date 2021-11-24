@@ -1,42 +1,42 @@
 /*Infos Principais*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  text-decoration: none;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
 }
 
-html{
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
+html {
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
 }
 
 /*Tabela*/
-.container-table{
+.container-table {
     padding: 0 10%;
-    margin:  40px auto 0;
+    margin: 40px auto 0;
 }
 
-.title-admin{
+.title-admin {
     color: #2f50f5;
     font-size: 40px;
     text-align: center;
     margin-bottom: 40px;
 }
 
-.table{
+.table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.table thead{
+.table thead {
     background-color: #2f50f5;
 }
 
-.table thead tr th{
+.table thead tr th {
     font-size: 18px;
     font-weight: 600;
     color: #fff;
@@ -47,7 +47,7 @@ html{
     border: 2px solid #fff;
 }
 
-.table tbody tr td{
+.table tbody tr td {
     font-size: 16px;
     text-align: center;
     letter-spacing: 0.35px;
@@ -58,43 +58,43 @@ html{
     padding: 8px;
 }
 
-.fas{
+.fas {
     cursor: pointer;
     font-size: 22px;
 }
 
-.fa-check-circle{
+.fa-check-circle {
     color: #21eb74;
 }
 
-.fa-ban{
+.fa-ban {
     color: red;
 }
 
 /*Admin Responsivel*/
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
 
-    .table thead{
+    .table thead {
         display: none;
     }
 
-    .table, .table tbody, .table tr, .table td{
+    .table, .table tbody, .table tr, .table td {
         display: block;
         width: 100%;
         transition: .7s;
     }
 
-    .table tr{
+    .table tr {
         margin-bottom: 15px;
     }
 
-    .table tbody tr td{
+    .table tbody tr td {
         text-align: right;
         padding-left: 50%;
         position: relative;
     }
 
-    .table td::before{
+    .table td::before {
         content: attr(data-label);
         position: absolute;
         left: 0;

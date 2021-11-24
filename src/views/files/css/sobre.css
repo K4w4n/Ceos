@@ -1,29 +1,29 @@
 /*Sobre*/
-.container-sobre{
+.container-sobre {
     padding-top: 100px;
 }
 
-.container-sobre-objetivo{
+.container-sobre-objetivo {
     color: #000;
     text-align: justify;
     padding-left: 50px;
     padding-right: 50px;
 }
 
-.title-sobre{
+.title-sobre {
     color: #2f50f5;
     font-weight: 800;
     padding-bottom: 12px;
     letter-spacing: 5px;
 }
 
-.text-sobre{
+.text-sobre {
     padding-bottom: 35px;
     font-weight: 500;
     font-size: 18px;
 }
 
-.title-membros{
+.title-membros {
     font-size: 32px;
     text-align: center;
     font-weight: 800;
@@ -33,13 +33,13 @@
     padding-top: 20px;
 }
 
-.container-membros{
+.container-membros {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.card{
+.card {
     height: 450px;
     width: 300px;
     margin: 80px;
@@ -52,7 +52,7 @@
     border: 3px solid #2f50f5;
 }
 
-.card .bg-image img{
+.card .bg-image img {
     width: 100%;
     height: 230px;
     object-fit: cover;
@@ -60,7 +60,7 @@
     z-index: 0;
 }
 
-.card .pic img{
+.card .pic img {
     height: 120px;
     width: 120px;
     border-radius: 50%;
@@ -69,24 +69,24 @@
     position: relative;
 }
 
-.card .info h3{
+.card .info h3 {
     color: #2f50f5;
     font-size: 22px;
     padding: 10px 0;
 }
 
-.card .info span{
+.card .info span {
     font-size: 15px;
     color: #fff;
 }
 
-.social-media{
+.social-media {
     display: flex;
     justify-content: center;
     padding-top: 20px;
 }
 
-.social-instagram{
+.social-instagram {
     height: 46px;
     width: 46px;
     display: flex;
@@ -101,7 +101,7 @@
     transition: 0.3s;
 }
 
-.social-twitter{
+.social-twitter {
     height: 46px;
     width: 46px;
     display: flex;
@@ -116,7 +116,7 @@
     transition: 0.3s;
 }
 
-.social-linkedin{
+.social-linkedin {
     height: 46px;
     width: 46px;
     display: flex;
@@ -131,7 +131,7 @@
     transition: 0.3s;
 }
 
-.social-github{
+.social-github {
     height: 46px;
     width: 46px;
     display: flex;
@@ -146,76 +146,76 @@
     transition: 0.3s;
 }
 
-.fa-instagram:hover{
+.fa-instagram:hover {
     color: #fff;
 }
 
-.fa-twitter:hover{
+.fa-twitter:hover {
     color: #fff;
 }
 
-.social-instagram:hover{
+.social-instagram:hover {
     color: #fff;
     border-color: #DD2A7B;
     background-color: #DD2A7B;
 }
 
-.social-twitter:hover{
+.social-twitter:hover {
     color: #fff;
     border-color: #00ACEE;
     background-color: #00ACEE;
 }
 
-.social-linkedin:hover{
+.social-linkedin:hover {
     color: #fff;
     border-color: #0E46AB;
     background-color: #0E46AB;
 }
 
-.social-github:hover{
+.social-github:hover {
     color: #000;
     border-color: #fff;
     background-color: #fff;
 }
 
 /*Sobre Responsivel*/
-@media screen and (max-width: 420px){
+@media screen and (max-width: 420px) {
 
-    .card{
+    .card {
         margin: 60px;
     }
 }
 
-@media screen and (max-width: 380px){
+@media screen and (max-width: 380px) {
 
-    .title-membros{
+    .title-membros {
         font-size: 25px;
         padding-bottom: 0;
     }
 
-    .card{
+    .card {
         margin: 50px;
     }
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
 
-    .card{
+    .card {
         margin: 30px;
     }
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
 
-    .title-sobre{
+    .title-sobre {
         text-align: center;
     }
 
-    .title-membros{
+    .title-membros {
         font-size: 22px;
     }
 
-    .card{
+    .card {
         margin: 20px;
     }
 }
