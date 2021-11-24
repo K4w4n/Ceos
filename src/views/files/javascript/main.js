@@ -72,18 +72,3 @@ function easeInOutCubic(t, b, c, d) {
   t -= 2;
   return c / 2 * (t * t * t + 2) + b;
 };
-
-/*Limitando Numeros de Caracteres por Artigo*/
-function limite_textarea(valor) {
-  quant = 5000;
-  total = valor.length;
-  if (total <= quant) {
-    resto = quant - total;
-    document.getElementById('cont').innerHTML = resto;
-  } else {
-    document.getElementById('texto').value = valor.substr(0, quant);
-  }
-  if (total = quant) {
-    document.getElementById()
-  }
-}
