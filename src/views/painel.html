@@ -103,6 +103,8 @@
     </div>
   </footer>
 
+  <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+
   <script src="/files/javascript//main.js"></script>
   <script src="/files/javascript/theme.js"></script>
 
@@ -114,6 +116,7 @@
       holder: 'editorjs',
       readOnly: false,
       placeholder: 'Ensine algo para o mundo!',
+      onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', 'padding-bottom: 10%;'))
     });
 
     const tituloInput = document.querySelector('#title');
