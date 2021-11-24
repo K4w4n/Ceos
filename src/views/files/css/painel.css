@@ -44,10 +44,8 @@
   color: #fff;
   font-weight: 600;
 }
-
-.body-light #editorjs {
+#editorjs {
   width: 100%;
-  height: 430px;
   font-size: 1em;
   padding: 10px;
   outline: none;
@@ -56,7 +54,10 @@
   margin-bottom: 15px;
   text-align: justify;
   text-decoration: none;
+  border: 2px solid #fff;
+  cursor: text;
 }
+
 
 #editorjs::placeholder {
   font-size: 18pt;
