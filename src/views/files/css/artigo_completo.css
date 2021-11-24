@@ -8,6 +8,7 @@
 
 .ce-paragraph {
   text-align: justify;
+  word-wrap: break-word;
 }
 
 .btn-voltar {
