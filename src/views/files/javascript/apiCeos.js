@@ -15,30 +15,29 @@ const ApiCeos = (() => {
                 body: JSON.stringify({ email: email, senha: senha }),
                 credentials: 'same-origin'
             });
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            const dadosUsuario = await response.json();
-            Object.assign(this, dadosUsuario);
-            return dadosUsuario;
+
+            const dados = await response.json();
+
+            if (!response.ok) throw dados;
+
+            Object.assign(this, dados);
+            return dados;
         }
-        async registro(nome, sobrenome, email, senha) {
-            const dataUser = {
-                nome: nome,
-                sobrenome: sobrenome,
-                email: email,
-                senha: senha
-            }
+        async registro({ dadosUsuario }) {
+
             const response = await fetch(dominio + "/api/user/registro/", {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
-                body: JSON.stringify(dataUser),
+                body: JSON.stringify(dadosUsuario),
             });
-            const dadosUsuario = await response.json();
-            Object.assign(this, dadosUsuario);
-            return dadosUsuario;
+
+            const dados = await response.json();
+            if (!response.ok) throw dados;
+
+            Object.assign(this, dados);
+            return dados;
         }
         async logoff() {
             const response = await fetch(dominio + "/api/user/logoff/", {
@@ -47,6 +46,12 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
+            if (!response.ok) throw {//implementação temporaria, remover quando o tratamento de erros chegar ao front
+                code: 0,
+                name: 'Falha ao fazer logoff',
+                message: 'Não foi possivel fazer logoff, por favor tente novamente mais tarde',
+            }
+
             this.credencial = undefined;
             this.email = undefined;
             this.nome = undefined;
@@ -64,7 +69,7 @@ const ApiCeos = (() => {
             const dados = await response.json();
 
             if (!response.ok) throw dados;
-            
+
             Object.assign(this, dados);
             this.#callBack(dados);
             return dados;
@@ -86,10 +91,13 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
-            const artigosJson = await response.json();
-            this.resumos = [...this.resumos, ...artigosJson];
-            this.#paginaResumos++;
-            return artigosJson;
+            const dados = await response.json();
+
+            if (!response.ok) throw dados;
+
+            this.resumos = [...this.resumos, ...dados];
+            this.#paginaResumos++
+            return dados;
         }
         async pushMeusArtigos() {
             const response = await fetch(dominio + `/api/biblioteca/meusArtigos?quantidadeArtigos=5&pagina=${this.#paginaMeusArtigos}`, {
@@ -98,10 +106,13 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
-            const meusArtigos = await response.json();
-            this.meusArtigos = [...this.meusArtigos, ...meusArtigos];
+            const dados = await response.json();
+
+            if (!response.ok) throw dados;
+
+            this.meusArtigos = [...this.meusArtigos, ...dados];
             this.#paginaMeusArtigos++;
-            return meusArtigos;
+            return dados;
         }
         async pegueArtigo(url) {
             const response = await fetch(dominio + `/api/biblioteca/artigo/${url}`, {
@@ -110,9 +121,13 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
-            const artigo = await response.json();
-            artigo.dataPublicacao = new Date(artigo.dataPublicacao);
-            return artigo;
+
+            const dados = await response.json();
+
+            if (!response.ok) throw dados;
+
+            dados.dataPublicacao = new Date(dados.dataPublicacao);
+            return dados;
         }
         async pesquise(texto) {
             const response = await fetch(dominio + `/api/biblioteca/search?quantidadeArtigos=5&pagina=${this.#paginaPesquisa}&texto=${texto}`, {
@@ -121,10 +136,13 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
-            const pesquisaArtigos = await response.json();
-            this.pesquisaArtigos = [...this.pesquisaArtigos, ...pesquisaArtigos];
+            const dados = await response.json();
+
+            if (!response.ok) throw dados;
+
+            this.pesquisaArtigos = [...this.pesquisaArtigos, ...dados];
             this.#paginaPesquisa++;
-            return pesquisaArtigos;
+            return dados;
         }
         restart() {
             this.resumos = [];
@@ -143,26 +161,12 @@ const ApiCeos = (() => {
                 }),
                 body: JSON.stringify({ titulo, conteudo, url })
             });
-            const artigo = await response.json();
-            artigo.url = `${dominio}/artigos/${artigo.url}`;
-            return artigo;
-        }
-        salvarArtigo(url, artigo) {/* Editar artigo? */
-            const data = { url, artigo }
-            const aviseQuandoPuder = fetch(dominio + "/api/editora/salvarArtigo/", {
-                method: "POST",
-                headers: new Headers({
-                    "Content-Type": "application/json",
-                }),
-                body: JSON.stringify(data)
-            }).then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                } else {
-                    return response;
-                }
-            })
-            return aviseQuandoPuder;
+            const dados = await response.json();
+
+            if (!response.ok) throw dados;
+
+            dados.url = `${dominio}/artigos/${dados.url}`;
+            return dados;
         }
     }
     class ApiCeos {
