@@ -601,15 +601,15 @@ footer {
   transition: color .4s ease;
 }
 
-.fa-facebook:hover {
+.icon1:hover {
   color: #0078FF;
 }
 
-.fa-twitter:hover {
+.icon2:hover {
   color: #00ACEE;
 }
 
-.fa-instagram:hover {
+.icon3:hover {
   color: #DD2A7B;
 }
 
