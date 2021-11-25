@@ -23,8 +23,9 @@ const ApiCeos = (() => {
             Object.assign(this, dados);
             return dados;
         }
-        async registro({ dadosUsuario }) {
-
+        async registro(nome, sobrenome, email, senha) {
+            const dadosUsuario = { nome, sobrenome, email, senha };
+            
             const response = await fetch(dominio + "/api/user/registro/", {
                 method: "POST",
                 headers: new Headers({

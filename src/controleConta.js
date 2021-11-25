@@ -36,7 +36,12 @@ class ControleConta {
         insert.into('tb_usuarios')
             .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
             .value([nome, sobreNome, email, senha]);
-        await insert.sendQuery();
+        try {
+            await insert.sendQuery();
+        } catch (error) {
+            if (error.sqlState == '23000') throw errorList[24];
+            throw error;
+        }
         return await this.facaLogin(email, senha);
     }
     async confirmeToken(token) {

@@ -41,4 +41,5 @@ export const errorList = [
     new Erro('Url invalida', 21, 'O artigo procurado não existe ou foi removido'),
     new Erro('Falha no token', 22, 'O token esta vazio'),
     new Erro('Falha no token', 23, 'Algo deu errado no seu token, faça login novamente'),
+    new Erro('Falha no Registro', 24, 'A conta já existe'),
 ];
