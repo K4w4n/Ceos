@@ -1,5 +1,6 @@
 import { Select, Operation, Insert } from "./conectionMysql.js";
 import Validador from "./validador.js";
+import { errorList } from "./erros.js";
 import jwt from 'jsonwebtoken';
 
 const secret = process.env.secret;
@@ -30,16 +31,22 @@ class ControleConta {
         validador.sobrenome(sobreNome);
         validador.email(email);
         validador.senha(senha);
-        
+
         const insert = new Insert();
         insert.into('tb_usuarios')
-        .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
-        .value([nome, sobreNome, email, senha]);
+            .columns(['user_nome', 'user_sobrenome', 'user_email', 'user_senha'])
+            .value([nome, sobreNome, email, senha]);
         await insert.sendQuery();
         return await this.facaLogin(email, senha);
     }
     async confirmeToken(token) {
-        const { id } = jwt.verify(token, secret);
+        let id;
+
+        if (!token) throw errorList[22];
+
+        try { id = jwt.verify(token, secret).id }
+        catch (error) { throw errorList[23] }
+
         const select = new Select(["user_id", "user_email", "user_nome", "user_sobrenome"])
             .from(['tb_usuarios'])
             .where(new Operation().column('user_id').equal.value(id));

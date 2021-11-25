@@ -2,7 +2,7 @@ const ApiCeos = (() => {
     const dominio = window.origin;
     class Usuario {
         #callBack;
-        constructor(callBack = ()=>{}) {
+        constructor(callBack = () => { }) {
             this.#callBack = callBack;
             this.confirmeToken();
         }
@@ -61,11 +61,13 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
+            const dados = await response.json();
 
-            const dadosUsuario = await response.json();
-            Object.assign(this, dadosUsuario);
-            this.#callBack(dadosUsuario);
-            return dadosUsuario;
+            if (!response.ok) throw dados;
+            
+            Object.assign(this, dados);
+            this.#callBack(dados);
+            return dados;
         }
     }
     class Biblioteca {
@@ -164,7 +166,7 @@ const ApiCeos = (() => {
         }
     }
     class ApiCeos {
-        constructor(callBack = ()=>{}) {
+        constructor(callBack = () => { }) {
             this.usuario = new Usuario(callBack);
             this.biblioteca = new Biblioteca();
             this.editora = new Editora();

@@ -32,11 +32,13 @@ export const errorList = [
     new Erro('Email invalido', 12, 'O email precisa ser fornecido'),
     new Erro('Nome invalido', 13, 'O nome ultrapassa o tamanho maximo'),
     new Erro('Nome invalido', 14, 'O nome esta a baixo do tamanho minimo'),
-    new Erro('Nome invalido', 15, 'Um nome não pode conter caracteres especiais'),
+    new Erro('Nome invalido', 15, 'Um nome não pode conter caracteres especiais'),//alguns nomes podem conter caracteres especiais
     new Erro('Sobrenome invalido', 16, 'O sobrenome ultrapassa o tamanho maximo'),
     new Erro('Sobrenome invalido', 17, 'O sobrenome esta a baixo do tamanho minimo'),
     new Erro('Sobrenome invalido', 18, 'O sobrenome precisa ser fornecido'),
-    new Erro('Sobrenome invalido', 19, 'O sobrenome não pode conter caracteres especiais'),
+    new Erro('Sobrenome invalido', 19, 'O sobrenome não pode conter caracteres especiais'), //alguns sobrenomes podem conter caracteres especiais
     new Erro('Sobrenome invalido', 20, 'O sobrenome não pode conter numeros'),
     new Erro('Url invalida', 21, 'O artigo procurado não existe ou foi removido'),
+    new Erro('Falha no token', 22, 'O token esta vazio'),
+    new Erro('Falha no token', 23, 'Algo deu errado no seu token, faça login novamente'),
 ];
