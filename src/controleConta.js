@@ -19,7 +19,8 @@ class ControleConta {
 
         if (!dadosDb) throw errorList[26];
 
-        const token = jwt.sign({ id: dadosDb[0][0]['user_id'] }, secret, { expiresIn: 5184000 }); //60 dias
+        const token = jwt.sign({ id: dadosDb['user_id'] }, secret, { expiresIn: 5184000 }); //60 dias
+
         const usuario = {
             nome: dadosDb['user_nome'],
             sobrenome: dadosDb['user_sobrenome'],
@@ -59,8 +60,8 @@ class ControleConta {
             .from(['tb_usuarios'])
             .where(new Operation().column('user_id').equal.value(id));
 
-        const dadosDb = (await select.sendQuery()[0][0]);
-        
+        const dadosDb = (await select.sendQuery())[0][0];
+
         if (!dadosDb) throw errorList[25];
 
         const usuario = {
