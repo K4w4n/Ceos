@@ -15,13 +15,16 @@ class ControleConta {
             .from(['tb_usuarios'])
             .where(new Operation().column('user_email').equal.value(email).and.column('user_senha').equal.value(senha));
 
-        const dadosDb = await select.sendQuery();
+        const dadosDb = (await select.sendQuery())[0][0];
+
+        if (!dadosDb) throw errorList[26];
+
         const token = jwt.sign({ id: dadosDb[0][0]['user_id'] }, secret, { expiresIn: 5184000 }); //60 dias
         const usuario = {
-            nome: dadosDb[0][0]['user_nome'],
-            sobrenome: dadosDb[0][0]['user_sobrenome'],
-            email: dadosDb[0][0]['user_email'],
-            id: dadosDb[0][0]['user_id'],
+            nome: dadosDb['user_nome'],
+            sobrenome: dadosDb['user_sobrenome'],
+            email: dadosDb['user_email'],
+            id: dadosDb['user_id'],
             token,
         };
         return usuario;
@@ -56,12 +59,15 @@ class ControleConta {
             .from(['tb_usuarios'])
             .where(new Operation().column('user_id').equal.value(id));
 
-        const dadosDb = await select.sendQuery();
+        const dadosDb = (await select.sendQuery()[0][0]);
+        
+        if (!dadosDb) throw errorList[25];
+
         const usuario = {
-            nome: dadosDb[0][0]['user_nome'],
-            sobrenome: dadosDb[0][0]['user_sobrenome'],
-            email: dadosDb[0][0]['user_email'],
-            id: dadosDb[0][0]['user_id'],
+            nome: dadosDb['user_nome'],
+            sobrenome: dadosDb['user_sobrenome'],
+            email: dadosDb['user_email'],
+            id: dadosDb['user_id'],
         };
         return usuario;
     }
