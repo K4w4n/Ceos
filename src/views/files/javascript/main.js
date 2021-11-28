@@ -16,6 +16,11 @@ if (navbar) apiCeos.usuario.subscribe((usuario) => {
   sairItem.style.display = 'block';
 });
 
+/* botão sair */
+if (sairItem) sairItem.addEventListener('click', async () => {
+  await apiCeos.usuario.logoff();
+  window.location.href = `${window.location.origin}/login`;
+});
 /*Aparecer e Desaparecer Menu*/
 var scrollPrev = window.pageYOffset;
 window.onscroll = function () {

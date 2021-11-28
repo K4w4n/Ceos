@@ -66,11 +66,7 @@ const ApiCeos = (() => {
                     "Content-Type": "application/json"
                 })
             });
-            if (!response.ok) throw {//implementação temporaria, remover quando o tratamento de erros chegar ao front
-                code: 0,
-                name: 'Falha ao fazer logoff',
-                message: 'Não foi possivel fazer logoff, por favor tente novamente mais tarde',
-            }
+            if (!response.ok) throw await response.json();
 
             this.credencial = undefined;
             this.email = undefined;

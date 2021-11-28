@@ -27,7 +27,7 @@ paginas.get('/sobre/', function (req, res) {
 paginas.get('/painel/', function (req, res) {
     conta.confirmeToken(req.cookies.credencial)
         .then(() => res.sendFile(pastaFiles + '/painel.html'))
-        .catch(() => res.sendFile(pastaFiles + '/erro_404.html'));
+        .catch(() => res.redirect('/login'));
 });
 paginas.get('/artigos/', function (req, res) {
     res.sendFile(pastaFiles + '/artigos.html');
@@ -35,12 +35,12 @@ paginas.get('/artigos/', function (req, res) {
 paginas.get('/meus_artigos/', function (req, res) {
     conta.confirmeToken(req.cookies.credencial)
         .then(() => res.sendFile(pastaFiles + '/meus_artigos.html'))
-        .catch(() => res.sendFile(pastaFiles + '/erro_404.html'));
+        .catch(() => res.redirect('/login'));
 });
 paginas.get('/perfil/', function (req, res) {
     conta.confirmeToken(req.cookies.credencial)
         .then(() => res.sendFile(pastaFiles + '/perfil.html'))
-        .catch(() => res.sendFile(pastaFiles + '/erro_404.html'));
+        .catch(() => res.redirect('/login'));
 });
 paginas.get('/termos/', function (req, res) {
     res.sendFile(pastaFiles + '/termos.html');
