@@ -17,6 +17,7 @@ loginBtn.addEventListener('click', async () => {
     const email = emailLogin.value;
     const senha = senhaLogin.value;
     await apiCeos.usuario.login(email, senha);
+    window.location.reload();
 });
 registroBtn.addEventListener('click', async () => {
     const nome = nomeRegistro.value;
@@ -27,4 +28,5 @@ registroBtn.addEventListener('click', async () => {
 
     if (!(senha == confirmSenha)) throw new Error("Senha invalida");
     await apiCeos.usuario.registro(nome, sobrenome, email, senha);
+    window.location.reload();
 });
