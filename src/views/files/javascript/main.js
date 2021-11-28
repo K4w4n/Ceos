@@ -1,5 +1,22 @@
+/* Connectando back-end */
+const homeItemHtml = document.querySelector('.home-item');
+const artigosMenuItemHtml = document.querySelector('.artigos-menu-item');
+const sobreItemHtml = document.querySelector('.sobre-item');
+const painelItemHtml = document.querySelector('.painel-item');
+const loginItem = document.querySelector('.login-item');
+const perfilItem = document.querySelector('.perfil-item');
+const sairItem = document.querySelector('.sair-item');
+const navbar = document.querySelector('nav');
+
+const apiCeos = new ApiCeos();
+if (navbar) apiCeos.usuario.subscribe((usuario) => {
+  painelItemHtml.style.display = 'block';
+  loginItem.style.display = 'none';
+  perfilItem.style.display = 'block';
+  sairItem.style.display = 'block';
+});
+
 /*Aparecer e Desaparecer Menu*/
-let navbar = document.querySelector('nav');
 var scrollPrev = window.pageYOffset;
 window.onscroll = function () {
   var scrollCur = window.pageYOffset;

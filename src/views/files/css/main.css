@@ -40,6 +40,10 @@ html {
 }
 
 /*Menu*/
+.painel-item, .perfil-item, .sair-item {
+  display: none;
+}
+
 .container-body {
   width: 100%;
   height: 100vh;

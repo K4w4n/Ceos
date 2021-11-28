@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
   <script src="/files/javascript/apiCeos.js"></script>
-    <link rel="stylesheet" href="/files/css/all.min.css" />
+  <link rel="stylesheet" href="/files/css/all.min.css" />
   <link rel="stylesheet" href="/files/css/fontawesome.min.css" />
   <script src="/files/javascript/editor.js"></script>
   <link rel="stylesheet" href="/files/css/main.css" />
@@ -25,21 +25,23 @@
       <div class="content">
         <div class="logo"><a href="/index.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
         <ul class="links">
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/artigos.html">Artigos</a></li>
-          <li><a href="/sobre.html">Sobre Nós</a></li>
-          <li><a href="/painel.html">Painel</a></li>
+          <li class="home-item"><a href="/index.html">Home</a></li>
+          <li class="artigos-menu-item"><a href="/artigos.html">Artigos</a></li>
+          <li class="sobre-item"><a href="/sobre.html">Sobre Nós</a></li>
+          <li class="painel-item"><a href="/painel.html">Painel</a></li>
           <li>
             <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
             <input type="checkbox" id="show-features">
             <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
             <ul id="dropdown">
-              <li><a href="/login.html"><i class="fas fa-door-open"></i><span
+              <li class="login-item"><a href="/login.html"><i class="fas fa-door-open"></i><span
                     class="text-submenu">Login/Cadastro</span></a>
               </li>
-              <li><a href="/perfil.html"><i class="fas fa-user-circle"></i><span class="text-submenu">Perfil</span></a>
+              <li class="perfil-item"><a href="/perfil.html"><i class="fas fa-user-circle"></i><span
+                    class="text-submenu">Perfil</span></a>
               </li>
-              <li><a href="#"><i class="fas fa-sign-out-alt"></i><span class="text-submenu">Sair</span></a></li>
+              <li class="sair-item"><a href="#"><i class="fas fa-sign-out-alt"></i><span
+                    class="text-submenu">Sair</span></a></li>
             </ul>
           </li>
           <li>
@@ -105,12 +107,10 @@
 
   <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
-  <script src="/files/javascript//main.js"></script>
+  <script src="/files/javascript/main.js"></script>
   <script src="/files/javascript/theme.js"></script>
 
   <script>
-    const apiCeos = new ApiCeos();
-
     const editorjs = new EditorJS({
       autofocus: true,
       holder: 'editorjs',

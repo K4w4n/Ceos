@@ -1,5 +1,3 @@
-const apiCeos = new ApiCeos();
-
 const loginBtn = document.querySelector('.login');
 const registroBtn = document.querySelector('.registro');
 const signInForm = document.querySelector('.sign-in-form');
