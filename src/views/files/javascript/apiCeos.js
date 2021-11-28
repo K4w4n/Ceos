@@ -1,9 +1,26 @@
 const ApiCeos = (() => {
     const dominio = window.origin;
-    class Usuario {
-        #callBack;
-        constructor(callBack = () => { }) {
-            this.#callBack = callBack;
+    /* Observer class */
+    class Observable {
+        constructor() {
+            this.observers = [];
+        }
+
+        subscribe(f) {
+            this.observers.push(f);
+        }
+
+        unsubscribe(f) {
+            this.observers = this.observers.filter(subscriber => subscriber !== f);
+        }
+
+        notify(data) {
+            this.observers.forEach(observer => observer(data));
+        }
+    }
+    class Usuario extends Observable {
+        constructor() {
+            super();
             this.confirmeToken();
         }
         async login(email, senha) {
@@ -21,11 +38,12 @@ const ApiCeos = (() => {
             if (!response.ok) throw dados;
 
             Object.assign(this, dados);
+            this.notify(this);
             return dados;
         }
         async registro(nome, sobrenome, email, senha) {
             const dadosUsuario = { nome, sobrenome, email, senha };
-            
+
             const response = await fetch(dominio + "/api/user/registro/", {
                 method: "POST",
                 headers: new Headers({
@@ -38,6 +56,7 @@ const ApiCeos = (() => {
             if (!response.ok) throw dados;
 
             Object.assign(this, dados);
+            this.notify(this);
             return dados;
         }
         async logoff() {
@@ -58,6 +77,7 @@ const ApiCeos = (() => {
             this.nome = undefined;
             this.sobrenome = undefined;
             this.id = undefined;
+            this.notify(this);
             return;
         }
         async confirmeToken() {
@@ -72,7 +92,7 @@ const ApiCeos = (() => {
             if (!response.ok) throw dados;
 
             Object.assign(this, dados);
-            this.#callBack(dados);
+            this.notify(this);
             return dados;
         }
     }
