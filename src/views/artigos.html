@@ -2,178 +2,189 @@
 <html lang="PT-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-  <link rel="stylesheet" href="/files/css/main.css" />
-  <link rel="stylesheet" href="/files/css/main_dark.css" />
-  <link rel="stylesheet" href="/files/css/artigos.css" />
-  <link rel="stylesheet" href="/files/css/all.min.css" />
-  <link rel="stylesheet" href="/files/css/fontawesome.min.css" />
-  <script src="/files/javascript/editor.js"></script>
-  <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
-  <script src="/files/javascript/apiCeos.js"></script>
-  <title>Ceos Community</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <link rel="stylesheet" href="/files/css/main.css" />
+    <link rel="stylesheet" href="/files/css/main_dark.css" />
+    <link rel="stylesheet" href="/files/css/artigos.css" />
+    <link rel="stylesheet" href="/files/css/all.min.css" />
+    <link rel="stylesheet" href="/files/css/fontawesome.min.css" />
+    <script src="/files/javascript/editor.js"></script>
+    <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
+    <script src="/files/javascript/apiCeos.js"></script>
+    <title>Ceos Community</title>
 </head>
 
 <body class="body-light" id="body">
-  <div class="wrapper" id="wrapper">
-    <nav>
-      <input type="checkbox" id="show-search">
-      <input type="checkbox" id="show-menu">
-      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
-      <div class="content">
-        <div class="logo"><a href="/index.html"><img src="/files/img/main/logo.png" class="logotipo"></a></div>
-        <ul class="links">
-          <li class="home-item"><a href="/index.html">Home</a></li>
-          <li class="artigos-menu-item"><a href="/artigos.html">Artigos</a></li>
-          <li class="sobre-item"><a href="/sobre.html">Sobre Nós</a></li>
-          <li class="painel-item"><a href="/painel.html">Painel</a></li>
-          <li>
-            <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
-            <input type="checkbox" id="show-features">
-            <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
-            <ul id="dropdown">
-              <li class="login-item"><a href="/login.html"><i class="fas fa-door-open"></i><span
+    <div class="wrapper" id="wrapper">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <div class="logo">
+                    <a href="/index.html"><img src="/files/img/main/logo.png" class="logotipo"></a>
+                </div>
+                <ul class="links">
+                    <li class="home-item"><a href="/index.html">Home</a></li>
+                    <li class="artigos-menu-item"><a href="/artigos.html">Artigos</a></li>
+                    <li class="sobre-item"><a href="/sobre.html">Sobre Nós</a></li>
+                    <li class="painel-item"><a href="/painel.html">Painel</a></li>
+                    <li>
+                        <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
+                        <input type="checkbox" id="show-features">
+                        <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
+                        <ul id="dropdown">
+                            <li class="login-item"><a href="/login.html"><i class="fas fa-door-open"></i><span
                     class="text-submenu">Login/Cadastro</span></a>
-              </li>
-              <li class="perfil-item"><a href="/perfil.html"><i class="fas fa-user-circle"></i><span
+                            </li>
+                            <li class="perfil-item"><a href="/perfil.html"><i class="fas fa-user-circle"></i><span
                     class="text-submenu">Perfil</span></a>
-              </li>
-              <li class="sair-item"><a><i class="fas fa-sign-out-alt"></i><span
+                            </li>
+                            <li class="sair-item"><a><i class="fas fa-sign-out-alt"></i><span
                     class="text-submenu">Sair</span></a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
-            <input type="checkbox" id="show-features1">
-            <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
-            <ul>
-              <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+                        <input type="checkbox" id="show-features1">
+                        <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
+                        <ul>
+                            <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
                   <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
                 </button></li>
-              <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
+                            <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
                   <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
                 </button></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-      <form action="/search" class="search-box">
-        <input type="text" placeholder="Pesquisar..." required name="q">
-        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-      </form>
-    </nav>
-  </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+            <form action="/search" class="search-box">
+                <input type="text" placeholder="Pesquisar..." required name="q">
+                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </form>
+        </nav>
+    </div>
 
-  <div id="progressbar"></div>
-  <div id="scrollpath"></div>
+    <div id="progressbar"></div>
+    <div id="scrollpath"></div>
 
-  <div class="container-artigos"></div>
+    <div class="container-artigos"></div>
 
-  <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+    <button id="back-to-top-btn" class="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
-  <script src="/files/javascript/main.js"></script>
-  <script src="/files/javascript/theme.js"></script>
+    <script src="/files/javascript/main.js"></script>
+    <script src="/files/javascript/theme.js"></script>
 
-  <script>
-    function artigoHTML({ titulo, conteudo, dataPublicacao, url, autorNome, autorSobrenome, id }) {
-      url = window.origin + "/artigos/" + url;
-      const el = el => document.createElement(el);
-      const containerArtigo = el('div');
-      const textBox = el('div');
-      const topArea = el('div');
-      const portBody = el('div');
-      const titleArtigo = el('label');
-      const subtitle = el('label');
-      const editorjs = el('div');
-      const tresPontos = el('p');
-      const readMore = el('a');
+    <script>
+        function artigoHTML({
+            titulo,
+            conteudo,
+            dataPublicacao,
+            url,
+            autorNome,
+            autorSobrenome,
+            id
+        }) {
+            url = window.origin + "/artigos/" + url;
+            const el = el => document.createElement(el);
+            const containerArtigo = el('div');
+            const textBox = el('div');
+            const topArea = el('div');
+            const portBody = el('div');
+            const titleArtigo = el('label');
+            const subtitle = el('label');
+            const editorjs = el('div');
+            const tresPontos = el('p');
+            const readMore = el('a');
 
-      readMore.classList.add("read-more");
-      containerArtigo.classList.add("container-artigo");
-      textBox.classList.add("text-box");
-      topArea.classList.add("top-area");
-      portBody.classList.add("post-body");
-      titleArtigo.classList.add("title-artigo");
-      subtitle.classList.add("subtitle");
-      textBox.setAttribute("id", "text-box");
-      portBody.setAttribute("id", "post-body");
-      titleArtigo.setAttribute("id", "title-artigo");
-      subtitle.setAttribute("id", "subtitle");
-      readMore.setAttribute("href", url);
-      editorjs.setAttribute("id", `editorjs-${id}`);
-      containerArtigo.append(textBox);
-      textBox.append(topArea);
-      textBox.append(portBody);
-      topArea.append(titleArtigo);
-      topArea.append(subtitle);
-      portBody.append(editorjs);
-      tresPontos.append("...")
-      /* editorjs.append(tresPontos); */
-      readMore.append("Ver Mais");
-      textBox.append(readMore);
-      titleArtigo.append(titulo);
-      subtitle.append(`${dataFormatada(dataPublicacao)} • ${autorNome} ${autorSobrenome}`);
-      return containerArtigo;
-    }
-    function dataFormatada(data) {
-      data = new Date(data);
-      const dia = data.getDate().toString().padStart(2, '0');
-      const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-      const ano = data.getFullYear();
-      return dia + "/" + mes + "/" + ano;
-    }
+            readMore.classList.add("read-more");
+            containerArtigo.classList.add("container-artigo");
+            textBox.classList.add("text-box");
+            topArea.classList.add("top-area");
+            portBody.classList.add("post-body");
+            titleArtigo.classList.add("title-artigo");
+            subtitle.classList.add("subtitle");
+            textBox.setAttribute("id", "text-box");
+            portBody.setAttribute("id", "post-body");
+            titleArtigo.setAttribute("id", "title-artigo");
+            subtitle.setAttribute("id", "subtitle");
+            readMore.setAttribute("href", url);
+            editorjs.setAttribute("id", `editorjs-${id}`);
+            containerArtigo.append(textBox);
+            textBox.append(topArea);
+            textBox.append(portBody);
+            topArea.append(titleArtigo);
+            topArea.append(subtitle);
+            portBody.append(editorjs);
+            tresPontos.append("...")
+                /* editorjs.append(tresPontos); */
+            readMore.append("Ver Mais");
+            textBox.append(readMore);
+            titleArtigo.append(titulo);
+            subtitle.append(`${dataFormatada(dataPublicacao)} • ${autorNome} ${autorSobrenome}`);
+            return containerArtigo;
+        }
 
-    let libLivre = true;
-    window.addEventListener('scroll', () => {
-      el = document.documentElement;
-      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
-        libLivre = false;
-        apiCeos.biblioteca.pushResumos()
-          .then(artigoList => {
-            libLivre = true;
-            const artigosHtml = document.querySelector('.container-artigos');
-            artigoList.forEach(artigo => {
-              artigosHtml.append(artigoHTML(artigo));
-              new EditorJS({
-                holder: `editorjs-${artigo.id}`,
-                readOnly: true,
-                placeholder: 'Artigo em branco',
-                data: artigo.conteudo,
-                onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
-              });
+        function dataFormatada(data) {
+            data = new Date(data);
+            const dia = data.getDate().toString().padStart(2, '0');
+            const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+            const ano = data.getFullYear();
+            return dia + "/" + mes + "/" + ano;
+        }
 
-            });
-          })
-          .catch(err => {
-            console.error(err);
-            libLivre = true;
-          });
-      }
-    });
-    apiCeos.biblioteca.pushResumos()
-      .then(artigoList => {
-        libLivre = true;
-        const artigosHtml = document.querySelector('.container-artigos');
-        artigoList.forEach(artigo => {
-          artigosHtml.append(artigoHTML(artigo));
-          new EditorJS({
-            holder: `editorjs-${artigo.id}`,
-            readOnly: true,
-            placeholder: 'Artigo em branco',
-            data: artigo.conteudo,
-            onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
-          });
+        let libLivre = true;
+        window.addEventListener('scroll', () => {
+            el = document.documentElement;
+            if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5 && libLivre) {
+                libLivre = false;
+                apiCeos.biblioteca.pushResumos()
+                    .then(artigoList => {
+                        libLivre = true;
+                        const artigosHtml = document.querySelector('.container-artigos');
+                        artigoList.forEach(artigo => {
+                            artigosHtml.append(artigoHTML(artigo));
+                            new EditorJS({
+                                holder: `editorjs-${artigo.id}`,
+                                readOnly: true,
+                                placeholder: 'Resumo em branco',
+                                data: artigo.conteudo,
+                                onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
+                            });
 
+                        });
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        libLivre = true;
+                    });
+            }
         });
-      })
-      .catch(err => {
-        console.error(err);
-        libLivre = true;
-      });
-  </script>
+        apiCeos.biblioteca.pushResumos()
+            .then(artigoList => {
+                libLivre = true;
+                const artigosHtml = document.querySelector('.container-artigos');
+                artigoList.forEach(artigo => {
+                    artigosHtml.append(artigoHTML(artigo));
+                    new EditorJS({
+                        holder: `editorjs-${artigo.id}`,
+                        readOnly: true,
+                        placeholder: 'Resumo em branco',
+                        data: artigo.conteudo,
+                        onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', ''))
+                    });
+
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                libLivre = true;
+            });
+    </script>
 
 </body>
 

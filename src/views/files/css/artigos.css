@@ -1,96 +1,97 @@
 /*Artigos*/
+
 .container-artigos {
-  padding-top: 80px;
+    padding-top: 80px;
 }
 
 .container-artigo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .title-artigo {
-  width: 100%;
-  height: 2%;
-  background: transparent;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  font-size: 18pt;
-  font-weight: 600;
+    width: 100%;
+    height: 2%;
+    background: transparent;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18pt;
+    font-weight: 600;
 }
 
 .subtitle {
-  padding-top: 5px;
-  display: flex;
-  font-weight: 400;
+    padding-top: 5px;
+    display: flex;
+    font-weight: 400;
 }
 
 .text-box {
-  position: relative;
-  background-color: #fff;
-  width: 700px;
-  height: 80%;
-  margin: 20px;
-  padding: 0 20px 20px 20px;
-  border-radius: 10px;
-  box-shadow: 10px 12px 60px rgba(0, 0, 0, 0.15);
-  outline: none;
-  transition: .7s;
+    position: relative;
+    background-color: #fff;
+    width: 700px;
+    height: 80%;
+    margin: 20px;
+    padding: 0 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 10px 12px 60px rgba(0, 0, 0, 0.15);
+    outline: none;
+    transition: .7s;
+    word-break: break-word;
 }
 
 .text-box .top-area {
-  display: block;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
 }
 
 .post-body {
-  position: relative;
-  background: transparent;
-  text-align: justify;
-  color: #000;
+    position: relative;
+    background: transparent;
+    text-align: justify;
+    color: #000;
 }
 
 p {
-  display: inline;
+    display: inline;
 }
 
 .read-more {
-  color: #288ddb;
-  cursor: pointer;
-  font-weight: 500;
+    color: #288ddb;
+    cursor: pointer;
+    font-weight: 500;
 }
 
-/*Artigos Responsivel*/
-@media screen and (min-width: 992px) {
 
-  .back-to-top-btn {
-    transition: .5s;
-  }
+/*Artigos Responsivel*/
+
+@media screen and (min-width: 992px) {
+    .back-to-top-btn {
+        transition: .5s;
+    }
 }
 
 @media screen and (max-width: 850px) {
-
-  .back-to-top-btn {
-    background-color: #333;
-    color: #FFF;
-    font-size: 22px;
-    width: 40px;
-    height: 40px;
-    bottom: 15px;
-    right: 15px;
-    transition: .7s;
-  }
-
-  .text-box {
-    width: 100vw;
-    margin: 0;
-    border-radius: 0;
-    background-color: transparent;
-    box-shadow: none;
-    border-bottom: 2px solid #000;
-    transition: .7s;
-  }
+    .back-to-top-btn {
+        background-color: #333;
+        color: #FFF;
+        font-size: 22px;
+        width: 40px;
+        height: 40px;
+        bottom: 15px;
+        right: 15px;
+        transition: .7s;
+    }
+    .text-box {
+        width: 100vw;
+        margin: 0;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+        border-bottom: 2px solid #000;
+        transition: .7s;
+    }
 }
