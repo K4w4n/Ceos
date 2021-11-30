@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/files/css/main_dark.css" />
     <link rel="stylesheet" href="/files/css/perfil.css" />
     <link rel="icon" type="image/png" href="/files/img/main/favicon.png" />
-    <title>Ceos Community</title>
+    <title>Perfil - Ceos Community</title>
 </head>
 
 <body class="body-light" id="body">
@@ -83,7 +83,7 @@
                 <p class="title-infos">Dados da Conta</p>
                 <p class="subtitle-infos">Nome Completo: <span class="info nome"></span></p>
                 <p class="subtitle-infos">E-mail Cadastrado: <span class="info email"></span></p>
-                <p class="subtitle-infos">Artigos Criados: <span class="info numero-artigos"></span></p>
+                <!-- <p class="subtitle-infos">Artigos Criados: <span class="info numero-artigos"></span></p> -->
             </div>
         </div>
 
@@ -106,10 +106,10 @@
         const bemVindoHtml = document.querySelector('.bem-vindo');
 
         function appendHtmlDataUser(usuario) {
-            bemVindoHtml.append(usuario.nome);
-            nomeHtml.append(`${usuario.nome} ${usuario.sobrenome}`);
-            emailHtml.append(usuario.email);
-            numeroArtigosHtml.append(500);
+            bemVindoHtml.innerHTML = usuario.nome;
+            nomeHtml.innerHTML = `${usuario.nome} ${usuario.sobrenome}`;
+            emailHtml.innerHTML = usuario.email;
+            numeroArtigosHtml.innerHTML = (500);
         }
 
         function artigoHTML({
