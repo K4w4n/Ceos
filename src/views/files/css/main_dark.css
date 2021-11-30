@@ -117,6 +117,7 @@
     box-shadow: 0px 0px 0px transparent;
     outline: none;
     transition: .7s;
+    word-wrap: break-word;
 }
 
 .body-dark .top-area {

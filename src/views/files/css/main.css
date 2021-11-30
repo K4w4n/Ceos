@@ -241,6 +241,12 @@ nav .content .links {
     display: inline;
 }
 
+.label-erros {
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 
 /*Menu Dropdown*/
 

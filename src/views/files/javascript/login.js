@@ -12,14 +12,16 @@ const emailRegistro = signUpForm.querySelector('.email');
 const senhaRegistro = signUpForm.querySelector('.senha1');
 const confirmSenhaRegistro = signUpForm.querySelector('.senha2');
 
-/* const input = document.querySelector() */
-loginBtn.addEventListener('click', async () => {
+const labelErroLogin = signInForm.querySelector('.label-erros');
+const labelErroRegistro = signUpForm.querySelector('.label-erros');
+
+loginBtn.addEventListener('click', async() => {
     const email = emailLogin.value;
     const senha = senhaLogin.value;
     await apiCeos.usuario.login(email, senha);
     window.location.reload();
 });
-registroBtn.addEventListener('click', async () => {
+registroBtn.addEventListener('click', async() => {
     const nome = nomeRegistro.value;
     const sobrenome = sobrenomeRegistro.value;
     const email = emailRegistro.value;
