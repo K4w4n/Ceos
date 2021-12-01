@@ -10,7 +10,6 @@ class ControleConta {
     async facaLogin(email, senha) {
         validador.email(email);
         validador.senha(senha);
-
         const select = new Select(["user_id", "user_email", "user_nome", "user_sobrenome"])
             .from(['tb_usuarios'])
             .where(new Operation().column('user_email').equal.value(email).and.column('user_senha').equal.value(senha));
@@ -28,6 +27,10 @@ class ControleConta {
             id: dadosDb['user_id'],
             token,
         };
+        const select2 = new Select([' ']).count()
+            .from(['tb_artigos'])
+            .where(new Operation().column('user_id').equal.value(usuario.id));
+        console.log(await select2.sendQuery());
         return usuario;
     }
     async registre(nome, sobreNome, email, senha) {
@@ -70,6 +73,12 @@ class ControleConta {
             email: dadosDb['user_email'],
             id: dadosDb['user_id'],
         };
+
+        const select2 = new Select().count()
+            .from(['tb_artigos'])
+            .where(new Operation().column('user_id').equal.value(usuario.id));
+            
+        usuario.numeroArtigos = ((await select2.sendQuery())[0][0]['COUNT(*)']);
         return usuario;
     }
     async canceleToken(token) {

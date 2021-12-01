@@ -37,13 +37,13 @@
                         <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
                         <ul id="dropdown">
                             <li class="login-item"><a href="/login.html"><i class="fas fa-door-open"></i><span
-                    class="text-submenu">Login/Cadastro</span></a>
+                                        class="text-submenu">Login/Cadastro</span></a>
                             </li>
                             <li class="perfil-item"><a href="/perfil.html"><i class="fas fa-user-circle"></i><span
-                    class="text-submenu">Perfil</span></a>
+                                        class="text-submenu">Perfil</span></a>
                             </li>
                             <li class="sair-item"><a><i class="fas fa-sign-out-alt"></i><span
-                    class="text-submenu">Sair</span></a></li>
+                                        class="text-submenu">Sair</span></a></li>
                         </ul>
                     </li>
                     <li>
@@ -52,11 +52,12 @@
                         <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
                         <ul>
                             <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
-                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
-                </button></li>
+                                    <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                                </button></li>
                             <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
-                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
-                </button></li>
+                                    <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i>
+                                    </div>
+                                </button></li>
                         </ul>
                     </li>
                 </ul>
@@ -83,7 +84,7 @@
                 <p class="title-infos">Dados da Conta</p>
                 <p class="subtitle-infos">Nome Completo: <span class="info nome"></span></p>
                 <p class="subtitle-infos">E-mail Cadastrado: <span class="info email"></span></p>
-                <!-- <p class="subtitle-infos">Artigos Criados: <span class="info numero-artigos"></span></p> -->
+                <p class="subtitle-infos">Artigos Criados: <span class="info numero-artigos"></span></p>
             </div>
         </div>
 
@@ -106,10 +107,12 @@
         const bemVindoHtml = document.querySelector('.bem-vindo');
 
         function appendHtmlDataUser(usuario) {
-            bemVindoHtml.innerHTML = usuario.nome;
-            nomeHtml.innerHTML = `${usuario.nome} ${usuario.sobrenome}`;
-            emailHtml.innerHTML = usuario.email;
-            numeroArtigosHtml.innerHTML = (500);
+            if (usuario.id) {
+                bemVindoHtml.innerHTML = usuario.nome;
+                nomeHtml.innerHTML = `${usuario.nome} ${usuario.sobrenome}`;
+                emailHtml.innerHTML = usuario.email;
+                numeroArtigosHtml.innerHTML = usuario.numeroArtigos;
+            }
         }
 
         function artigoHTML({
@@ -153,7 +156,7 @@
             topArea.append(subtitle);
             portBody.append(editorjs);
             tresPontos.append("...")
-                /* editorjs.append(tresPontos); */
+            /* editorjs.append(tresPontos); */
             readMore.append("Ver Mais");
             textBox.append(readMore);
             titleArtigo.append(titulo);
