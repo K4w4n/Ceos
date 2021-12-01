@@ -1,280 +1,284 @@
 /*Painel*/
 
 .container-artigo {
-  padding-top: 80px;
-  padding-bottom: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .title-painel {
-  width: 100%;
-  height: 2%;
-  background: #fff;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  font-size: 18pt;
-  font-weight: 600;
-  text-align: center;
+    width: 100%;
+    height: 2%;
+    background: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18pt;
+    font-weight: 600;
+    text-align: center;
 }
 
 .text-box {
-  position: relative;
-  background: #2f50f5;
-  width: 50vw;
-  margin: 10px;
-  margin-top: 3%;
-  padding: 0 20px 20px 20px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  transition: .7s;
+    position: relative;
+    background: #2f50f5;
+    width: 50vw;
+    margin: 10px;
+    margin-top: 3%;
+    padding: 0 20px 20px 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: .7s;
 }
 
 .text-box .top-area {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
 }
 
 .contador {
-  color: #fff;
-  font-weight: 600;
+    color: #fff;
+    font-weight: 600;
 }
 
 #editorjs {
-  width: 100%;
-  font-size: 1em;
-  padding: 10px;
-  outline: none;
-  resize: none;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  text-align: justify;
-  text-decoration: none;
-  border: 2px solid #fff;
-  cursor: text;
+    width: 100%;
+    font-size: 1em;
+    padding: 10px;
+    outline: none;
+    resize: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: justify;
+    text-decoration: none;
+    border: 2px solid #fff;
+    cursor: text;
 }
 
-
 #editorjs::placeholder {
-  font-size: 18pt;
-  font-weight: 600;
-  text-align: center;
-  padding-top: 180px;
+    font-size: 18pt;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 180px;
 }
 
 .link-btn {
-  background-color: transparent;
-  display: flex;
-  height: 4vh;
+    background-color: transparent;
+    display: flex;
+    height: 4vh;
 }
 
 .title-link {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .link {
-  display: block;
-  background-color: #fff;
-  padding-left: 7px;
-  border-radius: 5px;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  font-size: 12pt;
-  font-weight: 500;
-  width: 100%;
-  padding-top: 8px;
+    display: block;
+    background-color: #fff;
+    padding-left: 7px;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 12pt;
+    font-weight: 500;
+    width: 100%;
+    padding-top: 8px;
 }
 
 .extension {
-  border: none;
-  outline: none;
-  border-bottom: 1px solid #000;
-  font-size: 12pt;
-  font-weight: 500;
-  width: 14vw;
-  margin-right: 3px;
-  background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    font-size: 12pt;
+    font-weight: 500;
+    width: 14vw;
+    margin-right: 3px;
+    background-color: transparent;
 }
 
 .body-dark #editorjs {
-  background-color: #242526;
-  color: #fff;
+    background-color: #242526;
+    color: #fff;
 }
 
 .body-light #editorjs {
-  background-color: #fff;
-  color: #000;
+    background-color: #fff;
+    color: #000;
 }
 
 .btn-enviar {
-  width: 8vw;
-  cursor: pointer;
-  border-radius: 5px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border: none;
-  background-color: #21eb74;
-  color: #000;
-  font-size: 14pt;
-  font-weight: 600;
+    width: 8vw;
+    cursor: pointer;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border: none;
+    background-color: #21eb74;
+    color: #000;
+    font-size: 14pt;
+    font-weight: 600;
 }
 
 .btn-enviar span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
 }
 
 .btn-enviar span:after {
-  content: '\00bb';
-  position: absolute;
-  font-size: 15pt;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+    content: '\00bb';
+    position: absolute;
+    font-size: 15pt;
+    opacity: 0;
+    top: -1px;
+    right: -20px;
+    transition: 0.5s;
 }
 
 .btn-enviar:hover span {
-  padding-right: 25px;
+    padding-right: 18px;
 }
 
 .btn-enviar:hover span:after {
-  opacity: 1;
-  right: 0;
+    opacity: 1;
+    right: 0;
 }
 
+
 /* Tirando o bug do framework */
+
 .ce-block__content {
-  margin: 9px;
-  max-width: 100%;
-  text-align: justify;
+    margin: 9px;
+    max-width: 100%;
+    text-align: justify;
 }
 
 .ce-paragraph {
-  word-wrap: break-word;
+    word-wrap: break-word;
 }
+
 
 /*Painel Responsivel*/
 
 @media screen and (max-width: 1900px) {
-  .link-btn {
-    display: inline;
-  }
+    .link-btn {
+        display: inline;
+    }
+    .link {
+        width: 100%;
+        border-radius: 5px;
+        height: 36px;
+    }
+    .btn-enviar {
+        transition: .7s;
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+}
 
-  .link {
-    width: 100%;
-    border-radius: 5px;
-    height: 36px;
-  }
-
-  .btn-enviar {
-    transition: .7s;
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
+@media screen and (width: 1024px) and (height: 1366px) {
+    footer {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #242526;
+        border-top: 1px solid #3f3f40;
+        height: auto;
+        color: #fff;
+        position: absolute;
+    }
 }
 
 @media screen and (max-width: 1515px) {
-  .text-box {
-    width: 75vw;
-  }
-
-  .title-link {
-    width: 500px;
-    align-items: center;
-  }
-
-  .extension {
-    width: 26%;
-  }
+    .text-box {
+        width: 75vw;
+    }
+    .title-link {
+        width: 500px;
+        align-items: center;
+    }
+    .extension {
+        width: 26%;
+    }
 }
 
 @media screen and (max-width: 1024px) and (max-height: 768px) {
-  .link {
-    height: 5vh;
-  }
+    .link {
+        height: 5vh;
+    }
 }
 
 @media screen and (max-width: 1024px) and (max-height: 600px) {
-  .link {
-    height: 6vh;
-  }
+    .link {
+        height: 6vh;
+    }
 }
 
 @media screen and (max-width: 990px) {
-  .text-box {
-    width: 75vw;
-  }
-
-  .link {
-    height: 80px;
-    text-align: center;
-  }
-
-  .extension {
-    width: 60%;
-    text-align: center;
-  }
+    .text-box {
+        width: 75vw;
+    }
+    .link {
+        height: 80px;
+        text-align: center;
+    }
+    .extension {
+        width: 60%;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 700px) {
-  .container-artigo {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    background: #2f50f5;
-  }
-
-  .text-box {
-    width: 100vw;
-    padding: 5px;
-    padding-top: 50px;
-  }
-
-  .link {
-    height: 10vh;
-  }
+    .container-artigo {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        background: #2f50f5;
+    }
+    .text-box {
+        width: 100vw;
+        padding: 5px;
+        padding-top: 50px;
+    }
+    .link {
+        height: 10vh;
+    }
 }
 
 @media screen and (max-width: 670px) and (max-height: 375px) {
-  .link {
-    height: 22vh;
-  }
+    .link {
+        height: 22vh;
+    }
 }
 
 @media screen and (max-width: 640px) and (max-height: 360px) {
-  .link {
-    height: 20vh;
-  }
+    .link {
+        height: 20vh;
+    }
 }
 
 @media screen and (max-width: 420px) {
-  .link {
-    height: 110px;
-  }
-
-  .extension {
-    padding-top: 10px;
-  }
-
-  .btn-enviar {
-    height: 37px;
-  }
+    .link {
+        height: 110px;
+    }
+    .extension {
+        padding-top: 10px;
+    }
+    .btn-enviar {
+        height: 37px;
+    }
 }
 
 @media screen and (max-width: 280px) {
-  .cod {
-    font-size: 12px;
-  }
-
-  .extension {
-    width: 165px;
-  }
+    .cod {
+        font-size: 12px;
+    }
+    .extension {
+        width: 165px;
+    }
 }
