@@ -27,10 +27,11 @@ class ControleConta {
             id: dadosDb['user_id'],
             token,
         };
-        const select2 = new Select([' ']).count()
+        const select2 = new Select().count()
             .from(['tb_artigos'])
             .where(new Operation().column('user_id').equal.value(usuario.id));
-        console.log(await select2.sendQuery());
+
+        usuario.numeroArtigos = ((await select2.sendQuery())[0][0]['COUNT(*)']);
         return usuario;
     }
     async registre(nome, sobreNome, email, senha) {
@@ -77,7 +78,7 @@ class ControleConta {
         const select2 = new Select().count()
             .from(['tb_artigos'])
             .where(new Operation().column('user_id').equal.value(usuario.id));
-            
+
         usuario.numeroArtigos = ((await select2.sendQuery())[0][0]['COUNT(*)']);
         return usuario;
     }
