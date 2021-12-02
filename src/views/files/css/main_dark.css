@@ -103,6 +103,79 @@
 }
 
 
+/*Dark Home*/
+
+.body-dark .text-home {
+    color: #FFF;
+}
+
+.body-dark .btn-conta:hover {
+    box-shadow: inset 200px 0 0 0 #1C1E21;
+    color: #2f50f5;
+    transition: ease-out .3s;
+    border: 3px solid #2f50f5;
+}
+
+.body-dark main.cards section.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    max-height: 468px;
+    margin: 25px;
+    background-color: transparent;
+    border: 3px solid #FFF;
+}
+
+.body-dark .far {
+    padding-top: 20px;
+    font-size: 50px;
+    color: #FFF;
+}
+
+.body-dark .title-card-home {
+    color: #2f50f5;
+}
+
+.body-dark .text-card-home {
+    color: #FFF;
+}
+
+
+/*Dark Home Responsivel*/
+
+@media screen and (max-width: 720px) {
+    .body-dark main.cards section.card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        max-height: 468px;
+        margin: 0px;
+    }
+    .body-dark main.cards {
+        flex-direction: column;
+    }
+    .body-dark main.cards section.card {
+        margin-left: 0;
+        margin-bottom: 32px;
+    }
+    .body-dark main.cards section.card:last-child {
+        margin-bottom: 0;
+    }
+    .body-dark main.cards section.card button {
+        font-size: 70%;
+    }
+    .body-dark main.cards {
+        padding-top: 0;
+    }
+}
+
+
 /*Dark Artigos*/
 
 .body-dark #text-box {
