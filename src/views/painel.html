@@ -76,7 +76,7 @@
     <div class="container-artigo">
         <div class="text-box">
             <div class="top-area">
-                <input class="title-painel" type="text" placeholder="Título do Artigo" id="title">
+                <input class="title-painel" type="text" placeholder="Título do Artigo" id="title" autofocus>
             </div>
             <!-- <div class="contador">
         <span id="cont">5000</span> Caracteres Restantes
@@ -116,7 +116,7 @@
 
     <script>
         const editorjs = new EditorJS({
-            autofocus: true,
+            autofocus: false,
             holder: 'editorjs',
             readOnly: false,
             placeholder: 'Ensine algo para o mundo!',
@@ -136,7 +136,21 @@
                 .then(artigo => window.location.assign(artigo.url))
                 .catch(console.error)
         });
-
+        /* State form */
+        const stateForm = {
+            titulo: {
+                clicks: 1,
+                click: function () {
+                    this.clicks++
+                }
+            },
+            url: {
+                clicks: 0,
+                click: function () {
+                    this.clicks++
+                },
+            }
+        }
         /* Functions insert in html */
         const goHtml = (el, child) => el.innerHTML = child;
         const goInput = (el, value) => el.value = value;
@@ -144,15 +158,11 @@
         /* Reg validation */
         const regCharEspecial = /\W|_/;
 
-        /* Functions check data */
-        const checkAllNull = () => {
-            return !tituloInput.value.trim() && !urlInput.value.trim();
-        };
         const btn = {
             active: () => btnEnviar.disabled = false,
             desable: () => btnEnviar.disabled = true,
         }
-        const checkTitulo = () => false;
+        const checkTitulo = () => tituloInput.value.length ? false : 'O titulo não foi fornecido';
         const checkConteudo = () => false;
         const checkUrl = () => {
             let haveErro = false;
@@ -160,10 +170,10 @@
             url = url.toLowerCase().replaceAll(' ', '-');
             url = url[0] == '-' ? url.substring(1) : url;
             url = url.replaceAll('--', '-');
-
+            if (url.length < 1) haveErro = 'A url esta vazia';
             if (regCharEspecial.test(url.replaceAll('-', ''))) haveErro = 'Não utilize caracteres especiais na url';
             if (url.search('--') != -1) haveErro = 'Não de dois espaços consecutivos na url';
-    
+
             goInput(urlInput, url);
             return haveErro;
         }
@@ -173,18 +183,26 @@
             const haveErroTitulo = checkTitulo();
             const erroClean = !haveErroUrl && !haveErroConteudo && !haveErroTitulo;
 
-            if (erroClean) {
+            if (erroClean || (!stateForm.url.clicks || !stateForm.titulo.clicks)) {
                 goHtml(labelErros, '');
-                if (!checkAllNull()) btn.active();
+                if (erroClean) btn.active();
             } else {
                 btn.desable();
-                if (haveErroUrl) goHtml(labelErros, haveErroUrl);
+                if (stateForm.url.clicks && haveErroUrl) goHtml(labelErros, haveErroUrl);
                 if (haveErroConteudo) goHtml(labelErros, haveErroConteudo);
-                if (haveErroTitulo) goHtml(labelErros, haveErroTitulo);
+                if (stateForm.titulo.clicks && haveErroTitulo) goHtml(labelErros, haveErroTitulo);
             }
         }
+        /* Events for validation */
         urlInput.addEventListener('keyup', checkInfo);
         urlInput.addEventListener('keydown', checkInfo);
+        urlInput.addEventListener('blur', checkInfo);
+        urlInput.addEventListener('click', () => stateForm.url.click());
+
+        tituloInput.addEventListener('keyup', checkInfo);
+        tituloInput.addEventListener('keydown', checkInfo);
+        tituloInput.addEventListener('blur', checkInfo);
+        tituloInput.addEventListener('click', () => stateForm.titulo.click());
     </script>
 </body>
 
