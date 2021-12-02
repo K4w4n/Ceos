@@ -18,7 +18,7 @@ paginas.get('/', function (req, res) {
 });
 paginas.get('/login/', function (req, res) {
     conta.confirmeToken(req.cookies.credencial)
-        .then(() => res.redirect('/artigos'))
+        .then(() => res.redirect('/perfil'))
         .catch(() => res.sendFile(pastaFiles + '/login.html'));
 });
 paginas.get('/sobre/', function (req, res) {
