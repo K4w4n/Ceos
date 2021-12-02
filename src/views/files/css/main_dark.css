@@ -313,11 +313,12 @@
     color: #fff;
 }
 
-.body-dark .subtitle-artigo-completo {
+.body-dark .subtitle_artigo_completo {
     font-size: 12pt;
     padding-bottom: 5px;
     border-bottom: 1px solid #2f50f5;
     color: #fff;
+    text-align: center;
 }
 
 .body-dark .text-artigo-completo {

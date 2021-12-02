@@ -122,7 +122,10 @@
     font-size: 14pt;
     font-weight: 600;
 }
+
+
 /* Desativando botão painel */
+
 .btn-enviar:disabled span {
     cursor: not-allowed;
 }
@@ -178,13 +181,11 @@
     .link-btn {
         display: inline;
     }
-
     .link {
         width: 100%;
         border-radius: 5px;
         height: 36px;
     }
-
     .btn-enviar {
         transition: .7s;
         width: 100%;
@@ -210,12 +211,10 @@
     .text-box {
         width: 75vw;
     }
-
     .title-link {
         width: 500px;
         align-items: center;
     }
-
     .extension {
         width: 26%;
     }
@@ -237,12 +236,10 @@
     .text-box {
         width: 75vw;
     }
-
     .link {
         height: 80px;
         text-align: center;
     }
-
     .extension {
         width: 60%;
         text-align: center;
@@ -255,13 +252,11 @@
         padding-bottom: 0px;
         background: #2f50f5;
     }
-
     .text-box {
         width: 100vw;
         padding: 5px;
         padding-top: 50px;
     }
-
     .link {
         height: 10vh;
     }
@@ -283,11 +278,9 @@
     .link {
         height: 110px;
     }
-
     .extension {
         padding-top: 10px;
     }
-
     .btn-enviar {
         height: 37px;
     }
@@ -297,7 +290,6 @@
     .cod {
         font-size: 12px;
     }
-
     .extension {
         width: 165px;
     }

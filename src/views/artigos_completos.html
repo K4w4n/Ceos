@@ -101,7 +101,8 @@
                     holder: 'editorjs',
                     readOnly: true,
                     placeholder: 'Artigo em branco',
-                    data: artigo.conteudo
+                    data: artigo.conteudo,
+                    onReady: () => document.querySelectorAll('.codex-editor__redactor').forEach(element => element.setAttribute('style', 'padding-bottom: 0px;'))
                 });
             }).catch(console.error);
 
