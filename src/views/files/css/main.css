@@ -246,10 +246,24 @@ nav .content .links {
     display: inline;
 }
 
+.label-erro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
 .label-erros {
     color: red;
     font-size: 18px;
     font-weight: 600;
+    margin: 15px;
+    margin-top: 0px;
+    padding: 8px 0px;
+    background-color: #FFF;
+    padding: 3px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
 }
 
 
