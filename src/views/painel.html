@@ -88,7 +88,8 @@
             <div class="link-btn">
                 <label class="link" id="link"><label class="title-link" id="title-link">Link do seu
                         Artigo:</label><label class="cod" id="cod">
-                        www.ceoscommunity.com/artigos/</label><input type="text" id="extension" class="extension" placeholder="Digite sua extensão"></label>
+                        www.ceoscommunity.com/artigos/</label><input type="text" id="extension" class="extension"
+                        placeholder="Digite sua extensão"></label>
                 <button class="btn-enviar" id="btn-enviar" disabled><span>Publicar</span></button>
             </div>
         </div>
@@ -129,32 +130,33 @@
         const btnEnviar = document.querySelector('#btn-enviar');
         const labelErros = document.querySelector('.label-erros');
 
-        btnEnviar.addEventListener('click', async() => {
+        /* Functions insert in html */
+        const goHtml = (el, child) => el.innerHTML = child;
+        const goInput = (el, value) => el.value = value;
+
+        btnEnviar.addEventListener('click', async () => {
             const titulo = tituloInput.value;
             const conteudo = await editorjs.save();
             const url = urlInput.value;
             apiCeos.editora.criarArtigo(titulo, conteudo, url)
                 .then(artigo => window.location.assign(artigo.url))
-                .catch(console.error)
+                .catch(erro => goHtml(labelErros, erro.message))
         });
         /* State form */
         const stateForm = {
-                titulo: {
-                    clicks: 1,
-                    click: function() {
-                        this.clicks++
-                    }
-                },
-                url: {
-                    clicks: 0,
-                    click: function() {
-                        this.clicks++
-                    },
+            titulo: {
+                clicks: 1,
+                click: function () {
+                    this.clicks++
                 }
+            },
+            url: {
+                clicks: 0,
+                click: function () {
+                    this.clicks++
+                },
             }
-            /* Functions insert in html */
-        const goHtml = (el, child) => el.innerHTML = child;
-        const goInput = (el, value) => el.value = value;
+        }
 
         /* Reg validation */
         const regCharEspecial = /\W|_/;
@@ -179,22 +181,22 @@
             return haveErro;
         }
         const checkInfo = () => {
-                const haveErroUrl = checkUrl();
-                const haveErroConteudo = checkConteudo();
-                const haveErroTitulo = checkTitulo();
-                const erroClean = !haveErroUrl && !haveErroConteudo && !haveErroTitulo;
+            const haveErroUrl = checkUrl();
+            const haveErroConteudo = checkConteudo();
+            const haveErroTitulo = checkTitulo();
+            const erroClean = !haveErroUrl && !haveErroConteudo && !haveErroTitulo;
 
-                if (erroClean || (!stateForm.url.clicks || !stateForm.titulo.clicks)) {
-                    goHtml(labelErros, '');
-                    if (erroClean) btn.active();
-                } else {
-                    btn.desable();
-                    if (stateForm.url.clicks && haveErroUrl) goHtml(labelErros, haveErroUrl);
-                    if (haveErroConteudo) goHtml(labelErros, haveErroConteudo);
-                    if (stateForm.titulo.clicks && haveErroTitulo) goHtml(labelErros, haveErroTitulo);
-                }
+            if (erroClean || (!stateForm.url.clicks || !stateForm.titulo.clicks)) {
+                goHtml(labelErros, '');
+                if (erroClean) btn.active();
+            } else {
+                btn.desable();
+                if (stateForm.url.clicks && haveErroUrl) goHtml(labelErros, haveErroUrl);
+                if (haveErroConteudo) goHtml(labelErros, haveErroConteudo);
+                if (stateForm.titulo.clicks && haveErroTitulo) goHtml(labelErros, haveErroTitulo);
             }
-            /* Events for validation */
+        }
+        /* Events for validation */
         urlInput.addEventListener('keyup', checkInfo);
         urlInput.addEventListener('keydown', checkInfo);
         urlInput.addEventListener('blur', checkInfo);
