@@ -19,7 +19,7 @@ if (navbar) apiCeos.usuario.subscribe((usuario) => {
 /* botão sair */
 if (sairItem) sairItem.addEventListener('click', async() => {
     await apiCeos.usuario.logoff();
-    window.location.reload();
+    window.location.href = "/login";
 });
 /*Aparecer e Desaparecer Menu*/
 var scrollPrev = window.pageYOffset;
