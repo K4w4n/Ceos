@@ -83,10 +83,10 @@
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Senha" class="senha" required />
+                            <input type="password" placeholder="Senha" class="senha" maxlength="255" required />
                         </div>
                         <label class="label-erros"></label>
-                        <input type="button" value="Conectar-se" class="btn solid login" />
+                        <input type="button" value="Conectar-se" class="btn solid login" disabled/>
 
                     </form>
 
@@ -106,18 +106,18 @@
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock" id="lock" onclick="show()"></i>
-                            <input type="password" id="senha" onclick="animation_lock()" placeholder="Senha" class="senha1" minlength="6" maxlength="12" required />
+                            <input type="password" id="senha" onclick="animation_lock()" placeholder="Senha" class="senha1" minlength="6" maxlength="255" required />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock" id="lock1" onclick="show1()"></i>
-                            <input type="password" id="senha1" onclick="animation_lock1()" placeholder="Confirmar Senha" class="senha2" minlength="7" maxlength="12" required />
+                            <input type="password" id="senha1" onclick="animation_lock1()" placeholder="Confirmar Senha" class="senha2" minlength="7" maxlength="255" required />
                         </div>
                         <label class="label-erros"></label>
-                        <div class="termos" id="termos"><input type="checkbox" required>
+                        <div class="termos" id="termos"><input type="checkbox" class="aceitar-termos" required>
                             <p class="container-text-termos">Concordo com os <a class="link_termos" href="/termos.html">Termos de
                   Uso.</a></p>
                         </div>
-                        <input type="button" class="btn registro" value="Cadastrar" />
+                        <input type="button" class="btn registro" value="Cadastrar" disabled/>
                     </form>
                 </div>
             </div>

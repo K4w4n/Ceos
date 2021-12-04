@@ -32,6 +32,21 @@
   z-index: 5;
 }
 
+.btn:disabled span {
+  cursor: not-allowed;
+}
+
+.btn:disabled {
+  background-color: #a5a5a5;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background-color: #a5a5a5;
+  border: none;
+  color: #fff;
+}
+
 form {
   display: flex;
   justify-content: center;
