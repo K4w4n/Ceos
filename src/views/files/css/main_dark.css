@@ -64,6 +64,18 @@
     display: none;
 }
 
+.body-dark .label-erros {
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 15px;
+    margin-top: 0px;
+    padding: 8px 0px;
+    background-color: #1C1E21;
+    padding: 3px;
+    border-radius: 5px;
+}
+
 
 /*Main Dark Responsivel*/
 
@@ -313,11 +325,12 @@
     color: #fff;
 }
 
-.body-dark .subtitle-artigo-completo {
+.body-dark .subtitle_artigo_completo {
     font-size: 12pt;
     padding-bottom: 5px;
     border-bottom: 1px solid #2f50f5;
     color: #fff;
+    text-align: center;
 }
 
 .body-dark .text-artigo-completo {
@@ -436,9 +449,10 @@
 .body-dark .btn-enviar span:after {
     content: '\00bb';
     position: absolute;
-    font-size: 15pt;
+    font-size: 18pt;
     opacity: 0;
-    top: 0;
+    top: -4px;
+    left: 85px;
     right: -20px;
     transition: 0.5s;
 }
