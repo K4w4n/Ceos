@@ -265,7 +265,9 @@ nav .content .links {
     border-radius: 5px;
     border: 2px solid #FFF;
 }
-
+.label-erros:empty{
+    display: none;
+}
 
 /*Menu Dropdown*/
 
