@@ -8,6 +8,13 @@ const perfilItem = document.querySelector('.perfil-item');
 const sairItem = document.querySelector('.sair-item');
 const navbar = document.querySelector('nav');
 
+document.querySelectorAll('.static-button').forEach(p => {
+    p.addEventListener('click', (evt) => {
+        evt.preventDefault();
+    });
+});
+
+
 const apiCeos = new ApiCeos();
 if (navbar) apiCeos.usuario.subscribe((usuario) => {
     painelItemHtml.style.display = 'block';

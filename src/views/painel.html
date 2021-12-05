@@ -32,10 +32,10 @@
                     <li class="sobre-item"><a href="/sobre.html">Sobre Nós</a></li>
                     <li class="painel-item"><a href="/painel.html">Painel</a></li>
                     <li>
-                        <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
+                        <a href="" class="desktop-link static-button">Conta <i class="fas fa-angle-down theme-check"></i></a>
                         <input type="checkbox" id="show-features">
                         <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
-                        <ul id="dropdown">
+                        <ul id="dropdown" class="menu-conta">
                             <li class="login-item"><a href="/login.html"><i class="fas fa-door-open"></i><span
                                         class="text-submenu">Login/Cadastro</span></a>
                             </li>
@@ -47,15 +47,15 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+                        <a href="" class="desktop-link static-button">Aparência <i class="fas fa-angle-down theme-check"></i></a>
                         <input type="checkbox" id="show-features1">
                         <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
-                        <ul>
+                        <ul class="menu-aparencia">
                             <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
-                                    <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                                    <div class="text-dark">Tema Escuro <i id="check-dark" class="fas # theme-check"></i></div>
                                 </button></li>
                             <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
-                                    <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i>
+                                    <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check theme-check"></i>
                                     </div>
                                 </button></li>
                         </ul>
@@ -88,8 +88,7 @@
             <div class="link-btn">
                 <label class="link" id="link"><label class="title-link" id="title-link">Link do seu
                         Artigo:</label><label class="cod" id="cod">
-                        www.ceoscommunity.com/artigos/</label><input type="text" id="extension" class="extension"
-                        placeholder="Digite sua extensão"></label>
+                        www.ceoscommunity.com/artigos/</label><input type="text" id="extension" class="extension" placeholder="Digite sua extensão"></label>
                 <button class="btn-enviar" id="btn-enviar" disabled><span>Publicar</span></button>
             </div>
         </div>
@@ -134,7 +133,7 @@
         const goHtml = (el, child) => el.innerHTML = child;
         const goInput = (el, value) => el.value = value;
 
-        btnEnviar.addEventListener('click', async () => {
+        btnEnviar.addEventListener('click', async() => {
             const titulo = tituloInput.value;
             const conteudo = await editorjs.save();
             const url = urlInput.value;
@@ -146,13 +145,13 @@
         const stateForm = {
             titulo: {
                 clicks: 1,
-                click: function () {
+                click: function() {
                     this.clicks++
                 }
             },
             url: {
                 clicks: 0,
-                click: function () {
+                click: function() {
                     this.clicks++
                 },
             }
@@ -181,22 +180,22 @@
             return haveErro;
         }
         const checkInfo = () => {
-            const haveErroUrl = checkUrl();
-            const haveErroConteudo = checkConteudo();
-            const haveErroTitulo = checkTitulo();
-            const erroClean = !haveErroUrl && !haveErroConteudo && !haveErroTitulo;
+                const haveErroUrl = checkUrl();
+                const haveErroConteudo = checkConteudo();
+                const haveErroTitulo = checkTitulo();
+                const erroClean = !haveErroUrl && !haveErroConteudo && !haveErroTitulo;
 
-            if (erroClean || (!stateForm.url.clicks || !stateForm.titulo.clicks)) {
-                goHtml(labelErros, '');
-                if (erroClean) btn.active();
-            } else {
-                btn.desable();
-                if (stateForm.url.clicks && haveErroUrl) goHtml(labelErros, haveErroUrl);
-                if (haveErroConteudo) goHtml(labelErros, haveErroConteudo);
-                if (stateForm.titulo.clicks && haveErroTitulo) goHtml(labelErros, haveErroTitulo);
+                if (erroClean || (!stateForm.url.clicks || !stateForm.titulo.clicks)) {
+                    goHtml(labelErros, '');
+                    if (erroClean) btn.active();
+                } else {
+                    btn.desable();
+                    if (stateForm.url.clicks && haveErroUrl) goHtml(labelErros, haveErroUrl);
+                    if (haveErroConteudo) goHtml(labelErros, haveErroConteudo);
+                    if (stateForm.titulo.clicks && haveErroTitulo) goHtml(labelErros, haveErroTitulo);
+                }
             }
-        }
-        /* Events for validation */
+            /* Events for validation */
         urlInput.addEventListener('keyup', checkInfo);
         urlInput.addEventListener('keydown', checkInfo);
         urlInput.addEventListener('blur', checkInfo);
