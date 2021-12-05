@@ -69,7 +69,7 @@ function validLogin() {
         goHtml(labelErroLogin, 'E-mail inválido');
     } else if (!senha) {
         btnLogin.desable();
-        goHtml(labelErroLogin, 'A Senha esta vazia');
+        goHtml(labelErroLogin, 'A Senha está vazia');
     } else if (senha.length < 6) {
         btnLogin.desable();
         goHtml(labelErroLogin, 'A Senha é muito curta');
@@ -136,7 +136,7 @@ function validRegistro() {
         goHtml(labelErroRegistro, 'As Senhas devem ser iguais');
     } else if (!aceitarTermosRegistro.checked) {
         btnRegistro.desable();
-        goHtml(labelErroRegistro, 'Aceite os Termos');
+        goHtml(labelErroRegistro, 'Aceite os Termos de Uso');
     } else {
         btnRegistro.active();
         goHtml(labelErroRegistro, '');
