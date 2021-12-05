@@ -32,7 +32,7 @@ export const errorList = [
     new Erro('Email invalido', 12, 'O email precisa ser fornecido'),
     new Erro('Nome invalido', 13, 'O nome ultrapassa o tamanho maximo'),
     new Erro('Nome invalido', 14, 'O nome esta a baixo do tamanho minimo'),
-    new Erro('Nome invalido', 15, 'Um nome não pode conter caracteres especiais'),//alguns nomes podem conter caracteres especiais
+    new Erro('Nome invalido', 15, 'Um nome não pode conter caracteres especiais'), //alguns nomes podem conter caracteres especiais
     new Erro('Sobrenome invalido', 16, 'O sobrenome ultrapassa o tamanho maximo'),
     new Erro('Sobrenome invalido', 17, 'O sobrenome esta a baixo do tamanho minimo'),
     new Erro('Sobrenome invalido', 18, 'O sobrenome precisa ser fornecido'),
@@ -43,6 +43,6 @@ export const errorList = [
     new Erro('Falha no token', 23, 'Algo deu errado no seu token, faça login novamente'),
     new Erro('Falha no Registro', 24, 'A conta já existe'),
     new Erro('Falha no token', 25, 'Nenhuma conta encontrada com o id do token'),
-    new Erro('Falha no login', 26, 'Essa conta não existe'),
+    new Erro('Falha no login', 26, 'Essa Conta não existe'),
     new Erro('Falha ao criar artigo', 27, 'A url já esta em uso'),
 ];

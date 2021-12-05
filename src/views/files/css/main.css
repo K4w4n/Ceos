@@ -265,9 +265,27 @@ nav .content .links {
     border-radius: 5px;
     border: 2px solid #FFF;
 }
-.label-erros:empty{
+
+.label-erros-login {
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 8px 0px;
+    background-color: #FFF;
+    padding: 3px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+}
+
+.label-erros:empty {
     display: none;
 }
+
+.label-erros-login:empty {
+    display: none;
+}
+
 
 /*Menu Dropdown*/
 
