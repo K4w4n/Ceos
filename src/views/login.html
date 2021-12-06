@@ -31,10 +31,10 @@
                     <li class="sobre-item"><a href="/sobre.html">Sobre Nós</a></li>
                     <li class="painel-item"><a href="/painel.html">Painel</a></li>
                     <li>
-                        <a href="" class="desktop-link">Conta <i class="fas fa-angle-down"></i></a>
+                        <a href="" class="desktop-link static-button">Conta <i class="fas fa-angle-down theme-check"></i></a>
                         <input type="checkbox" id="show-features">
                         <label for="show-features">Conta <i class="fas fa-angle-down"></i></label>
-                        <ul id="dropdown">
+                        <ul id="dropdown" class="menu-conta">
                             <li class="login-item"><a href="/login.html"><i class="fas fa-door-open"></i><span
                     class="text-submenu">Login/Cadastro</span></a>
                             </li>
@@ -46,15 +46,15 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="" class="desktop-link">Aparência <i class="fas fa-angle-down"></i></a>
+                        <a href="" class="desktop-link static-button">Aparência <i class="fas fa-angle-down theme-check"></i></a>
                         <input type="checkbox" id="show-features1">
                         <label for="show-features1">Aparência <i class="fas fa-angle-down"></i></label>
-                        <ul>
+                        <ul class="menu-aparencia">
                             <li><button onclick="darkTheme()" class="theme"><i class="fas fa-moon"></i>
-                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas #"></i></div>
+                  <div class="text-dark">Tema Escuro <i id="check-dark" class="fas # theme-check"></i></div>
                 </button></li>
                             <li><button onclick="lighTheme()" class="theme"><i class="fas fa-sun"></i>
-                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check"></i></div>
+                  <div class="text-dark">Tema Claro <i id="check-light" class="fas fa-check theme-check"></i></div>
                 </button></li>
                         </ul>
                     </li>
@@ -79,7 +79,7 @@
                         <h2 class="title" id="title">Entrar</h2>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="text" id="email" placeholder="Email" class="email" required />
+                            <input type="text" id="email" placeholder="E-mail" class="email" required />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" placeholder="Email" class="email" required />
+                            <input type="email" placeholder="E-mail" class="email" required />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock" id="lock" onclick="show()"></i>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock" id="lock1" onclick="show1()"></i>
-                            <input type="password" id="senha1" onclick="animation_lock1()" placeholder="Confirmar Senha" class="senha2" minlength="7" maxlength="255" required />
+                            <input type="password" id="senha1" onclick="animation_lock1()" placeholder="Confirmar Senha" class="senha2" minlength="6" maxlength="255" required />
                         </div>
                         <label class="label-erros-login"></label>
                         <div class="termos" id="termos"><input type="checkbox" class="aceitar-termos" required>

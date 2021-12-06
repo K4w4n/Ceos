@@ -66,6 +66,11 @@
     padding-top: 180px;
 }
 
+#editorjs a {
+    color: #288ddb;
+    text-decoration: none;
+}
+
 .link-btn {
     background-color: transparent;
     display: flex;

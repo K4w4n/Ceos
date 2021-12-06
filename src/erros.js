@@ -43,6 +43,6 @@ export const errorList = [
     new Erro('Falha no token', 23, 'Algo deu errado no seu token, faça login novamente'),
     new Erro('Falha no Registro', 24, 'A conta já existe'),
     new Erro('Falha no token', 25, 'Nenhuma conta encontrada com o id do token'),
-    new Erro('Falha no login', 26, 'Essa Conta não existe'),
+    new Erro('Falha no login', 26, 'Usuário/Senha inválidos!'),
     new Erro('Falha ao criar artigo', 27, 'A url já esta em uso'),
 ];

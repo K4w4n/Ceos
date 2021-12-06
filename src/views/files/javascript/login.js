@@ -27,7 +27,7 @@ const goInput = (el, value) => el.value = value;
 
 const btnLogin = {
     active: () => loginBtn.disabled = false,
-    desable: () => loginBtn.disabled = true,
+    disable: () => loginBtn.disabled = true,
 }
 const btnRegistro = {
     active: () => registroBtn.disabled = false,
@@ -41,9 +41,12 @@ loginBtn.addEventListener('click', () => {
         .then(() => window.location.reload())
         .catch(erro => {
             goHtml(labelErroLogin, erro.message);
-            btnLogin.desable();
         });
+
+    validLogin();
+
 });
+
 registroBtn.addEventListener('click', () => {
     const nome = nomeRegistro.value;
     const sobrenome = sobrenomeRegistro.value;
@@ -59,22 +62,44 @@ registroBtn.addEventListener('click', () => {
 });
 
 function validLogin() {
+    validLogin_novo();
+}
+
+
+function validLogin_novo() {
     const email = emailLogin.value;
     const senha = senhaLogin.value;
     if (!email) {
-        btnLogin.desable();
+        btnLogin.disable();
+    } else if (!regEmail.test(email)) {
+        btnLogin.disable();
+    } else if (!senha) {
+        btnLogin.disable();
+    } else if (senha.length < 6) {
+        btnLogin.disable();
+    } else {
+        btnLogin.active();
+        goHtml(labelErroLogin, '');
+    }
+}
+
+function validLogin_antigo() {
+    const email = emailLogin.value;
+    const senha = senhaLogin.value;
+    if (!email) {
+        btnLogin.disable();
         goHtml(labelErroLogin, 'O E-mail está vazio');
     } else if (!regEmail.test(email)) {
-        btnLogin.desable();
+        btnLogin.disable();
         goHtml(labelErroLogin, 'E-mail inválido');
     } else if (!senha) {
-        btnLogin.desable();
+        btnLogin.disable();
         goHtml(labelErroLogin, 'A Senha está vazia');
     } else if (senha.length < 6) {
-        btnLogin.desable();
+        btnLogin.disable();
         goHtml(labelErroLogin, 'A Senha é muito curta');
     } else if (senha.length > 255) {
-        btnLogin.desable();
+        btnLogin.disable();
         goHtml(labelErroLogin, 'A Senha é muito longa');
     } else {
         btnLogin.active();
