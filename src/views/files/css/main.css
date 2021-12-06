@@ -289,9 +289,11 @@ nav .content .links {
     border: 2px solid #FFF;
 }
 
+
 .label-erros:empty {
     display: none;
 }
+
 
 .label-erros-login {
     color: red;
@@ -308,7 +310,6 @@ nav .content .links {
 .label-erros-login:empty {
     display: none;
 }
-
 
 /*Menu Dropdown*/
 
