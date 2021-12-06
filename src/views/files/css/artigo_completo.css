@@ -94,8 +94,15 @@
 }
 
 .codex-editor--narrow .codex-editor__redactor {
+    width: 100vw;
     margin-right: 0;
     margin-top: 30px;
+    padding: 0px 20px;
+}
+
+#editorjs a {
+    color: #288ddb;
+    text-decoration: none;
 }
 
 

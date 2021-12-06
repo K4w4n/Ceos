@@ -65,7 +65,7 @@
 }
 
 .body-dark .label-erros {
-    color: red;
+    color: #fa3b3b;
     font-size: 18px;
     font-weight: 600;
     margin: 15px;
@@ -77,20 +77,15 @@
 }
 
 .body-dark .label-erros-login {
-    color: red;
+    color: #fa3b3b;
     font-size: 18px;
     font-weight: 600;
-    margin: 15px;
-    margin-top: 0px;
+    margin: 0px;
     padding: 8px 0px;
     background-color: #1C1E21;
     padding: 3px;
     border-radius: 5px;
     border: 0;
-}
-
-.body-dark .label-erros-login:empty {
-    display: none;
 }
 
 

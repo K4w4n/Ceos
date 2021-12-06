@@ -116,7 +116,7 @@ function validRegistro() {
     const confirmSenha = confirmSenhaRegistro.value;
     if (!nome) {
         btnRegistro.desable();
-        goHtml(labelErroRegistro, 'Insira o nome');
+        goHtml(labelErroRegistro, 'Insira o Nome');
     } else if (regNumero.test(nome)) {
         btnRegistro.desable();
         goHtml(labelErroRegistro, 'O Nome não deve ter números');
@@ -161,7 +161,7 @@ function validRegistro() {
         goHtml(labelErroRegistro, 'As Senhas devem ser iguais');
     } else if (!aceitarTermosRegistro.checked) {
         btnRegistro.desable();
-        goHtml(labelErroRegistro, 'Aceite os Termos');
+        goHtml(labelErroRegistro, 'Aceite os Termos de Uso');
     } else {
         btnRegistro.active();
         goHtml(labelErroRegistro, '');

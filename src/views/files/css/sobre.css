@@ -1,4 +1,5 @@
 /*Sobre*/
+
 .container-sobre {
     padding-top: 100px;
 }
@@ -6,8 +7,7 @@
 .container-sobre-objetivo {
     color: #000;
     text-align: justify;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0px 50px;
 }
 
 .title-sobre {
@@ -171,24 +171,29 @@
     background-color: #fff;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
+    .card {
+        margin: 40px;
+    }
+    .container-sobre-objetivo {
+        padding: 0px 30px;
+    }
+}
 
+@media screen and (max-width: 320px) {
     .card {
         margin: 30px;
     }
 }
 
 @media screen and (max-width: 320px) {
-
     .title-sobre {
         text-align: center;
     }
-
     .title-membros {
         font-size: 22px;
     }
-
     .card {
-        margin: 20px;
+        margin: 15px;
     }
 }
