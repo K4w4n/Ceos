@@ -73,6 +73,11 @@ p {
     transition: background-color .15s ease;
 }
 
+.codex-editor a {
+    color: #288ddb;
+    text-decoration: none;
+}
+
 
 /*Artigos Responsivel*/
 
