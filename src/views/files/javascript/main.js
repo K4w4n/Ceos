@@ -1,3 +1,7 @@
+/* Removendo erros de compatibilidade */
+function replaceAll(search, replace) { return this.split(search).join(replace); }
+String().__proto__.replaceAll = String().replaceAll ? String().replaceAll : replaceAll;
+
 /* Connectando back-end */
 const homeItemHtml = document.querySelector('.home-item');
 const artigosMenuItemHtml = document.querySelector('.artigos-menu-item');
@@ -24,13 +28,13 @@ if (navbar) apiCeos.usuario.subscribe((usuario) => {
 });
 
 /* botão sair */
-if (sairItem) sairItem.addEventListener('click', async() => {
+if (sairItem) sairItem.addEventListener('click', async () => {
     await apiCeos.usuario.logoff();
     window.location.href = "/login";
 });
 /*Aparecer e Desaparecer Menu*/
 var scrollPrev = window.pageYOffset;
-window.onscroll = function() {
+window.onscroll = function () {
     var scrollCur = window.pageYOffset;
     if (scrollPrev > scrollCur) {
         navbar.style.top = "0";
@@ -68,7 +72,7 @@ function scrollFunction() {
         if (backToTopButton.classList.contains("btnEntrance")) {
             backToTopButton.classList.remove("btnEntrance");
             backToTopButton.classList.add("btnExit");
-            setTimeout(function() {
+            setTimeout(function () {
                 backToTopButton.style.display = "none";
             }, 250);
         }
