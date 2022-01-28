@@ -68,9 +68,9 @@ class Validador {
         console.log("urlArtigo.search(' ') != -1: ", urlArtigo.search(' ') != -1);
         if (urlArtigo.search(' ') != -1) throw errorList[5];
 
-        console.log("/\W|_/.test(urlArtigo.replaceAll('-', '')): ", /\W|_/.test(urlArtigo.replaceAll('-', '')));
-        if (/\W|_/.test(urlArtigo.replaceAll('-', ''))) throw errorList[4];
-        
+       /*  console.log("/\W|_/.test(urlArtigo.replaceAll('-', '')): ", /\W|_/.test(urlArtigo.replaceAll('-', '')));
+        if (/\W|_/.test(urlArtigo.replaceAll('-', ''))) throw errorList[4]; */
+
         return true;
     }
     alterarConfiguracoes(config) {
