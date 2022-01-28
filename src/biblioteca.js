@@ -8,16 +8,25 @@ const validador = new Validador();
 
 class Biblioteca {
     async pegueArtigo(urlArtigo) {
+        console.log('urlArtigo', urlArtigo);
         validador.urlArtigo(urlArtigo);
+        console.log('Url é valida');
         const select = new Select();
         select
             .from(['tb_artigos'])
             .innerJoin('tb_usuarios')
             .on(new Operation().column('tb_artigos.user_id').equal.column('tb_usuarios.user_id'))
             .where(new Operation().column('art_url').equal.value(urlArtigo));
+        console.log('Query pronta');
 
         const artigoBruto = (await select.sendQuery())[0][0];
+
+        console.log('artigoBruto', artigoBruto);
+        
         if (!artigoBruto) throw errorList[21];
+        
+        console.log('Artigo não esta em branco');
+        
         const artigoProcessado = {
             titulo: artigoBruto['art_titulo'],
             conteudo: JSON.parse(artigoBruto['art_conteudo']),
@@ -28,6 +37,9 @@ class Biblioteca {
             autorNome: artigoBruto['user_nome'],
             autorSobrenome: artigoBruto['user_sobrenome'],
         }
+
+        console.log('artigoProcessado', artigoProcessado);
+        
         return artigoProcessado;
     }
     async meusArtigos(token, quantidade = 5, pagina = 0) {
