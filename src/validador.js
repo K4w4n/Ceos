@@ -56,16 +56,13 @@ class Validador {
         return true;
     }
     urlArtigo(urlArtigo) {
-        console.log("typeof urlArtigo != 'string': ", typeof urlArtigo != 'string');
+
         if (typeof urlArtigo != 'string') throw errorList[1];
 
-        console.log("urlArtigo.length == 0: ", urlArtigo.length == 0);
         if (urlArtigo.length == 0) throw errorList[2];
 
-        console.log("urlArtigo.toLowerCase() != urlArtigo: ", urlArtigo.toLowerCase() != urlArtigo);
         if (urlArtigo.toLowerCase() != urlArtigo) throw errorList[3];
 
-        console.log("urlArtigo.search(' ') != -1: ", urlArtigo.search(' ') != -1);
         if (urlArtigo.search(' ') != -1) throw errorList[5];
 
         const letrasPermitidas = 'abcdefghijklmnopqrstuvxwyz-123456789';

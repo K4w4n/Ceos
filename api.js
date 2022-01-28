@@ -68,14 +68,8 @@ api.get('/biblioteca/meusArtigos/', function (req, res) {
 });
 api.post('/editora/criarArtigo/', function (req, res) {
     const { titulo, conteudo, url } = req.body;
-
-    console.log('titulo', titulo);
-    console.log('conteudo', conteudo);
-    console.log('url', url);
     
     const token = req.cookies.credencial;
-    
-    console.log('token', token);
 
     editora.crieArtigo({ titulo, conteudo, url }, token)
         .then(artigo => res.status(200).send(artigo))
